@@ -628,17 +628,20 @@ select {
 .z-50 {
   z-index: 50;
 }
+.z-30 {
+  z-index: 30;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
 }
-.my-6 {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
+}
+.my-6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .mx-5 {
   margin-left: 1.25rem;
@@ -680,6 +683,9 @@ select {
 }
 .-mt-px {
   margin-top: -1px;
+}
+.mr-3 {
+  margin-right: 0.75rem;
 }
 .mt-3 {
   margin-top: 0.75rem;
@@ -732,6 +738,9 @@ select {
 .h-16 {
   height: 4rem;
 }
+.h-96 {
+  height: 24rem;
+}
 .h-9 {
   height: 2.25rem;
 }
@@ -765,6 +774,9 @@ select {
 .w-full {
   width: 100%;
 }
+.w-1\/2 {
+  width: 50%;
+}
 .w-4 {
   width: 1rem;
 }
@@ -779,9 +791,6 @@ select {
 }
 .w-2\/5 {
   width: 40%;
-}
-.w-1\/2 {
-  width: 50%;
 }
 .w-3\/5 {
   width: 60%;
@@ -958,6 +967,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(31 41 55 / var(--tw-bg-opacity));
 }
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
@@ -965,6 +978,9 @@ select {
 .bg-gray-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+}
+.bg-general-hero {
+  background-image: url('/images/bicycle.jpg');
 }
 .bg-hero {
   background-image: url('/images/hero.jpg');
@@ -1113,17 +1129,17 @@ select {
   font-size: 0.75rem;
   line-height: 1rem;
 }
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 .text-4xl {
   font-size: 2.25rem;
@@ -1203,6 +1219,14 @@ select {
   --tw-text-opacity: 1;
   color: rgb(79 70 229 / var(--tw-text-opacity));
 }
+.text-zinc-200 {
+  --tw-text-opacity: 1;
+  color: rgb(228 228 231 / var(--tw-text-opacity));
+}
+.text-fuchsia-700 {
+  --tw-text-opacity: 1;
+  color: rgb(162 28 175 / var(--tw-text-opacity));
+}
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
@@ -1232,6 +1256,9 @@ select {
 }
 .opacity-100 {
   opacity: 1;
+}
+.opacity-80 {
+  opacity: 0.8;
 }
 .opacity-25 {
   opacity: 0.25;

@@ -1,10 +1,16 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
+import AppLayout from '@/Layouts/App.vue';
+import HeroLayout from '@/Components/Hero.vue';
 
 </script>
 <template>
-     <Head title="Contact Us" />
+     <AppLayout>
+          <Head title="Contact Us" />
 
-     <h1>Nothing here - Contact Us</h1>
+          <main>
+               <HeroLayout title="Contact Us"/>
+          </main>
+     </AppLayout>
      
 </template>
