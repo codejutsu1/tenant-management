@@ -15,5 +15,10 @@ class PagesController extends Controller
             'canLogin' => Route::has('login'),
             'canRegister' => Route::has('register'),
         ]);
-    }    
+    }
+    
+    public function dashboard()
+    {
+        return inertia('User/Dashboard');
+    }
 }
