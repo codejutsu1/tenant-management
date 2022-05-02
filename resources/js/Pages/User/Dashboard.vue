@@ -68,7 +68,7 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                     120,000.00 ($200)
+                    &#8358; 120,000.00 ($200)
                   </p>
                 </div>
               </div>
