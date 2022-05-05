@@ -27,6 +27,9 @@ Route::inertia('transaction-history', 'User/TransactionHistory')->name('history'
 Route::inertia('legal', 'User/Legal')->name('legal');
 Route::inertia('account-details', 'User/AccountDetails')->name('details');
 
+Route::inertia('payment/house-lodge-payment', 'User/Payment/House')->name('housePayment');
+Route::inertia('payment/other-payments', 'User/Payment/Other')->name('otherPayment');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

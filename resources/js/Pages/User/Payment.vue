@@ -1,25 +1,14 @@
 <script setup>
+import Payment from '@/Components/Pay.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import UserDashboard from '@/Layouts/UserDashboard.vue';
-
 </script>
 
 <template>
-    <UserDashboard>
-        <Head title="Payment" />
-
-        <main class="h-full overflow-y-auto z-30">
-          <div class="container px-6 mx-auto grid">
-            <h2
-              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              Make Payment
-            </h2>
-
-             <div class="grid gap-6 mb-8 md:grid-cols-2">
+   <Payment>
+     <div class="grid gap-6 mb-8 md:grid-cols-2">
               <!-- Card -->
-              <div
-                class="flex items-center p-4 py-10 bg-white cursor-pointer rounded-lg shadow-xs dark:bg-gray-800"
+              <Link
+                :href="route('housePayment')" class="flex items-center p-4 py-10 bg-white rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <div
                   class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"
@@ -37,10 +26,10 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                     House/Lodge Payment
                   </p>
                 </div>
-              </div>
+              </Link>
               <!-- Card -->
-              <div
-                class="flex items-center p-4 bg-white cursor-pointer rounded-lg shadow-xs dark:bg-gray-800"
+              <Link
+                :href="route('otherPayment')" class="flex items-center p-4 bg-white cursor-pointer rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <div
                   class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
@@ -60,10 +49,7 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                     Others
                   </p>
                 </div>
-              </div>
+              </Link>
             </div>
-          </div>
-        </main>
-
-    </UserDashboard>
+   </Payment> 
 </template>
