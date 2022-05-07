@@ -30,6 +30,10 @@ Route::inertia('account-details', 'User/AccountDetails')->name('details');
 Route::inertia('payment/house-lodge-payment', 'User/Payment/House')->name('housePayment');
 Route::inertia('payment/other-payments', 'User/Payment/Other')->name('otherPayment');
 
+Route::inertia('payment/house-lodge-payment/online-banking', 'User/Banking/OnlineBanking')->name('onlineBanking');
+Route::inertia('payment/house-lodge-payment/offline-banking', 'User/Banking/OfflineBanking')->name('offlineBanking');
+Route::inertia('payment/house-lodge-payment/crypto', 'User/Banking/Crypto')->name('crypto');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
