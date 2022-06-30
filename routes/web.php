@@ -3,6 +3,8 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\SuperAdmin\PagesController as SuperAdminPages;
+use App\Http\Controllers\Admin\PagesController as AdminPages;
 use App\Http\Controllers\User\PagesController;
 
 /*
@@ -20,7 +22,10 @@ Route::get('/', [PagesController::class, 'index'])->name('home');
 Route::inertia('about', 'Web/About')->name('about');
 Route::inertia('contact-us', 'Web/Contact')->name('contact');
 
-Route::get('/dashboardUser', [PagesController::class, 'dashboard'])->name('dashboardUser');
+Route::get('/dashboardUser', [PagesController::class, 'dashboardUser'])->name('dashboard.user');
+Route::get('/dashboard-admin', [AdminPages::class, 'dashboardAdmin'])->name('dashboard.admin');
+Route::get('/dashboard-landlord', [SuperAdminPages::class, 'dashboardSuperAdmin'])->name('dashboard.super.admin');
+
 Route::inertia('payment', 'User/Payment')->name('payment');
 Route::inertia('receipt', 'User/Receipt')->name('receipt');
 Route::inertia('transaction-history', 'User/TransactionHistory')->name('history');

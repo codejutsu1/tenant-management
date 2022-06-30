@@ -17,7 +17,7 @@ class PagesController extends Controller
         ]);
     }
     
-    public function dashboard()
+    public function dashboardUser()
     {
         return inertia('User/Dashboard');
     }
