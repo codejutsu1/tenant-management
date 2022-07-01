@@ -4,13 +4,16 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\SuperAdmin\PagesController as SuperAdminPages;
+use App\Http\Controllers\SuperAdmin\SettingController as superAdminSettings;
 use App\Http\Controllers\SuperAdmin\TenantController;
 use App\Http\Controllers\SuperAdmin\CaretakerController;
 use App\Http\Controllers\SuperAdmin\YearController;
 use App\Http\Controllers\Admin\PagesController as AdminPages;
 use App\Http\Controllers\Admin\PaymentController as AdminPayment;
+use App\Http\Controllers\Admin\SettingController as AdminSettings;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\PagesController;
+use App\Http\Controllers\User\SettingController as UserSettings;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +52,10 @@ Route::resource('users', UserController::class);
 Route::resource('tenants', TenantController::class);
 Route::resource('caretakers', CaretakerController::class);
 Route::get('landlord/per-year', [YearController::class, 'showTenantsYearly'])->name('show.tenants.yearly');
+
+Route::get('user/settings', [UserSettings::class, 'userSettings'])->name('user.settings');
+Route::get('admin/settings', [AdminSettings::class, 'adminSettings'])->name('admin.settings');
+Route::get('landlord/settings', [SuperAdminSettings::class, 'superAdminSettings'])->name('super.admin.settings');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
