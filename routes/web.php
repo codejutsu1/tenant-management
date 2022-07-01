@@ -4,7 +4,12 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\SuperAdmin\PagesController as SuperAdminPages;
+use App\Http\Controllers\SuperAdmin\TenantController;
+use App\Http\Controllers\SuperAdmin\CaretakerController;
+use App\Http\Controllers\SuperAdmin\YearController;
 use App\Http\Controllers\Admin\PagesController as AdminPages;
+use App\Http\Controllers\Admin\PaymentController as AdminPayment;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\PagesController;
 
 /*
@@ -38,6 +43,12 @@ Route::inertia('payment/other-payments', 'User/Payment/Other')->name('otherPayme
 Route::inertia('payment/house-lodge-payment/online-banking', 'User/Banking/OnlineBanking')->name('onlineBanking');
 Route::inertia('payment/house-lodge-payment/offline-banking', 'User/Banking/OfflineBanking')->name('offlineBanking');
 Route::inertia('payment/house-lodge-payment/crypto', 'User/Banking/Crypto')->name('crypto');
+
+Route::get('admin/new-payment', [AdminPayment::class, 'showPaymentDetails'])->name('show.payment.details');
+Route::resource('users', UserController::class);
+Route::resource('tenants', TenantController::class);
+Route::resource('caretakers', CaretakerController::class);
+Route::get('landlord/per-year', [YearController::class, 'showTenantsYearly'])->name('show.tenants.yearly');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
