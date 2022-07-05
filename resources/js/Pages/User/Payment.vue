@@ -5,7 +5,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 <template>
    <Payment>
-     <div class="grid gap-6 mb-8 md:grid-cols-2">
+     <div class="grid gap-6 mb-8 md:grid-cols-2 mt-8">
               <!-- Card -->
               <Link
                 :href="route('housePayment')" class="flex items-center p-4 py-10 bg-white rounded-lg shadow-xs dark:bg-gray-800"

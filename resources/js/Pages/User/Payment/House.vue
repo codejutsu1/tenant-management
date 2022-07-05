@@ -6,10 +6,6 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 
 <template>
     <Payment>
-      <div class="bg-gray-800 rounded-md py-8">
-        <h1 class="font-semibold text-3xl text-center text-gray-400">House/Lodge Payment</h1>
-      </div>
-
       <div>
         <p class="text-center py-10 text-xl font-semibold text-gray-300">1. CHOOSE A PAYMENT METHOD</p>
         <div class="grid grid-cols-3 justify-center gap-7">

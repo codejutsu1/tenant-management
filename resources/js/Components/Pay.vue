@@ -16,8 +16,12 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
               Make Payment
             </h2>
 
+            <div class="bg-gray-800 rounded-md py-8">
+              <h1 class="font-semibold text-3xl text-center text-gray-400">House/Lodge Payment</h1>
+            </div>
+
             <slot />
-             
+
           </div>
         </main>
 
