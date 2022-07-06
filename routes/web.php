@@ -47,6 +47,9 @@ Route::inertia('payment/house-lodge-payment/online-banking', 'User/Banking/Onlin
 Route::inertia('payment/house-lodge-payment/offline-banking', 'User/Banking/OfflineBanking')->name('offlineBanking');
 Route::inertia('payment/house-lodge-payment/crypto', 'User/Banking/Crypto')->name('crypto');
 
+Route::inertia('payment/other-payment/online-banking', 'User/Other/OnlineBanking')->name('other.online.banking');
+Route::inertia('payment/other-payment/cryto', 'User/Other/Crypto')->name('other.crypto');
+
 Route::get('admin/new-payment', [AdminPayment::class, 'showPaymentDetails'])->name('show.payment.details');
 Route::resource('users', UserController::class);
 Route::resource('tenants', TenantController::class);
