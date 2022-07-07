@@ -29,13 +29,79 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <BreezeLabel for="name" value="Name" />
+                <BreezeLabel for="name" value="Fullname" />
                 <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
                 <BreezeLabel for="email" value="Email" />
                 <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
+            </div>
+    
+            <div class="mt-4">
+                <BreezeLabel for="phone" value="Telephone" />
+                <BreezeInput id="phone" type="tel" class="mt-1 block w-full"  required />
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="gender" value="Gender" />
+                <select id="gender" type="text" class="mt-1 block w-full"  required>
+                    <option value="" selected="selected" disabled>~ Select ~</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="dob" value="Date of Birth" />
+                <BreezeInput id="dob" type="date" class="mt-1 block w-full" required />
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="type" value="Type" />
+                <select id="type" type="text" class="mt-1 block w-full"  required>
+                    <option value="" selected="selected" disabled>~ Select ~</option>
+                    <option value="self-con">Self Container</option>
+                    <option value="two-rooms">Two Rooms</option>
+                    <option value="three-rooms">Three Rooms</option>
+                    <option value="shop">Shop</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="state" value="State of Origin" />
+                <select id="state" type="text" class="mt-1 block w-full"  required>
+                    <option value="" selected="selected" disabled>~ Select ~</option>
+                    <option value="Abia">Abia</option>
+                    <option value="Anambra">Anambra</option>
+                    <option value="Ebonyi">Ebonyi</option>
+                    <option value="Enugu">Enugu</option>
+                    <option value="Imo">Imo</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="lga" value="Local Government Area" />
+                <select id="lga" type="text" class="mt-1 block w-full"  required>
+                    <option value="" selected="selected" disabled>~ Select ~</option>
+                    <option value="Aniri">Aniri</option>
+                    <option value="Awgu">Awgu</option>
+                    <option value="Owerri-west">Owerri-West</option>
+                    <option value="Idemili-North">Idemili-North</option>
+                    <option value="Mbaise">Mbaise</option>
+                </select>
+            </div>
+
+            <div class="mt-4">
+                <BreezeLabel for="occupation" value="Occupation" />
+                <select id="occupation" type="text" class="mt-1 block w-full"  required>
+                    <option value="" selected="selected" disabled>~ Select ~</option>
+                    <option value="civil servant">Civil Servant</option>
+                    <option value="businessman">Businessman</option>
+                    <option value="freelancer">Freelancer</option>
+                    <option value="enterpreneur">Enterpreneur</option>
+                    <option value="student">Student</option>
+                </select>
             </div>
 
             <div class="mt-4">
