@@ -26,8 +26,7 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
 
             <div class="flex justify-center items-center w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
                 <form class="w-full">
-                <div class="text-gray-300">
-                <div class="space-y-5 mt-4">
+                <div class="space-y-5 mt-4 text-gray-300">
                     <div class="flex justify-between items-center">
                         <span class="font-semibold text-lg">Name: </span>
                         <span>Nwoko James</span>
@@ -38,12 +37,24 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                     </div>
                     
                         <div>
-                            <label for="description">Description</label>
-                            <input type="text" placeholder="Payment for ... ?" name="description">
+                            <label class="block">
+                              <span class="text-gray-400 pt-4 pb-2 block font-semibold">Description</span>
+                              <input
+                                  class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                  placeholder="Pay for ...?"
+                              />
+                              <p class="text-sm text-red-500"></p>
+                          </label>
                         </div>
                         <div>
-                            <label for="description">Amount</label>
-                            <input type="text" placeholder="Amount to pay" name="amount">
+                            <label class="block">
+                              <span class="text-gray-400 pt-4 pb-2 block font-semibold">Amount</span>
+                              <input
+                                  class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                  placeholder="Amount to pay"
+                             />
+                              <p class="text-sm text-red-500"></p>
+                          </label>
                         </div>
 
                     <div class="flex justify-center items-center">
