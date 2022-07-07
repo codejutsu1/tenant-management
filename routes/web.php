@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\PaymentController as AdminPayment;
 use App\Http\Controllers\Admin\SettingController as AdminSettings;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\User\PagesController;
+use App\Http\Controllers\User\PaymentController;
 use App\Http\Controllers\User\SettingController as UserSettings;
 
 /*
@@ -58,6 +59,14 @@ Route::get('landlord/per-year', [YearController::class, 'showTenantsYearly'])->n
 Route::get('user/settings', [UserSettings::class, 'userSettings'])->name('user.settings');
 Route::get('admin/settings', [AdminSettings::class, 'adminSettings'])->name('admin.settings');
 Route::get('landlord/settings', [SuperAdminSettings::class, 'superAdminSettings'])->name('super.admin.settings');
+
+
+Route::post('/paystack/initialize', [PaymentController::class, 'initialize'])
+    ->name('pay');
+
+// The callback url after a payment
+Route::get('/paystack/callback', [PaymentController::class, 'callback'])
+    ->name('callback');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

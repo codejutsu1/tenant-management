@@ -1,7 +1,18 @@
 <script setup>
 import Payment from '@/Components/Pay.vue';
-import { Head, Link } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { Inertia } from '@inertiajs/inertia';
 
+const form = useForm({
+    email: 'joshua@nwatu.com',
+    amount: '12000000',
+    currency: 'NGN',
+    channels: ['card']
+})
+
+function submit() {
+    Inertia.post(route('pay'), form);       
+}
 </script>
 
 <template>
@@ -32,7 +43,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
             </div>
 
             <div class="flex justify-center items-center">
-              <input type="button"  class="inline-block border border-black px-8 py-2 mt-5 rounded-md" value="Pay">
+              <input type="button" @click="submit" class="inline-block border border-black px-8 py-2 mt-5 rounded-md" value="Pay">
             </div>
           </div>
         </form>
