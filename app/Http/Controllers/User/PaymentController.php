@@ -55,4 +55,29 @@ class PaymentController extends Controller
             // payment is not successful
         }
     }
+
+    public function housePayment()
+    {
+        return Inertia('User/Payment/House');
+    }
+
+    public function otherPayment()
+    {
+        return Inertia('User/Payment/Other');
+    }
+
+    public function onlineBanking()
+    {
+        return Inertia('User/Banking/OnlineBanking');
+    }
+
+    public function offlineBanking()
+    {
+        return Inertia('User/Banking/OfflineBanking');
+    }
+
+    public function crypto()
+    {
+        return Inertia('User/Banking/Crypto');
+    }
 }

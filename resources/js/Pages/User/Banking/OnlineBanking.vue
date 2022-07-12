@@ -2,8 +2,9 @@
 import Payment from '@/Components/Pay.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
+import { reactive } from 'vue'
 
-const form = useForm({
+const form = reactive({
     email: 'joshua@nwatu.com',
     amount: '12000000',
     currency: 'NGN',
@@ -13,6 +14,7 @@ const form = useForm({
 function submit() {
     Inertia.post(route('pay'), form);       
 }
+
 </script>
 
 <template>

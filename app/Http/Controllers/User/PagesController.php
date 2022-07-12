@@ -21,4 +21,29 @@ class PagesController extends Controller
     {
         return inertia('User/Dashboard');
     }
+
+    public function userPayment()
+    {
+        return Inertia('User/Payment');
+    }
+
+    public function userReceipt()
+    {
+        return Inertia('User/Receipt');
+    }
+
+    public function userHistory()
+    {
+        return Inertia('User/TransactionHistory');
+    }
+
+    public function userLegal()
+    {
+        return Inertia('User/Legal');
+    }
+
+    public function userDetails()
+    {
+        return Inertia('User/AccountDetails');
+    }
 }
