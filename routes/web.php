@@ -27,13 +27,13 @@ use App\Http\Controllers\User\SettingController as UserSettings;
 |
 */
 
-Route::get('/', [PagesController::class, 'index'])->name('home');
+Route::get('/', [UserPages::class, 'index'])->name('home');
 Route::inertia('about', 'Web/About')->name('about');
 Route::inertia('contact-us', 'Web/Contact')->name('contact');
 
 // Admin Dashboard
 
-Route::group(['prefix' => 'landlord'], function(){
+Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], function(){
 
     Route::get('dashboard', [SuperAdminPages::class, 'dashboardSuperAdmin'])->name('dashboard.super.admin');
 
@@ -47,7 +47,7 @@ Route::group(['prefix' => 'landlord'], function(){
 
 // Caretaker Dashboard
 
-Route::group(['prefix' => 'caretaker'], function(){ 
+Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], function(){ 
 
     Route::get('dashboard', [AdminPages::class, 'dashboardAdmin'])->name('dashboard.admin');
 
@@ -58,7 +58,7 @@ Route::group(['prefix' => 'caretaker'], function(){
 
 // Tenant Dashboard
 
-Route::group(['prefix' => 'tenant'], function(){ 
+Route::group(['middleware' => ['auth', 'tenant'], 'prefix' => 'tenant'], function(){ 
     
     Route::controller(UserPages::class)->group(function() { 
         Route::get('dashboard', 'dashboardUser')->name('dashboard.user');

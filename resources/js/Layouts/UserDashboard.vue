@@ -1,5 +1,8 @@
 <script setup>
   import { Link } from '@inertiajs/inertia-vue3';
+  import BreezeDropdownLink from '@/Components/DropdownLink.vue';
+
+
 </script>
 <template>
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden" >
@@ -44,7 +47,7 @@
             <li class="relative px-6 py-3">
               <Link
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                :href="route('payment')"
+                :href="route('user.payment')"
               >
                 <svg
                   class="w-5 h-5"
@@ -66,7 +69,7 @@
             <li class="relative px-6 py-3">
               <Link
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                :href="route('receipt')"
+                :href="route('user.receipt')"
               >
                 <svg
                   class="w-5 h-5"
@@ -88,7 +91,7 @@
             <li class="relative px-6 py-3">
               <Link
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                :href="route('history')"
+                :href="route('user.history')"
               >
                 <svg
                   class="w-5 h-5"
@@ -111,7 +114,7 @@
             <li class="relative px-6 py-3">
               <Link
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                :href="route('details')"
+                :href="route('user.details')"
               >
                 <svg
                   class="w-5 h-5"
@@ -147,6 +150,11 @@
                 </svg>
                 <span class="ml-4">Settings</span>
               </Link>
+            </li>
+            <li class="relative px-6 py-3">
+                <BreezeDropdownLink :href="route('logout')" method="post" as="button">
+                    Log Out
+                </BreezeDropdownLink>
             </li>
           </ul>
         </div>

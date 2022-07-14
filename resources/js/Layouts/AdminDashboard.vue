@@ -1,5 +1,6 @@
 <script setup>
   import { Link } from '@inertiajs/inertia-vue3';
+  import BreezeDropdownLink from '@/Components/DropdownLink.vue';
 </script>
 <template>
     <div class="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden" >
@@ -124,6 +125,11 @@
                 </svg>
                 <span class="ml-4">Settings</span>
               </Link>
+            </li>
+            <li class="relative px-6 py-3">
+                <BreezeDropdownLink :href="route('logout')" method="post" as="button">
+                    Log Out
+                </BreezeDropdownLink>
             </li>
           </ul>
         </div>

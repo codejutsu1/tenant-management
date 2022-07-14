@@ -22,11 +22,17 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+            if(Auth::guard($guard)->check() && Auth::user()->role_id == 1){
+                return redirect(RouteServiceProvider::LANDLORD);
+            }elseif(Auth::guard($guard)->check() && Auth::user()->role_id == 2) {
+                return redirect(RouteServiceProvider::CARETAKER);
+            }elseif(Auth::guard($guard)->check() && Auth::user()->role_id == 3){
+                return redirect(RouteServiceProvider::TENANT);
+            }else{
+                return $next($request);
             }
-        }
 
-        return $next($request);
+            // return redirect(RouteServiceProvider::HOME);
+        }
     }
 }

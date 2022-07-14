@@ -3,6 +3,9 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use App\Http\Middleware\LandlordMiddleware;
+use App\Http\Middleware\CaretakerMiddleware;
+use App\Http\Middleware\TenantMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -66,5 +69,9 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        'landlord' => LandlordMiddleware::class,
+        'caretaker' => CareTakerMiddleware::class,
+        'tenant' => TenantMiddleware::class,
     ];
 }
