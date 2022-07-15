@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Iamolayemi\Paystack\Facades\Paystack;
+use App\Models\Transaction;
 
 class PaymentController extends Controller
 {
@@ -79,5 +80,19 @@ class PaymentController extends Controller
     public function crypto()
     {
         return Inertia('User/Banking/Crypto');
+    }
+
+    public function demoPayment()
+    {
+        Transaction::create([
+            'user_id' => auth()->user()->id,
+            'title' => 'Lodge Payment',
+            'amount' => '120000',
+            'year' => '2022',
+            'status' => 1,
+            'paid' => 1
+        ]);
+
+        return redirect()->route('online.banking')->with('message', 'Successfully paid');
     }
 }

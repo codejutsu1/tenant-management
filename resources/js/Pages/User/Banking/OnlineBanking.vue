@@ -2,7 +2,8 @@
 import Payment from '@/Components/Pay.vue';
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import { Inertia } from '@inertiajs/inertia';
-import { reactive } from 'vue'
+import { reactive } from 'vue';
+import Notification from '@/Components/Notification.vue';
 
 const form = reactive({
     email: 'joshua@nwatu.com',
@@ -12,12 +13,16 @@ const form = reactive({
 })
 
 function submit() {
-    Inertia.post(route('pay'), form);       
+    Inertia.post(route('demo.pay'));       
 }
 
 </script>
 
 <template>
+    <div v-if="$page.props.flash.message" class="absolute top-8 right-10 z-40">
+        <Notification :message="$page.props.flash.message" />
+    </div>
+
     <Head />
     
     <Payment>
@@ -45,7 +50,12 @@ function submit() {
             </div>
 
             <div class="flex justify-center items-center">
-              <input type="button" @click="submit" class="inline-block border border-black px-8 py-2 mt-5 rounded-md" value="Pay">
+              <input 
+                type="button" 
+                onclick="return confirm('Do you want to accept this order?')"
+                @click="submit" 
+                class="inline-block border border-black px-8 py-2 mt-5 rounded-md" 
+                value="Pay">
             </div>
           </div>
         </form>

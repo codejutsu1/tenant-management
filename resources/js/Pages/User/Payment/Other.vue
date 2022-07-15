@@ -26,7 +26,7 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                 <Link :href="route('other.online.banking')" class="flex justify-center items-center bg-gray-800 rounded-md py-8">
                   <p class="font-semibold text-lg text-gray-400 tracking-wider">Online Banking</p>
                 </Link>
-                <Link :href="route('offlineBanking')" class="flex justify-center items-center bg-gray-800 rounded-md py-8">
+                <Link :href="route('offline.banking')" class="flex justify-center items-center bg-gray-800 rounded-md py-8">
                   <p class="font-semibold text-lg text-gray-400 tracking-wider">Offline Banking</p>
                 </Link>
                 <Link :href="route('crypto')" class="flex justify-center items-center bg-gray-800 rounded-md py-8">

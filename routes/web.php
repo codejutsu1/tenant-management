@@ -82,6 +82,8 @@ Route::group(['middleware' => ['auth', 'tenant'], 'prefix' => 'tenant'], functio
 
         Route::post('paystack/initialize', 'initialize')->name('pay');
 
+        Route::post('online/paid', 'demoPayment')->name('demo.pay');
+
         // The callback url after a payment
         Route::get('paystack/callback', 'callback')->name('callback');
     });

@@ -2,6 +2,10 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import UserDashboard from '@/Layouts/UserDashboard.vue';
 
+const props = defineProps({
+    user: Object,
+});
+
 </script>
 
 <template>
@@ -21,35 +25,35 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
             <ul class="text-lg text-gray-200 font-semibold tracking-wider">
                 <li class="flex justify-between pb-6 border-b border-b-gray-100">
                     <span>Name</span>
-                    <span>Okoro Offor</span>
+                    <span>{{ user.name }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>Email</span>
-                    <span>okorooffor@lodge.com</span>
+                    <span>{{ user.email }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>Type</span>
-                    <span>Family</span>
+                    <span>{{ user.type }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>LGA</span>
-                    <span>Enugu East</span>
+                    <span>{{ user.lga }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>State</span>
-                    <span>Enugu</span>
+                    <span>{{ user.state }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>Gender</span>
-                    <span>Male</span>
+                    <span>{{ user.gender }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>Occupation</span>
-                    <span>Civil Servant</span>
+                    <span>{{ user.occupation }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>Room No</span>
-                    <span>7</span>
+                    <span>{{ user.room_no }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>Date</span>

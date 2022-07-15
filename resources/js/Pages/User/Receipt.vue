@@ -1,6 +1,11 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import UserDashboard from '@/Layouts/UserDashboard.vue';
+import Pagination from '@/Components/Pagination.vue';
+
+const props = defineProps({
+  transactions: Object,
+});
 
 </script>
 
@@ -34,6 +39,38 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
+                    <tr v-for="transaction in transactions.data" :key="transaction.id" class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          {{ transaction.user.room_no }}
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        &#8358; {{ transaction.amount }}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ transaction.year }}
+                      </td>
+                      <td class="px-4 py-3 text-xs">
+                        <div class="flex justify-between items-center">
+                          <span
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                          >
+                            View
+                          </span>
+
+                          <span
+                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                          >
+                            Print
+                          </span>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        6/10/2020
+                      </td>
+                    </tr>
+
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -100,6 +137,13 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                   </tbody>
                 </table>
               </div>
+
+              <div
+                  class="flex justify-center items-center mt-6 px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
+              >
+                  <Pagination :links="transactions.links" />
+              </div>
+
             </div>
           </div>
         </main>

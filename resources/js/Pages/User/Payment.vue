@@ -8,7 +8,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
      <div class="grid gap-6 mb-8 md:grid-cols-2 mt-8">
               <!-- Card -->
               <Link
-                :href="route('housePayment')" class="flex items-center p-4 py-10 bg-white rounded-lg shadow-xs dark:bg-gray-800"
+                :href="route('house.payment')" class="flex items-center p-4 py-10 bg-white rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <div
                   class="p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500"
@@ -29,7 +29,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
               </Link>
               <!-- Card -->
               <Link
-                :href="route('otherPayment')" class="flex items-center p-4 bg-white cursor-pointer rounded-lg shadow-xs dark:bg-gray-800"
+                :href="route('other.payment')" class="flex items-center p-4 bg-white cursor-pointer rounded-lg shadow-xs dark:bg-gray-800"
               >
                 <div
                   class="p-3 mr-4 text-green-500 bg-green-100 rounded-full dark:text-green-100 dark:bg-green-500"
