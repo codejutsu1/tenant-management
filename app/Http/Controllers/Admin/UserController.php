@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -14,7 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return Inertia('Admin/Users/Index');
+        $users = User::where('role_id', 3)
+                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone'])
+                    ->paginate(10);
+
+        return Inertia('Admin/Users/Index', compact('users'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class CaretakerController extends Controller
 {
@@ -14,7 +15,11 @@ class CaretakerController extends Controller
      */
     public function index()
     {
-        return Inertia('SuperAdmin/Caretakers/Index');
+        $users = User::where('role_id', 1)
+                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone', 'occupation'])
+                    ->paginate(10);
+
+        return Inertia('SuperAdmin/Caretakers/Index', compact('users'));
     }
 
     /**

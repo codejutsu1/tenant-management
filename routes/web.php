@@ -37,7 +37,6 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
 
     Route::get('dashboard', [SuperAdminPages::class, 'dashboardSuperAdmin'])->name('dashboard.super.admin');
 
-    Route::resource('users', UserController::class);
     Route::resource('tenants', TenantController::class);
     Route::resource('caretakers', CaretakerController::class);
     Route::get('per-year', [YearController::class, 'showTenantsYearly'])->name('show.tenants.yearly');
@@ -54,6 +53,8 @@ Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], f
     Route::get('new-payment', [AdminPayment::class, 'showPaymentDetails'])->name('show.payment.details');
 
     Route::get('settings', [AdminSettings::class, 'adminSettings'])->name('admin.settings');
+
+    Route::resource('users', UserController::class);
 });
 
 // Tenant Dashboard

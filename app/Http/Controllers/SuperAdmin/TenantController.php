@@ -4,6 +4,7 @@ namespace App\Http\Controllers\SuperAdmin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class TenantController extends Controller
 {
@@ -14,7 +15,11 @@ class TenantController extends Controller
      */
     public function index()
     {
-        return Inertia('SuperAdmin/Tenants/Index');
+        $users = User::where('role_id', 3)
+                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone'])
+                    ->paginate(10);
+
+        return Inertia('SuperAdmin/Tenants/Index', compact('users'));
     }
 
     /**
