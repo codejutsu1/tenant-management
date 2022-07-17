@@ -5,10 +5,11 @@ import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps({
     errors: Object,
+    user: Object,
 });
 const form = useForm({
-  name: '', 
-  email: '',
+  name: props.user.name, 
+  email: props.user.email,
   password: '',
   password_confirmation: ''
 });
@@ -18,6 +19,18 @@ const password = useForm({
   new_password: '',
   new_password_confirmation: ''
 });
+
+function submit() {
+  Inertia.post(route('update.tenant.email'), form, {
+    onFinish: () => form.reset('password', 'password_confirmation')
+  });
+}
+
+function updatePassword() {
+  Inertia.post(route('update.tenant.password'), password, {
+    onFinish: () => password.reset('current_password', 'new_password', 'new_password_confirmation')
+  });
+}
 
 </script>
 
@@ -77,6 +90,7 @@ const password = useForm({
 
                     <div class="flex justify-end py-5">
                         <input 
+                          onclick="return confirm('Are you sure you want to make the following changes')"
                           @click="submit"
                           type="button" 
                           value="Update"

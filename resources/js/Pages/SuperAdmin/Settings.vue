@@ -2,6 +2,7 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
 import { Inertia } from '@inertiajs/inertia';
+import Notification from '@/Components/Notification.vue';
 
 const props = defineProps({
   errors: Object,
@@ -19,11 +20,20 @@ const password = useForm({
   new_password_confirmation: ''
 });
 
+function updatePassword() {
+  Inertia.post(route('update.landlord.password'), password, {
+    onFinish: () => password.reset('current_password', 'new_password', 'new_password_confirmation')
+  });
+}
+
 
 </script>
 
 <template>
-    
+    <div v-if="$page.props.flash.message" class="absolute top-8 right-10 z-40">
+        <Notification :message="$page.props.flash.message" />
+    </div>
+
     <Dashboard>
         <Head title="Settings" />
 

@@ -2,13 +2,15 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import Dashboard from '@/Layouts/AdminDashboard.vue';
 import { Inertia } from '@inertiajs/inertia';
+import Notification from '@/Components/Notification.vue';
 
 const props = defineProps({
     errors: Object,
+    user: Object,
 });
 const form = useForm({
-  name: '', 
-  email: '',
+  name: props.user.name, 
+  email: props.user.email,
   password: '',
   password_confirmation: ''
 });
@@ -19,9 +21,24 @@ const password = useForm({
   new_password_confirmation: ''
 });
 
+function submit() {
+  Inertia.post(route('update.caretaker.email'), form, {
+    onFinish: () => form.reset('password', 'password_confirmation')
+  })
+}
+
+function updatePassword() {
+  Inertia.post(route('update.caretaker.password'), password, {
+    onFinish: () => password.reset('current_password', 'new_password', 'new_password_confirmation')
+  })
+}
+
 </script>
 
 <template>
+    <div v-if="$page.props.flash.message" class="absolute top-8 right-10 z-40">
+        <Notification :message="$page.props.flash.message" />
+    </div>
     <Dashboard>
 
         <Head title="Settings" />

@@ -40,7 +40,11 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
     Route::resource('tenants', TenantController::class);
     Route::resource('caretakers', CaretakerController::class);
     Route::get('per-year', [YearController::class, 'showTenantsYearly'])->name('show.tenants.yearly');
-    Route::get('settings', [SuperAdminSettings::class, 'superAdminSettings'])->name('super.admin.settings');
+
+    Route::controller(SuperAdminSettings::class)->group(function() { 
+        Route::get('settings', 'superAdminSettings')->name('super.admin.settings');
+        Route::post('update-landlord-password', 'updateLandlordPassword')->name('update.landlord.password');
+    });
 
 });
 
@@ -52,7 +56,11 @@ Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], f
 
     Route::get('new-payment', [AdminPayment::class, 'showPaymentDetails'])->name('show.payment.details');
 
-    Route::get('settings', [AdminSettings::class, 'adminSettings'])->name('admin.settings');
+    Route::controller(AdminSettings::class)->group(function() { 
+        Route::get('settings', 'adminSettings')->name('admin.settings');
+        Route::post('update-caretaker-email', 'updateCaretakerEmail')->name('update.caretaker.email');
+        Route::post('update-caretaker-password', 'updateCaretakerPassword')->name('update.caretaker.password');
+    });
 
     Route::resource('users', UserController::class);
 });
@@ -89,7 +97,13 @@ Route::group(['middleware' => ['auth', 'tenant'], 'prefix' => 'tenant'], functio
         Route::get('paystack/callback', 'callback')->name('callback');
     });
 
-    Route::get('settings', [UserSettings::class, 'userSettings'])->name('user.settings');
+    Route::controller(UserSettings::class)->group(function() {
+        Route::get('settings', 'userSettings')->name('user.settings');
+        Route::get('user-edit', 'userEdit')->name('user.edits');
+        Route::post('update-tenant', 'updateTenant')->name('update.tenant');
+        Route::post('update-tenant-email', 'updateTenantEmail')->name('update.tenant.email');
+        Route::post('update-tenant-password', 'updateTenantPassword')->name('update.tenant.password');
+    });
 });
 
 
