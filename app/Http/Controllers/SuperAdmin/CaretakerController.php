@@ -15,7 +15,7 @@ class CaretakerController extends Controller
      */
     public function index()
     {
-        $users = User::where('role_id', 1)
+        $users = User::where('role_id', 2)
                     ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone', 'occupation'])
                     ->paginate(10);
 

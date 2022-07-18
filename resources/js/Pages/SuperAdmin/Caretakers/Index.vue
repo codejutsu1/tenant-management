@@ -43,7 +43,9 @@ const props = defineProps({
                   >
                     <tr v-for="user in users.data" :key="user.id" class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3 text-sm">
-                        {{ user.name }}
+                         <Link :href="route('admin.user.details', user.id)">
+                          {{ user.name }}
+                        </Link>
                       </td>
                       <td class="px-4 py-3 text-sm">
                         {{ user.email }}

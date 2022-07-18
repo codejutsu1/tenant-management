@@ -35,7 +35,10 @@ Route::inertia('contact-us', 'Web/Contact')->name('contact');
 
 Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], function(){
 
-    Route::get('dashboard', [SuperAdminPages::class, 'dashboardSuperAdmin'])->name('dashboard.super.admin');
+    Route::controller(SuperAdminPages::class)->group(function() { 
+        Route::get('dashboard', 'dashboardSuperAdmin')->name('dashboard.super.admin');
+        Route::get('{user}/user-details', 'adminUserDetails')->name('admin.user.details');
+    });
 
     Route::resource('tenants', TenantController::class);
     Route::resource('caretakers', CaretakerController::class);
