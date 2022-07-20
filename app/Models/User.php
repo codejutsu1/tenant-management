@@ -25,7 +25,10 @@ class User extends Authenticatable
         'gender',
         'state',
         'lga',
-        'phone'
+        'phone',
+        'type',
+        'role_id',
+        'dob'
     ];
 
     /**

@@ -8,10 +8,12 @@ use App\Http\Controllers\SuperAdmin\SettingController as superAdminSettings;
 use App\Http\Controllers\SuperAdmin\TenantController;
 use App\Http\Controllers\SuperAdmin\CaretakerController;
 use App\Http\Controllers\SuperAdmin\YearController;
+use App\Http\Controllers\SuperAdmin\AddUserController;
 use App\Http\Controllers\Admin\PagesController as AdminPages;
 use App\Http\Controllers\Admin\PaymentController as AdminPayment;
 use App\Http\Controllers\Admin\SettingController as AdminSettings;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\NewUserController;
 use App\Http\Controllers\User\PagesController as UserPages;
 use App\Http\Controllers\User\PaymentController as UserPayment;
 use App\Http\Controllers\User\SettingController as UserSettings;
@@ -49,6 +51,11 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
         Route::post('update-landlord-password', 'updateLandlordPassword')->name('update.landlord.password');
     });
 
+    Route::controller(AddUserController::class)->group(function() {
+        Route::get('add-new-user', 'landlordNewUser')->name('landlord.new.user');
+        Route::post('add-user', 'landlordAddUser')->name('landlord.add.user');
+    });
+
 });
 
 // Caretaker Dashboard
@@ -66,6 +73,11 @@ Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], f
     });
 
     Route::resource('users', UserController::class);
+
+    Route::controller(NewUserController::class)->group(function() {
+        Route::get('add-new-user', 'caretakerNewUser')->name('caretaker.new.user');
+        Route::post('add-user', 'caretakerAddUser')->name('caretaker.add.user');
+    });
 });
 
 // Tenant Dashboard

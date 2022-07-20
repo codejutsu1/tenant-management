@@ -11,6 +11,13 @@ const form = useForm({
     email: '',
     password: '',
     password_confirmation: '',
+    phone: '',
+    gender: '',
+    dob: '',
+    type: '',
+    state: '',
+    lga: '',
+    occupation: '',
     terms: false,
 });
 
@@ -40,12 +47,12 @@ const submit = () => {
     
             <div class="mt-4">
                 <BreezeLabel for="phone" value="Telephone" />
-                <BreezeInput id="phone" type="tel" class="mt-1 block w-full"  required />
+                <BreezeInput id="phone" type="tel" class="mt-1 block w-full" v-model="form.phone"  required />
             </div>
 
             <div class="mt-4">
                 <BreezeLabel for="gender" value="Gender" />
-                <select id="gender" type="text" class="mt-1 block w-full"  required>
+                <select id="gender" type="text" class="mt-1 block w-full" v-model="form.gender"  required>
                     <option value="" selected="selected" disabled>~ Select ~</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -54,12 +61,12 @@ const submit = () => {
 
             <div class="mt-4">
                 <BreezeLabel for="dob" value="Date of Birth" />
-                <BreezeInput id="dob" type="date" class="mt-1 block w-full" required />
+                <BreezeInput id="dob" type="date" class="mt-1 block w-full" v-model="form.dob" required />
             </div>
 
             <div class="mt-4">
                 <BreezeLabel for="type" value="Type" />
-                <select id="type" type="text" class="mt-1 block w-full"  required>
+                <select id="type" type="text" class="mt-1 block w-full" v-model="form.type"  required>
                     <option value="" selected="selected" disabled>~ Select ~</option>
                     <option value="self-con">Self Container</option>
                     <option value="two-rooms">Two Rooms</option>
@@ -70,7 +77,7 @@ const submit = () => {
 
             <div class="mt-4">
                 <BreezeLabel for="state" value="State of Origin" />
-                <select id="state" type="text" class="mt-1 block w-full"  required>
+                <select id="state" type="text" class="mt-1 block w-full" v-model="form.state" required>
                     <option value="" selected="selected" disabled>~ Select ~</option>
                     <option value="Abia">Abia</option>
                     <option value="Anambra">Anambra</option>
@@ -82,7 +89,7 @@ const submit = () => {
 
             <div class="mt-4">
                 <BreezeLabel for="lga" value="Local Government Area" />
-                <select id="lga" type="text" class="mt-1 block w-full"  required>
+                <select id="lga" type="text" class="mt-1 block w-full" v-model="form.lga"  required>
                     <option value="" selected="selected" disabled>~ Select ~</option>
                     <option value="Aniri">Aniri</option>
                     <option value="Awgu">Awgu</option>
@@ -94,7 +101,7 @@ const submit = () => {
 
             <div class="mt-4">
                 <BreezeLabel for="occupation" value="Occupation" />
-                <select id="occupation" type="text" class="mt-1 block w-full"  required>
+                <select id="occupation" type="text" class="mt-1 block w-full" v-model="form.occupation" required>
                     <option value="" selected="selected" disabled>~ Select ~</option>
                     <option value="civil servant">Civil Servant</option>
                     <option value="businessman">Businessman</option>
