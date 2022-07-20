@@ -12,7 +12,7 @@ import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Here is a list of all tenants. 
+              Here is a list of all tenants for the year 2022. 
             </h2>
 
             <div>
@@ -28,6 +28,7 @@ import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
                       <th class="px-4 py-3">Gender</th>
                       <th class="px-4 py-3">Lodge</th>
                       <th class="px-4 py-3">Status</th>
+                      <th class="px-4 py-3">Paid</th>
                       <th class="px-4 py-3">Room No</th>
                       <th class="px-4 py-3">Actions</th>
                       <th class="px-4 py-3">Date Enter</th>
@@ -54,6 +55,9 @@ import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
                         <div class="flex justify-between">
                           Active
                         </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm text-green-300">
+                        Full
                       </td>
                       <td class="px-4 py-3 text-sm">
                         10
