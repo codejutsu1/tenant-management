@@ -1,6 +1,23 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
+import { reactive } from 'vue';
+
+const props = defineProps({
+    users: Object,
+});
+
+const form = reactive({
+  room_no: null,
+});
+
+const update = (id) => {
+  if(confirm('confirm you want to change this users room no?')){
+    Inertia.post(route('landlord.change.number', id), form);
+  }
+
+  return { update }
+}
 
 </script>
 
@@ -34,6 +51,50 @@ import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
+                    <tr v-for="user in users.data" :key="user.id" class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3 text-sm">
+                        {{ user.name }}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ user.email }}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ user.gender }}
+                      </td>
+                      <td class="px-4 py-3 text-sm font-semibold text-green-300">
+                        <div class="flex justify-between">
+                          Active
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        <form >
+                          <select v-model="form.room_no" name="room_no" class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray">
+                            <option :value="user.room_no" selected>{{ user.room_no }}</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                        </form>
+                      </td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center space-x-4 text-sm">
+                          <button
+                            class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Edit"
+                            @click="update(user.id)"
+                          >
+                            Change
+                          </button>            
+                        </div>
+                      </td>
+                    </tr>
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3 text-sm">
                         Okoro John
@@ -49,11 +110,15 @@ import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
                           Active
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm text-green-300">
-                        Full
-                      </td>
                       <td class="px-4 py-3 text-sm">
-                        10
+                        <form >
+                          <select name="room_no" class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                          </select>
+                        </form>
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
@@ -61,32 +126,9 @@ import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
                             class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
                           >
-                            Edit
-                          </Link>
-                          <Link
-                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-red-700 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Delete"
-                          >
-                            <svg
-                              class="w-5 h-5"
-                              aria-hidden="true"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                          </Link>
+                            Change
+                          </Link>            
                         </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        16th October, 2001
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        13th April, 2005
                       </td>
                     </tr>
                   </tbody>
