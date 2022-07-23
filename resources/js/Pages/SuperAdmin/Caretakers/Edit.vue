@@ -20,7 +20,7 @@ const props = defineProps({
     <Dashboard>
         <Head title="Edit Tenant" />
         
-        <Updateuser :errors="errors" :user="user" :role="'Tenant'" :route="'tenants.update'" />
+        <Updateuser :errors="errors" :user="user" :role="'Caretaker'" :route="'caretakers.update'" />
 
     </Dashboard>
 </template>

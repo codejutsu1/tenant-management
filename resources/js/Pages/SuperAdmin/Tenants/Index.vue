@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
 import Pagination from '@/Components/Pagination.vue';
+import Notification from '@/Components/Notification.vue';
 
 const props = defineProps({
   users: Object,    
@@ -10,15 +11,25 @@ const props = defineProps({
 </script>
 
 <template>
+    <div v-if="$page.props.flash.message" class="absolute top-8 right-10 z-40">
+        <Notification :message="$page.props.flash.message" />
+    </div>
+
     <Dashboard>
         <Head title="All Tenants" />
         <main class="h-full overflow-y-auto z-30">
           <div class="container px-6 mx-auto grid">
-            <h2
-              class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
-            >
-              Here is a list of all tenants. 
-            </h2>
+            <div class="flex justify-between items-center">
+              <h2
+                class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+              >
+                Here is a list of all tenants. 
+              </h2>
+
+              <Link :href="route('tenants.create')" class="px-8 cursor-pointer py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                Add New Tenant
+              </Link>
+            </div>
 
             <div>
             <div class="w-full overflow-hidden rounded-lg shadow-xs pb-10">
@@ -73,6 +84,7 @@ const props = defineProps({
                           <Link
                             class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
+                            :href="route('tenants.edit', user.id)"
                           >
                             Edit
                           </Link>

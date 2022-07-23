@@ -8,23 +8,24 @@ const props = defineProps({
     errors: Object,
     route: String,
     role: String,
+    user: Object,
 })
 
 const form = useForm({
-    name: '',
-    email: '',
-    phone: '',
-    gender: '',
-    dob: '',
-    type: '',
-    state: '',
-    lga: '',
-    occupation: '',
+    name: props.user.name,
+    email: props.user.email,
+    phone: props.user.phone,
+    gender: props.user.gender,
+    dob: props.user.dob,
+    type: props.user.type,
+    state: props.user.state,
+    lga: props.user.lga,
+    occupation: props.user.occupation,
     terms: false,
 });
 
 const submit = () => {
-    form.post(route(props.route));
+    form.put(route(props.route, {'id': props.user.id}));
 };
 </script>
 
@@ -35,7 +36,7 @@ const submit = () => {
             <h2
               class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Add New {{ props.role }}
+              Update {{ props.role }}
             </h2>
             <div class="bg-gray-800 px-4 py-10 my-10">
                 <form action="#">
@@ -142,7 +143,7 @@ const submit = () => {
                     <div class="flex justify-end py-5">
                         <input 
                           type="button" 
-                          value="Add New User"
+                          :value="'Update ' +  props.role "
                           onclick="return confirm('Are you sure you want to register this user?')"
                           @click="submit"
                           class="px-8 py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"

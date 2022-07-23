@@ -12,9 +12,9 @@ const props = defineProps({
 
 <template>
     <Dashboard>
-        <Head title="Add New Tenant" />
+        <Head title="Add New Caretaker" />
         
-        <AddNewUser :errors="errors" :role="'Tenant'" :route="'tenants.store'" />
+        <AddNewUser :errors="errors" :role="'Caretaker'" :route="'caretakers.store'" />
 
     </Dashboard>
 </template>
