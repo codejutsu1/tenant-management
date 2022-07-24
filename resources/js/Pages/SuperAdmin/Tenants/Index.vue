@@ -3,10 +3,19 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
 import Pagination from '@/Components/Pagination.vue';
 import Notification from '@/Components/Notification.vue';
+import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps({
   users: Object,    
 }); 
+
+const destroy = (id) => {
+  if(confirm('Are you sure?')){
+    Inertia.delete(route('tenants.destroy', id));
+  }
+
+  return { destroy }
+}
 
 </script>
 
@@ -88,9 +97,10 @@ const props = defineProps({
                           >
                             Edit
                           </Link>
-                          <Link
+                          <button
                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-red-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"
+                            @click="destroy(user.id)"
                           >
                             <svg
                               class="w-5 h-5"
@@ -104,7 +114,7 @@ const props = defineProps({
                                 clip-rule="evenodd"
                               ></path>
                             </svg>
-                          </Link>
+                          </button>
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">

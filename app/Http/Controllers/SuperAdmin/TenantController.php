@@ -134,6 +134,9 @@ class TenantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        $user->delete();
+
+        return redirect()->route('tenants.index')->with('message', 'Tenants successfully deleted');
     }
 }
