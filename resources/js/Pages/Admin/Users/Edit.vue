@@ -1,11 +1,12 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
-import AddNewUser from '@/Components/RegisterUser.vue';
-import Dashboard from '@/Layouts/AdminDashboard.vue';
+import Updateuser from '@/Components/Updateuser.vue';
+import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
 import Notification from '@/Components/Notification.vue';
 
 const props = defineProps({
     errors: Object,
+    user: Object,
 });
 
 
@@ -17,9 +18,9 @@ const props = defineProps({
     </div>
 
     <Dashboard>
-        <Head title="Add New Tenant" />
+        <Head title="Edit Tenant" />
         
-        <AddNewUser :errors="errors" :role="'Tenant'" :route="'users.store'" />
+        <Updateuser :errors="errors" :user="user" :role="'Tenant'" :route="'users.update'" />
 
     </Dashboard>
 </template>

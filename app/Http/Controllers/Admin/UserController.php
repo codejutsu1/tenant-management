@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return Inertia('Admin/User/Create');
+        return Inertia('Admin/Users/Create');
     }
 
     /**
@@ -66,7 +67,7 @@ class UserController extends Controller
             'dob' => $request->dob
         ]);
 
-        return redirect()->route('caretaker.new.user')->with('message', 'Successfully registered a new user');
+        return redirect()->route('users.index')->with('message', 'Successfully registered a new user');
     }
 
     /**
@@ -77,7 +78,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::where('id', $id)
+                        ->select(['id', 'name', 'email', 'type', 'lga', 'state', 'gender', 'occupation', 'room_no'])
+                        ->first();
+
+        return Inertia('Admin/Users/Show', compact('user'));
     }
 
     /**
@@ -88,7 +93,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::where('id', $id)
+                        ->select(['id', 'name', 'email', 'type', 'lga', 'state', 'gender', 'occupation', 'room_no', 'phone', 'dob'])
+                        ->first();
+
+        return Inertia('Admin/Users/Edit', compact('user'));
     }
 
     /**
@@ -100,7 +109,21 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        User::where('id', $id)->update(
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => ['required', 'string', 'email', 'max:255','unique:users,email,' . $id],
+                'gender' => 'required|string|max:255',
+                'type' => 'required|string|max:255',
+                'lga' => 'required|string|max:255',
+                'state' => 'required|string|max:255',
+                'occupation' => 'required|string|max:255',
+                'phone' => 'required|string|min:8|max:16',
+                'dob' => 'required|date|date_format:Y-m-d'
+            ])
+        );
+
+        return redirect()->route('users.index')->with('message', 'Tenant successfully updated');
     }
 
     /**
@@ -111,6 +134,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::where('id', $id)->first();
+        $user->delete();
+
+        return redirect()->route('users.index')->with('message', 'Tenants successfully deleted');
     }
 }
