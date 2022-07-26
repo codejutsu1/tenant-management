@@ -12,4 +12,14 @@ class PagesController extends Controller
     {
         return Inertia('SuperAdmin/Dashboard');
     }
+
+    public function allUsers()
+    {
+        $users = User::query()
+                    ->where('role_id', 3)
+                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'created_at'])
+                    ->paginate(10);
+        
+        return Inertia('SuperAdmin/Allusers', compact('users'));                    
+    }
 }

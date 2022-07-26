@@ -49,7 +49,6 @@ const destroy = (id) => {
                       class="font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-300 dark:bg-gray-800"
                     >
                       <th class="px-4 py-3">Name</th>
-                      <th class="px-4 py-3">Email</th>
                       <th class="px-4 py-3">Gender</th>
                       <th class="px-4 py-3">Lodge</th>
                       <th class="px-4 py-3">Status</th>
@@ -67,9 +66,6 @@ const destroy = (id) => {
                         <Link :href="route('users.show', user.id)">
                           {{ user.name }}
                         </Link>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        {{ user.email }}
                       </td>
                       <td class="px-4 py-3 text-sm">
                         {{ user.gender }}
@@ -117,16 +113,13 @@ const destroy = (id) => {
                           </button>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm">
+                      <td class="px-4 py-3 font-semibold text-gray-200">
                         16th October, 2001
                       </td>
                     </tr>
                     <tr class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3 text-sm">
                         Okoro John
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        okorojohn@john.com
                       </td>
                       <td class="px-4 py-3 text-sm">
                         Male

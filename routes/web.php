@@ -4,11 +4,12 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\SuperAdmin\PagesController as SuperAdminPages;
-use App\Http\Controllers\SuperAdmin\SettingController as superAdminSettings;
+use App\Http\Controllers\SuperAdmin\SettingController as SuperAdminSettings;
 use App\Http\Controllers\SuperAdmin\TenantController;
 use App\Http\Controllers\SuperAdmin\CaretakerController;
 use App\Http\Controllers\SuperAdmin\YearController;
 use App\Http\Controllers\SuperAdmin\AddUserController;
+use App\Http\Controllers\SuperAdmin\PaymentController as SuperAdminPayment;
 use App\Http\Controllers\Admin\PagesController as AdminPages;
 use App\Http\Controllers\Admin\PaymentController as AdminPayment;
 use App\Http\Controllers\Admin\SettingController as AdminSettings;
@@ -39,6 +40,7 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
 
     Route::controller(SuperAdminPages::class)->group(function() { 
         Route::get('dashboard', 'dashboardSuperAdmin')->name('dashboard.super.admin');
+        Route::get('all-users', 'allUsers')->name('all.users');
     });
 
     Route::resource('tenants', TenantController::class);
@@ -55,13 +57,21 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
         Route::post('change-user-number', 'landlordChangeNumber')->name('landlord.change.number');
     });
 
+    Route::controller(SuperAdminPayment::class)->group(function() { 
+        Route::get('new-payment', 'newPayment')->name('super.admin.payment');
+    });
+
 });
 
 // Caretaker Dashboard
 
 Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], function(){ 
 
-    Route::get('dashboard', [AdminPages::class, 'dashboardAdmin'])->name('dashboard.admin');
+    Route::controller(AdminPages::class)->group(function() {
+        Route::get('dashboard', 'dashboardAdmin')->name('dashboard.admin');
+
+        Route::get('all-users', 'adminUsers')->name('admin.users');
+    });
 
     Route::get('new-payment', [AdminPayment::class, 'showPaymentDetails'])->name('show.payment.details');
 
@@ -72,11 +82,6 @@ Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], f
     });
 
     Route::resource('users', UserController::class);
-
-    Route::controller(NewUserController::class)->group(function() {
-        Route::get('add-new-user', 'caretakerNewUser')->name('caretaker.new.user');
-        Route::post('add-user', 'caretakerAddUser')->name('caretaker.add.user');
-    });
 });
 
 // Tenant Dashboard
