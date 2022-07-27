@@ -7,12 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Rules\MatchOldPassword;
+use App\Models\Setting;
 
 class SettingController extends Controller
 {
     public function superAdminSettings()
     {
-        return Inertia('SuperAdmin/Settings');
+        $settings = Setting::first();
+        
+        return Inertia('SuperAdmin/Settings', compact('settings'));
     }
 
     public function updateLandlordPassword(Request $request)
