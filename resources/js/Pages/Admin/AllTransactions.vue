@@ -22,7 +22,7 @@ const props = defineProps({
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Here are new payments, you can confirm or decline.
+              Here are all payments, you can reconfirm or decline.
             </h2>
 
             <div>
@@ -38,6 +38,7 @@ const props = defineProps({
                       <th class="px-4 py-3">Amount</th>
                       <th class="px-4 py-3">Description</th>
                       <th class="px-4 py-3">Status</th>
+                      <th class="px-4 py-3">Report</th>
                       <th class="px-4 py-3">Date of Payment</th>
                       <th class="px-4 py-3">Actions</th>
                     </tr>
@@ -64,6 +65,26 @@ const props = defineProps({
                         <div v-if="transaction.paid" class="flex justify-between">
                           Paid (Full)
                         </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        <span 
+                            v-if="transaction.status"
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                        >
+                          Approved
+                        </span>
+                        <span
+                            v-else-if="transaction.status == NULL"  
+                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                        >
+                          Pending
+                        </span>
+                        <span
+                          v-else
+                          class="px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700"
+                        >
+                          Denied
+                        </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
                         16th October, 2001
@@ -106,6 +127,13 @@ const props = defineProps({
                         <div class="flex justify-between">
                           Paid (Full)
                         </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        <span
+                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                        >
+                          Pending
+                        </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
                         16th October, 2001

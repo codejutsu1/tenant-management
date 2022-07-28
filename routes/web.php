@@ -74,7 +74,12 @@ Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], f
         Route::get('all-users', 'adminUsers')->name('admin.users');
     });
 
-    Route::get('new-payment', [AdminPayment::class, 'showPaymentDetails'])->name('show.payment.details');
+    Route::controller(AdminPayment::class)->group(function() {
+        Route::get('new-payment', 'showPaymentDetails')->name('show.payment.details');
+        Route::get('all-transactions', 'adminAllTransactions')->name('admin.all.transactions');
+        Route::get('confirm-payment/{id}', 'adminConfirmPayment')->name('admin.confirm.payment');
+        Route::get('reject-payment/{id}', 'adminRejectPayment')->name('admin.reject.payment');
+    });
 
     Route::controller(AdminSettings::class)->group(function() { 
         Route::get('settings', 'adminSettings')->name('admin.settings');
