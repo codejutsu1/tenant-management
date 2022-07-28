@@ -17,6 +17,7 @@ class TenantController extends Controller
     public function index()
     {
         $users = User::where('role_id', 3)
+                    ->where('status', 1)
                     ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone'])
                     ->paginate(10);
 

@@ -53,6 +53,9 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
 
         Route::get('change-user-room', 'landlordChangeRoom')->name('landlord.change.room');
         Route::post('change-user-number', 'landlordChangeNumber')->name('landlord.change.number');
+
+        Route::get('activate-user/{id}', 'landlordActivateUser')->name('landlord.activate.user');
+        Route::get('deactivate-user/{id}', 'landlordDeactivateUser')->name('landlord.deactivate.user');
     });
 
     Route::controller(SuperAdminPayment::class)->group(function() { 

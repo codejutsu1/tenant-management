@@ -57,13 +57,24 @@ const props = defineProps({
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
-                          <button
-                            type="button"
+                          <Link
+                            v-if="user.status"
+                            class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5  rounded-lg text-red-200 bg-red-700 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Edit"
+                            onclick="return confirm('Confirm you want to deactivate this user?')"
+                            :href="route('landlord.deactivate.user', user.id)"
+                          >
+                            Deactivate
+                          </Link>      
+                          <Link
+                            v-else
                             class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5  rounded-lg text-green-200 bg-green-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
+                            onclick="return confirm('Confirm you want to activate this user?')"
+                            :href="route('landlord.activate.user', user.id)"
                           >
                             Activate
-                          </button>            
+                          </Link>        
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
