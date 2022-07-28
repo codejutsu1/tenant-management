@@ -47,8 +47,6 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
 
     Route::resource('caretakers', CaretakerController::class);
 
-    Route::get('per-year', [YearController::class, 'showTenantsYearly'])->name('show.tenants.yearly');
-
     Route::controller(SuperAdminSettings::class)->group(function() { 
         Route::get('settings', 'superAdminSettings')->name('super.admin.settings');
         Route::post('update-landlord-password', 'updateLandlordPassword')->name('update.landlord.password');
@@ -59,6 +57,9 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
 
     Route::controller(SuperAdminPayment::class)->group(function() { 
         Route::get('new-payment', 'newPayment')->name('super.admin.payment');
+        Route::get('confirm-payment/{id}', 'confirmPayment')->name('confirm.payment');
+        Route::get('reject-payment/{id}', 'rejectPayment')->name('reject.payment');
+        Route::get('all-transactions', 'allTransactions')->name('all.transactions');
     });
 
 });

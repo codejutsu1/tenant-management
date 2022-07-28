@@ -13,7 +13,7 @@ const form = useForm({
    site_name: props.settings.site_name,
    site_email: props.settings.site_email,
    site_phone: props.settings.site_phone,
-   site_rent: '&#8358; ' + props.settings.site_rent,
+   site_rent: props.settings.site_rent,
 });
 
 const password = useForm({

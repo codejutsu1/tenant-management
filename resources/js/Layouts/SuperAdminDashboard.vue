@@ -131,7 +131,7 @@
             <li class="relative px-6 py-3">
               <Link
                 class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                :href="route('show.tenants.yearly')"
+                :href="route('all.transactions')"
               >
                 <svg
                   class="w-5 h-5"
@@ -145,7 +145,7 @@
                 >
                   <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                 </svg>
-                <span class="ml-4">Year</span>
+                <span class="ml-4">All Transactions</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
