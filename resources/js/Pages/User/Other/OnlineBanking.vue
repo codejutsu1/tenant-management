@@ -1,11 +1,31 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import UserDashboard from '@/Layouts/UserDashboard.vue';
+import { Inertia } from '@inertiajs/inertia';
+import { reactive } from 'vue';
+import Notification from '@/Components/Notification.vue';
+
+const props = defineProps({
+  errors: Object
+});
+
+const form = reactive({
+  description: '',
+  amount: ''
+});
+
+function submit(){
+  Inertia.post(route('demo.other.payment', form));
+}
 
 </script>
 
 <template>
     <UserDashboard>
+        <div v-if="$page.props.flash.message" class="absolute top-8 right-10 z-40">
+            <Notification :message="$page.props.flash.message" />
+        </div>
+
         <Head title="Payment" />
 
         <main class="h-full overflow-y-auto z-30">
@@ -42,8 +62,9 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                               <input
                                   class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                   placeholder="Pay for ...?"
+                                  v-model="form.description"
                               />
-                              <p class="text-sm text-red-500"></p>
+                              <p v-if="errors.description" class="text-sm text-red-500">{{ errors.description }}</p>
                           </label>
                         </div>
                         <div>
@@ -52,13 +73,19 @@ import UserDashboard from '@/Layouts/UserDashboard.vue';
                               <input
                                   class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                                   placeholder="Amount to pay"
+                                  v-model="form.amount"
                              />
-                              <p class="text-sm text-red-500"></p>
+                              <p v-if="errors.amount" class="text-sm text-red-500">{{ errors.amount }}</p>
                           </label>
                         </div>
 
                     <div class="flex justify-center items-center">
-                    <input type="button"  class="inline-block border border-black px-8 py-2 mt-5 rounded-md" value="Pay">
+                    <input 
+                      type="button"  
+                      class="inline-block border border-black px-8 py-2 mt-5 rounded-md" 
+                      value="Pay"
+                      @click="submit"
+                    />
                     </div>
                 </div>
                 </form>

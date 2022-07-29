@@ -82,6 +82,11 @@ class PaymentController extends Controller
         return Inertia('User/Banking/Crypto');
     }
 
+    public function installmental()
+    {
+        return Inertia('User/Banking/Installmental');
+    }
+
     public function demoPayment()
     {
         Transaction::create([
@@ -94,5 +99,25 @@ class PaymentController extends Controller
         ]);
 
         return redirect()->route('online.banking')->with('message', 'Successfully paid');
+    }
+
+    public function otherOnlineBanking()
+    {
+        return Inertia('User/Other/OnlineBanking');
+    }
+
+    public function demoOtherPayment(Request $request)
+    {
+        Transaction::create([
+            'user_id' => auth()->user()->id,
+            'title' => $request->description,
+            'amount' => $request->amount,
+            'year' => '2022',
+            'status' => 0,
+            'paid' => 1
+        ]);
+
+        return redirect()->route('other.online.banking')
+                    ->with('message', 'Successfully paid');
     }
 }
