@@ -98,6 +98,10 @@ class PaymentController extends Controller
             'paid' => 1
         ]);
 
+        User::where('id', auth()->user()->id)->update([
+            'paid' => 1
+        ]);
+
         return redirect()->route('online.banking')->with('message', 'Successfully paid');
     }
 
@@ -118,6 +122,23 @@ class PaymentController extends Controller
         ]);
 
         return redirect()->route('other.online.banking')
+                    ->with('message', 'Successfully paid');
+    }
+
+    public function demoInstallmentalPay(Request $request)
+    {
+        dd($request);
+        Transaction::create([
+            'user_id' => auth()->user()->id,
+            'title' => 'Lodge Rent Installmentally',
+            'amount' => $request->amount,
+            'year' => '2022',
+            'period' => $request->length . ' ' . $request->period,
+            'status' => 0,
+            'paid' => 1
+        ]);
+
+        return redirect()->route('installmental')
                     ->with('message', 'Successfully paid');
     }
 }

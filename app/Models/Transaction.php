@@ -14,6 +14,7 @@ class Transaction extends Model
         'title',
         'amount',
         'year',
+        'period',
         'status',
         'paid'
     ];

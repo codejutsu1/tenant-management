@@ -21906,14 +21906,10 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
-    var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
-      period: '',
-      length: 1
-    });
     var periodLength = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(0);
 
     function period() {
-      if (form.period == 'months') {
+      if (form.period == 'Months') {
         periodLength.value = (0,vue__WEBPACK_IMPORTED_MODULE_3__.computed)(function () {
           return form.length * 12000;
         });
@@ -21923,6 +21919,12 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     }
+
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
+      period: '',
+      length: 1,
+      amount: periodLength.value
+    });
 
     function onlyNumber($event) {
       var keyCode = $event.keyCode ? $event.keyCode : $event.which;
@@ -21942,14 +21944,14 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function submit() {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post(route('demo.pay'));
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post(route('demo.installmental.pay'), form);
     }
 
     var __returned__ = {
       props: props,
-      form: form,
       periodLength: periodLength,
       period: period,
+      form: form,
       onlyNumber: onlyNumber,
       increaseButton: increaseButton,
       decreaseButton: decreaseButton,
@@ -31346,13 +31348,13 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "months"
+  value: "Months"
 }, "Month/Months", -1
 /* HOISTED */
 );
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "years"
+  value: "Years"
 }, "Year/Years", -1
 /* HOISTED */
 );
@@ -31403,7 +31405,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "text-4xl flex justify-center items-center text-gray-200",
         type: "button",
         onClick: $setup.increaseButton
-      }, "+")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      }, "+"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+        type: "hidden",
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $setup.form.amount = $event;
+        })
+      }, null, 512
+      /* NEED_PATCH */
+      ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.amount]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
         "class": "flex justify-center items-center"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "button",

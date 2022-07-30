@@ -9,15 +9,10 @@ const props = defineProps({
   errors: Object,
 })
 
-const form = reactive({
-    period: '',
-    length: 1
-});
-
 const periodLength = ref(0);
 
 function period(){
-  if(form.period == 'months'){
+  if(form.period == 'Months'){
     periodLength.value = computed(() => {
       return form.length * 12000
     });
@@ -27,6 +22,13 @@ function period(){
     });
   }
 }
+
+const form = reactive({
+    period: '',
+    length: 1,
+    amount: periodLength.value,
+});
+
 
 function onlyNumber($event) {
     let keyCode = ($event.keyCode ? $event.keyCode : $event.which);
@@ -44,7 +46,7 @@ function decreaseButton(){
 }
 
 function submit() {
-    Inertia.post(route('demo.pay'));       
+    Inertia.post(route('demo.installmental.pay'), form);       
 }
 
 </script>
@@ -90,8 +92,8 @@ function submit() {
                     <span class="text-gray-300 text-lg pt-4 pb-2 block font-semibold">Period</span>
                     <select @click="period" id="gender" class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" v-model="form.period"  required>
                         <option value="" selected="selected" disabled>~ Select ~</option>
-                        <option value="months">Month/Months</option>
-                        <option value="years">Year/Years</option>
+                        <option value="Months">Month/Months</option>
+                        <option value="Years">Year/Years</option>
                     </select>
                     <p v-if="errors.period" class="text-sm text-red-500">{{ errors.period }}</p>
                 </label>
@@ -114,6 +116,7 @@ function submit() {
                       type="button"
                       @click="increaseButton"
                   >+</button>
+                  <input type="hidden" v-model="form.amount">
               </div>
             </form>
 

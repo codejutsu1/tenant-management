@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('amount');
             $table->string('year');
+            $table->string('period')->default('1 Year');
             $table->boolean('status')->nullable();
             $table->boolean('paid')->default(0);
             $table->timestamps();
