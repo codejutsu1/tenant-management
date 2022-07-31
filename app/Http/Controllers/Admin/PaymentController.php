@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
+use App\Models\User;
 
 class PaymentController extends Controller
 {
@@ -51,5 +52,15 @@ class PaymentController extends Controller
 
         return redirect()->back()
                     ->with('message', 'You have denied this transaction'); 
+    }
+
+    public function adminRenewPayment($id)
+    {
+        User::where('id', $id)->update([
+            'paid' => 0
+        ]);
+
+        return redirect()->back()
+                    ->with('message', 'Updated Payment Information');
     }
 }

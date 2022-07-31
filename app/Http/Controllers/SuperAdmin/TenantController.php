@@ -18,7 +18,7 @@ class TenantController extends Controller
     {
         $users = User::where('role_id', 3)
                     ->where('status', 1)
-                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone'])
+                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone', 'paid'])
                     ->paginate(10);
 
         return Inertia('SuperAdmin/Tenants/Index', compact('users'));

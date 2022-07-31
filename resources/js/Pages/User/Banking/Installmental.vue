@@ -26,7 +26,7 @@ function period(){
 const form = reactive({
     period: '',
     length: 1,
-    amount: periodLength.value,
+    amount: 0,
 });
 
 
@@ -38,7 +38,7 @@ function onlyNumber($event) {
 }
 
 function increaseButton(){
-    form.length++
+    form.length++;
 }
 
 function decreaseButton(){
@@ -116,7 +116,6 @@ function submit() {
                       type="button"
                       @click="increaseButton"
                   >+</button>
-                  <input type="hidden" v-model="form.amount">
               </div>
             </form>
 

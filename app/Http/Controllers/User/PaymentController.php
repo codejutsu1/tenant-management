@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Iamolayemi\Paystack\Facades\Paystack;
 use App\Models\Transaction;
+use App\Models\User;
 
 class PaymentController extends Controller
 {
@@ -127,7 +128,6 @@ class PaymentController extends Controller
 
     public function demoInstallmentalPay(Request $request)
     {
-        dd($request);
         Transaction::create([
             'user_id' => auth()->user()->id,
             'title' => 'Lodge Rent Installmentally',
@@ -136,6 +136,10 @@ class PaymentController extends Controller
             'period' => $request->length . ' ' . $request->period,
             'status' => 0,
             'paid' => 1
+        ]);
+
+        User::where('id', auth()->user()->id)->update([
+            'paid' => NULL,
         ]);
 
         return redirect()->route('installmental')

@@ -54,8 +54,8 @@ const destroy = (id) => {
                       <th class="px-4 py-3">Status</th>
                       <th class="px-4 py-3">Room No</th>
                       <th class="px-4 py-3">Phone</th>
-                      <th class="px-4 py-3">Actions</th>
-                      <th class="px-4 py-3">Date</th>
+                      <th class="px-4 py-3">Action</th>
+                      <th class="px-4 py-3">Rent Due</th>
                     </tr>
                   </thead>
                   <tbody
@@ -73,9 +73,15 @@ const destroy = (id) => {
                       <td class="px-4 py-3 text-sm">
                         Gucci
                       </td>
-                      <td class="px-4 py-3 text-sm font-semibold text-green-300">
-                        <div class="flex justify-between">
+                      <td class="px-4 py-3 text-sm font-semibold">
+                        <div v-if="user.paid" class="flex justify-center px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100">
                           Paid (Full)
+                        </div>
+                        <div v-else-if="user.paid == NULL" class="flex justify-center px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600">
+                          Paid (INST)
+                        </div>
+                        <div v-else class="flex justify-center px-2 py-1 font-semibold leading-tight text-red-700 bg-red-100 rounded-full dark:text-red-100 dark:bg-red-700">
+                          Not Paid
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
@@ -87,30 +93,13 @@ const destroy = (id) => {
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
                           <Link
+                            onclick="return confirm('Are you sure you want to renew payment?')"
                             class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
-                            :href="route('users.edit', user.id)"
+                            :href="route('admin.renew.payment', user.id)"
                           >
-                            Edit
+                            Renew
                           </Link>
-                          <button
-                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-red-700 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Delete"
-                            @click="destroy(user.id)"
-                          >
-                            <svg
-                              class="w-5 h-5"
-                              aria-hidden="true"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                          </button>
                         </div>
                       </td>
                       <td class="px-4 py-3 font-semibold text-gray-200">
@@ -144,24 +133,7 @@ const destroy = (id) => {
                             class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
                           >
-                            Edit
-                          </Link>
-                          <Link
-                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-red-700 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Delete"
-                          >
-                            <svg
-                              class="w-5 h-5"
-                              aria-hidden="true"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
+                            Renew
                           </Link>
                         </div>
                       </td>

@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
         Route::get('confirm-payment/{id}', 'confirmPayment')->name('confirm.payment');
         Route::get('reject-payment/{id}', 'rejectPayment')->name('reject.payment');
         Route::get('all-transactions', 'allTransactions')->name('all.transactions');
+
+        Route::get('renew-payment/{id}', 'renewPayment')->name('renew.payment');
     });
 
 });
@@ -82,6 +84,7 @@ Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], f
         Route::get('all-transactions', 'adminAllTransactions')->name('admin.all.transactions');
         Route::get('confirm-payment/{id}', 'adminConfirmPayment')->name('admin.confirm.payment');
         Route::get('reject-payment/{id}', 'adminRejectPayment')->name('admin.reject.payment');
+        Route::get('renew-payment/{id}', 'adminRenewPayment')->name('admin.renew.payment');
     });
 
     Route::controller(AdminSettings::class)->group(function() { 
