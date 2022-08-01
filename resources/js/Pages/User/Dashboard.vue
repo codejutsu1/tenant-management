@@ -1,10 +1,15 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import UserDashboard from '@/Layouts/UserDashboard.vue';
+import Notification from '@/Components/Notification.vue';
 
 </script>
 
 <template>
+    <div v-if="$page.props.flash.message" class="absolute top-8 right-10 z-40">
+        <Notification :message="$page.props.flash.message" />
+    </div>
+    
     <UserDashboard>
         <Head title="Dashboard" />
 

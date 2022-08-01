@@ -63,4 +63,22 @@ class PagesController extends Controller
 
         return Inertia('User/AccountDetails', compact('user'));
     }
+
+    public function chooseRoom()
+    {
+        return Inertia('User/Chooseroom');
+    }
+
+    public function chooseaRoom(Request $request)
+    {
+        $request->validate([
+            'room_no' => ['required', 'numeric'],
+        ]);
+
+        User::where('id', auth()->user()->id)->update([
+            'room_no' => $request->room_no
+        ]);
+
+        return redirect()->route('dashboard.user')->with('message', 'You have successfully chosen a room');
+    }
 }

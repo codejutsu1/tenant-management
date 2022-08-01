@@ -95,7 +95,7 @@ class PaymentController extends Controller
             'title' => 'Lodge Payment',
             'amount' => '120000',
             'year' => '2022',
-            'status' => 1,
+            'status' => NULL,
             'paid' => 1
         ]);
 
@@ -118,7 +118,7 @@ class PaymentController extends Controller
             'title' => $request->description,
             'amount' => $request->amount,
             'year' => '2022',
-            'status' => 0,
+            'status' => NULL,
             'paid' => 1
         ]);
 
