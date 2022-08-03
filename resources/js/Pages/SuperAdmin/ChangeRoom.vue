@@ -69,7 +69,6 @@ const update = (id) => {
                       <td class="px-4 py-3 text-sm">
                         <form >
                           <select v-model="form.room_no" name="room_no" class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray">
-                            <option :value="user.room_no" selected>{{ user.room_no }}</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
