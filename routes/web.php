@@ -33,6 +33,7 @@ use App\Http\Controllers\User\SettingController as UserSettings;
 Route::get('/', [UserPages::class, 'index'])->name('home');
 Route::inertia('about', 'Web/About')->name('about');
 Route::inertia('contact-us', 'Web/Contact')->name('contact');
+Route::inertia('choose-room', 'Web/Room')->name('room');
 
 // Admin Dashboard
 
