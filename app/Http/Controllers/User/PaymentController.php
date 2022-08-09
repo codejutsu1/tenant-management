@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Iamolayemi\Paystack\Facades\Paystack;
 use App\Models\Transaction;
 use App\Models\User;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -99,8 +100,11 @@ class PaymentController extends Controller
             'paid' => 1
         ]);
 
+        $current_time = Carbon::now();
+
         User::where('id', auth()->user()->id)->update([
-            'paid' => 1
+            'paid' => 1,
+            'rent_due' => $current_time->addMonths(12)
         ]);
 
         return redirect()->route('online.banking')->with('message', 'Successfully paid');
@@ -138,8 +142,18 @@ class PaymentController extends Controller
             'paid' => 1
         ]);
 
+        $current_time = Carbon::now();
+
+        if($request->period == 'Months')
+        {
+            $current_time->addMonths($request->length);
+        }else{
+            $current_time->addYears($request->length);
+        }
+
         User::where('id', auth()->user()->id)->update([
             'paid' => NULL,
+            'rent_due' => $current_time,
         ]);
 
         return redirect()->route('installmental')

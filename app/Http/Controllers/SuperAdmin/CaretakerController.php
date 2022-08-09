@@ -17,7 +17,7 @@ class CaretakerController extends Controller
     public function index()
     {
         $users = User::where('role_id', 2)
-                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone', 'occupation'])
+                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone', 'occupation', 'created_at'])
                     ->paginate(10);
 
         return Inertia('SuperAdmin/Caretakers/Index', compact('users'));
@@ -79,7 +79,7 @@ class CaretakerController extends Controller
     public function show($id)
     {
         $user = User::where('id', $id)
-                        ->select(['id', 'name', 'email', 'type', 'lga', 'state', 'gender', 'occupation', 'room_no'])
+                        ->select(['id', 'name', 'email', 'type', 'lga', 'state', 'gender', 'occupation', 'created_at'])
                         ->first();
 
         return Inertia('SuperAdmin/Caretakers/Show', compact('user'));

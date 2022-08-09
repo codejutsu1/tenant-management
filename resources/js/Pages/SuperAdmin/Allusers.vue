@@ -78,10 +78,10 @@ const props = defineProps({
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        {{ user.created_at }}
+                        {{ user.created_at ?? 'NULL' }}
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        10th June, 2022
+                        {{ user.date_left ?? 'Till Date' }}
                       </td>
                     </tr>
                     <tr class="text-gray-700 dark:text-gray-400">

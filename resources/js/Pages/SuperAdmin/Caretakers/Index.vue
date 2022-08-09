@@ -114,7 +114,7 @@ const destroy = (id) => {
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        16th October, 2001
+                        {{ user.created_at ?? 'NULL' }}
                       </td>
                     </tr>
                     <tr class="text-gray-700 dark:text-gray-400">

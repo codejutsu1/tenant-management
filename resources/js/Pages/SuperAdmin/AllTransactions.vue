@@ -87,7 +87,7 @@ const props = defineProps({
                         </span>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        16th October, 2001
+                        {{ transaction.created_at }}
                       </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">

@@ -67,11 +67,11 @@ const destroy = (id) => {
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>Room No</span>
-                    <span>{{ user.room_no }}</span>
+                    <span>{{ user.room_no ?? 'NULL' }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <span>Date</span>
-                    <span>08 January 2016</span>
+                    <span>{{ user.created_at ?? 'NULL' }}</span>
                 </li>
                 <li class="flex justify-between py-4 border-b border-b-gray-100">
                     <Link :href="route('tenants.edit',  user.id)" type="button" class="px-8 cursor-pointer py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">Edit</Link>

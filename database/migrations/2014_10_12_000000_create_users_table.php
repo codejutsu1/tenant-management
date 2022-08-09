@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('gender');
             $table->boolean('status')->default(0);
-            $table->boolean('paid')->default(0);
+            $table->boolean('paid')->default(0)->nullable();
             $table->string('year')->nullable();
             $table->string('room_no')->nullable();
             $table->string('role_id');
@@ -33,6 +33,7 @@ return new class extends Migration
             $table->date('dob')->nullable();
             $table->string('phone');
             $table->timestamp('date_left')->nullable();
+            $table->timestamp('rent_due')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

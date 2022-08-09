@@ -29,7 +29,14 @@ class User extends Authenticatable
         'phone',
         'type',
         'role_id',
-        'dob'
+        'dob',
+        'date_left',
+        'rent_due',
+        'status',
+        'paid',
+        'year',
+        'room_no',
+        'lodge_no',
     ];
 
     /**
@@ -63,4 +70,6 @@ class User extends Authenticatable
             set: fn ($value) => strtolower($value),
         );
     }
+
+    
 }
