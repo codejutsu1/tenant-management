@@ -13,7 +13,7 @@ class PaymentController extends Controller
     {
         $transactions = Transaction::whereNull('status')
                                     ->where('paid', 1)
-                                    ->select(['id','user_id','title', 'amount', 'paid'])
+                                    ->select(['id','user_id','title', 'amount', 'paid', 'created_at'])
                                     ->with(['user' => function($query){
                                         $query->select(['id', 'name', 'room_no']);
                                     }])
@@ -25,7 +25,7 @@ class PaymentController extends Controller
     public function adminAllTransactions()
     {
         $transactions = Transaction::where('paid', 1)
-                                    ->select(['id', 'user_id','title', 'amount', 'paid', 'status'])
+                                    ->select(['id', 'user_id','title', 'amount', 'paid', 'status', 'created_at'])
                                     ->with(['user' => function($query){
                                         $query->select(['id', 'name', 'room_no']);
                                     }])

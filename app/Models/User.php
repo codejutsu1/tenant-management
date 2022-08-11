@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -39,6 +40,8 @@ class User extends Authenticatable
         'lodge_no',
     ];
 
+    // protected $dateFormat = 'U';
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -63,7 +66,7 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
-    public function gender(): Attribute
+    protected function gender(): Attribute
     {
         return Attribute::make(
             get: fn ($value) => ucfirst($value),
@@ -71,5 +74,26 @@ class User extends Authenticatable
         );
     }
 
-    
+    protected function rentDue(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value)->IsoFormat('Do MMM YYYY')
+        );
+    }
+
+    protected function createdAt(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value)->IsoFormat('Do MMM YYYY H:m:s')
+        );
+    }
+
+    protected function dateLeft(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => Carbon::parse($value)->IsoFormat('Do MMM YYYY')
+        );
+    }
+
+
 }

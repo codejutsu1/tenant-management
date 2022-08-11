@@ -70,7 +70,7 @@ const props = defineProps({
                         {{ user.created_at }}
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        10th June, 2022
+                        Till Date
                       </td>
                     </tr>
                     <tr class="text-gray-700 dark:text-gray-400">

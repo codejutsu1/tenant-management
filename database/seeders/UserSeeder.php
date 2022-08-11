@@ -28,7 +28,8 @@ class UserSeeder extends Seeder
             'state' => 'Lagos',
             'occupation' => 'Civil Servant',
             'dob' => NULL,
-            'phone' => '23454545' 
+            'phone' => '23454545',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('users')->insert([
@@ -43,7 +44,8 @@ class UserSeeder extends Seeder
             'state' => 'Lagos',
             'occupation' => 'Civil Servant',
             'dob' => NULL,
-            'phone' => '2334434534' 
+            'phone' => '2334434534',
+            'created_at' => Carbon::now()
         ]);
 
         DB::table('users')->insert([
@@ -58,7 +60,8 @@ class UserSeeder extends Seeder
             'state' => 'Lagos',
             'occupation' => 'Civil Servant',
             'dob' => NULL,
-            'phone' => '23234343' 
+            'phone' => '23234343',
+            'created_at' => Carbon::now()
         ]);
     }
 }
