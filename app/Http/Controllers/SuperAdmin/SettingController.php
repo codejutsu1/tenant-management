@@ -33,15 +33,6 @@ class SettingController extends Controller
                 ->with('message', 'Password successfully updated');
     }
 
-    public function landlordChangeRoom()
-    {
-        $users = User::query()
-                    ->where('role_id', 3)
-                    ->select(['id', 'name', 'email', 'gender', 'status', 'room_no'])
-                    ->paginate(10);
-
-        return Inertia('SuperAdmin/ChangeRoom', compact('users'));
-    }
 
     public function landlordActivateUser($id)
     {
@@ -61,10 +52,5 @@ class SettingController extends Controller
 
         return redirect()->back()
                     ->with('message', 'You have successfully deactivated this tenant.');
-    }
-
-    public function landlordChangeNumber(Request $request, $id)
-    {
-        dd($request);
     }
 }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\SuperAdmin\PagesController as SuperAdminPages;
 use App\Http\Controllers\SuperAdmin\SettingController as SuperAdminSettings;
+use App\Http\Controllers\SuperAdmin\RoomController as SuperAdminRoom;
 use App\Http\Controllers\SuperAdmin\TenantController;
 use App\Http\Controllers\SuperAdmin\CaretakerController;
 use App\Http\Controllers\SuperAdmin\YearController;
@@ -52,9 +53,6 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
         Route::get('settings', 'superAdminSettings')->name('super.admin.settings');
         Route::post('update-landlord-password', 'updateLandlordPassword')->name('update.landlord.password');
 
-        Route::get('change-user-room', 'landlordChangeRoom')->name('landlord.change.room');
-        Route::post('change-user-number', 'landlordChangeNumber')->name('landlord.change.number');
-
         Route::get('activate-user/{id}', 'landlordActivateUser')->name('landlord.activate.user');
         Route::get('deactivate-user/{id}', 'landlordDeactivateUser')->name('landlord.deactivate.user');
     });
@@ -68,6 +66,10 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
         Route::get('renew-payment/{id}', 'renewPayment')->name('renew.payment');
     });
 
+    Route::controller(SuperAdminRoom::class)->group(function() { 
+        Route::get('select-room', 'selectRoom')->name('select.room');
+        Route::get('view-occupants/{id}', 'viewOccupants')->name('view.occupants');
+    });
 });
 
 // Caretaker Dashboard

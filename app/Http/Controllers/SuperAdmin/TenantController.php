@@ -120,7 +120,8 @@ class TenantController extends Controller
                 'state' => 'required|string|max:255',
                 'occupation' => 'required|string|max:255',
                 'phone' => 'required|string|min:8|max:16',
-                'dob' => 'required|date|date_format:Y-m-d'
+                'dob' => 'required|date|date_format:Y-m-d',
+                'room_no' => 'numeric'
             ])
         );
 
