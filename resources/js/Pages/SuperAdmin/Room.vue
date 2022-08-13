@@ -5,6 +5,7 @@ import { reactive } from 'vue';
 
 const props = defineProps({
     users: Object,
+    id: Number,
 });
 
 </script>
@@ -59,22 +60,21 @@ const props = defineProps({
                         </td>
                         <td class="px-4 py-3">
                           <div class="flex items-center space-x-4 text-sm">
-                            <button
+                            <Link
+                              :href="route('change.room.tenant', user.id)"
                               class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
-                              aria-label="Edit"
-                              @click="update(user.id)"
                             >
                               Change Room No
-                            </button>            
+                            </Link>            
                           </div>
                         </td>
                       </tr>
                     </tbody>
                   </table>
 
-                  <div class="flex justify-end">
-                    <Link :href="route('tenants.create')" class="px-8 cursor-pointer py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                      Add New Tenant
+                  <div class="flex justify-end mt-4">
+                    <Link :href="route('change.room', props.id)" class="px-8 cursor-pointer py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                      Change at once
                     </Link>
                   </div>
                 </div>
