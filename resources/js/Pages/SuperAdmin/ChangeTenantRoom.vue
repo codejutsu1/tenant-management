@@ -6,16 +6,15 @@ import { reactive } from 'vue';
 
 const props = defineProps({
   errors: Object,
-  users: Object,
-  id: String,
+  user: Object,
 })
 
 const form = reactive({
-    room_no : props.id,
+    room_no : props.user.room_no,
 })
 
 function submit(){
-    Inertia.post(route('change.room.number', {'id': props.id}), form)
+    Inertia.post(route('change.tenant.number', {'id': props.user.id}), form)
 }
 </script>
 
@@ -27,7 +26,7 @@ function submit(){
                 <form class="w-full">
                     <div class="text-gray-300">
                         <div class="space-y-4">
-                            <p v-for="user in users" :key="user.id" class="font-semibold">
+                            <p class="font-semibold">
                                 {{ user.name }}
                             </p>
                         </div>

@@ -71,6 +71,8 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
         Route::get('view-occupants/{id}', 'viewOccupants')->name('view.occupants');
         Route::get('change-room/{id}', 'changeRoom')->name('change.room');
         Route::get('change-room-tenant/{id}', 'changeRoomTenant')->name('change.room.tenant');
+        Route::post('change-room-number/{id}', 'changeRoomNumber')->name('change.room.number');
+        Route::post('change-tenant-number/{id}', 'changeTenantNumber')->name('change.tenant.number');
     });
 });
 

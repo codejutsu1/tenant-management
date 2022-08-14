@@ -33,19 +33,31 @@ class RoomController extends Controller
 
     public function changeRoomTenant($id)
     {
-        $user = User::where('id', $id)->select(['name'])->first();
+        $user = User::where('id', $id)->select(['id','name', 'room_no'])->first();
 
-        return Inertia('SuperAdmin/ChangeRoom', compact('user'));
+        return Inertia('SuperAdmin/ChangeTenantRoom', compact('user'));
     }
 
     public function changeRoomNumber(Request $request, $id)
     {
-        User::where('id', $id)->update([
+        User::where('room_no', $id)->update(
             $request->validate([
-                'room' => 'numeric' 
+                'room_no' => 'numeric' 
             ])
-        ]);
+        );
 
-        return redirect()->route('')->with('message', 'Successfully changed tenant room.');
+        return redirect()->route('select.room')->with('message', 'Successfully changed tenant room.');
+    }
+
+    public function changeTenantNumber(Request $request, $id)
+    {
+        User::where('id', $id)->update(
+            $request->validate([
+                'room_no' => 'numeric' 
+            ])
+        );
+
+        return redirect()->route('select.room')->with('message', 'Successfully changed tenant room.');
+
     }
 }

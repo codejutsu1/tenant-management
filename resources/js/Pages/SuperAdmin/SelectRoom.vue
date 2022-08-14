@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
 import { reactive } from 'vue';
+import Notification from '@/Components/Notification.vue';
 
 const props = defineProps({
     users: Object,
@@ -15,6 +16,10 @@ const form = reactive({
 </script>
 
 <template>
+    <div v-if="$page.props.flash.message" class="absolute top-8 right-10 z-40">
+        <Notification :message="$page.props.flash.message" />
+    </div>
+    
     <Dashboard>
         <Head title="Select room to view" />
         <main class="h-full overflow-y-auto z-30">
