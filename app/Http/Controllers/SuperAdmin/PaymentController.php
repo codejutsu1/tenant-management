@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\User;
+use LaravelDaily\Invoices\Invoice;
+use LaravelDaily\Invoices\Classes\Party;
+use LaravelDaily\Invoices\Classes\InvoiceItem;
+use Illuminate\Support\Facades\Response;
 
 class PaymentController extends Controller
 {
@@ -24,12 +28,52 @@ class PaymentController extends Controller
 
     public function confirmPayment($id)
     {
-        Transaction::where('id', $id)->update([
-            'status' => 1,
+        // Transaction::where('id', $id)->update([
+        //     'status' => 1,
+        // ]);
+
+        $transaction = Transaction::with('user')->where('id', $id)->first();
+        
+        $customer = new Party([
+            'name' => $transaction->user->name,
+            'phone' => $transaction->user->phone,
         ]);
 
-        return redirect()->back()
-                    ->with('message', 'You have confirmed this transaction');
+        $client = new Party([
+            'name' => 'Nwachukwu Kelechi',
+            'phone' => '234 4484883 3477',
+            'address' => 'Shell Oil and Gas'
+        ]);
+
+        $notes = [
+            'For more information',
+            'Contact the Admin',
+            'Thanks for your payment',
+        ];
+
+        $notes = implode("<br>", $notes);
+
+        $item = (new InvoiceItem())->title($transaction->title)->pricePerUnit($transaction->amount);
+
+        $invoice = Invoice::make()
+                            ->series('Lodge')
+                            ->sequence($transaction->id)
+                            ->status(__('invoices::invoice.paid'))
+                            ->seller($client)
+                            ->currencySymbol('&#8358;')
+                            ->buyer($customer)
+                            ->filename($transaction->description . '_' . $transaction->user->name)
+                            ->addItem($item)
+                            ->notes($notes)
+                            ->save('public');
+        
+        Transaction::where('id', $id)->update([
+            'url' => $invoice->url(),
+        ]);
+
+        return response()->file($invoice->url());
+
+        return $invoice->stream();
     }
 
     public function rejectPayment($id)

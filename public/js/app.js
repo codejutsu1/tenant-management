@@ -30099,7 +30099,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "flex justify-center items-center"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "button",
-        onclick: "return confirm('Do you want to accept this order?')",
+        onclick: "return confirm('Do you want to proceed?')",
         onClick: $setup.submit,
         "class": "inline-block border border-black px-8 py-2 mt-5 rounded-md",
         value: "Change"
@@ -30246,7 +30246,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "flex justify-center items-center"
       }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
         type: "button",
-        onclick: "return confirm('Do you want to accept this order?')",
+        onclick: "return confirm('Do you want to proceed?')",
         onClick: $setup.submit,
         "class": "inline-block border border-black px-8 py-2 mt-5 rounded-md",
         value: "Change"
