@@ -32,9 +32,9 @@ class PagesController extends Controller
     public function userReceipt()
     {
         $transactions = Transaction::where('user_id', auth()->user()->id)
-                                    ->select(['id', 'user_id', 'amount', 'year'])
+                                    ->select(['id', 'user_id', 'title', 'amount', 'year', 'link', 'created_at'])
                                     ->with(['user' => function($query){
-                                        $query->select(['id', 'room_no']);
+                                        $query->select(['id', 'name', 'room_no']);
                                     }])
                                     ->paginate(10);
 

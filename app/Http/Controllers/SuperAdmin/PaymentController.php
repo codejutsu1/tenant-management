@@ -9,7 +9,7 @@ use App\Models\User;
 use LaravelDaily\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Redirect;
 
 class PaymentController extends Controller
 {
@@ -28,9 +28,9 @@ class PaymentController extends Controller
 
     public function confirmPayment($id)
     {
-        // Transaction::where('id', $id)->update([
-        //     'status' => 1,
-        // ]);
+        Transaction::where('id', $id)->update([
+            'status' => 1,
+        ]);
 
         $transaction = Transaction::with('user')->where('id', $id)->first();
         
@@ -60,20 +60,20 @@ class PaymentController extends Controller
                             ->sequence($transaction->id)
                             ->status(__('invoices::invoice.paid'))
                             ->seller($client)
-                            ->currencySymbol('&#8358;')
+                            ->currencySymbol('N')
                             ->buyer($customer)
-                            ->filename($transaction->description . '_' . $transaction->user->name)
+                            ->filename($transaction->title . '_' . $transaction->user->name . '_' . $transaction->id . $transaction->year)
+                            ->currencyThousandsSeparator(',')
                             ->addItem($item)
                             ->notes($notes)
                             ->save('public');
         
         Transaction::where('id', $id)->update([
             'url' => $invoice->url(),
+            'link' => $transaction->title . '_' . $transaction->user->name . '_' . $transaction->id . $transaction->year . '.pdf'
         ]);
 
-        return response()->file($invoice->url());
-
-        return $invoice->stream();
+        return redirect()->route('super.admin.payment')->with('message', 'Successfully Confirmed');
     }
 
     public function rejectPayment($id)

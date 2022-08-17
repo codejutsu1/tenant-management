@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('status')->nullable();
             $table->boolean('paid')->default(0);
             $table->string('url')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }

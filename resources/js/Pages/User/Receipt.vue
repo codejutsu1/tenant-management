@@ -30,6 +30,7 @@ const props = defineProps({
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
                       <th class="px-4 py-3">Room No.</th>
+                      <th class="px-4 py-3">Title</th>
                       <th class="px-4 py-3">Amount</th>
                       <th class="px-4 py-3">Year</th>
                       <th class="px-4 py-3 text-center">Actions</th>
@@ -42,8 +43,11 @@ const props = defineProps({
                     <tr v-for="transaction in transactions.data" :key="transaction.id" class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
-                          {{ transaction.user.room_no }}
+                          {{ transaction.user.room_no ?? 'NULL' }}
                         </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ transaction.title }}
                       </td>
                       <td class="px-4 py-3 text-sm">
                         &#8358; {{ transaction.amount }}
@@ -53,11 +57,13 @@ const props = defineProps({
                       </td>
                       <td class="px-4 py-3 text-xs">
                         <div class="flex justify-between items-center">
-                          <span
+                          <a
+                            target="_blank"
                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                            :href="'/storage/' + transaction.link"
                           >
                             View
-                          </span>
+                          </a>
 
                           <span
                             class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
@@ -67,71 +73,7 @@ const props = defineProps({
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
-                    </tr>
-
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3">
-                        <div class="flex items-center text-sm">
-                         Room 10
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 863.45
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        2022
-                      </td>
-                      <td class="px-4 py-3 text-xs">
-                        <div class="flex justify-between items-center">
-                          <span
-                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                          >
-                            View
-                          </span>
-
-                          <span
-                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
-                          >
-                            Print
-                          </span>
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
-                      </td>
-                    </tr>
-
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3">
-                        <div class="flex items-center text-sm">
-                          Room 20
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        $ 369.95
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        2019
-                      </td>
-                      <td class="px-4 py-3 text-xs">
-                        <div class="flex justify-between items-center">
-                          <span
-                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
-                          >
-                            View
-                          </span>
-
-                          <span
-                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
-                          >
-                            Print
-                          </span>
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        6/10/2020
+                        {{ transaction.created_at }}
                       </td>
                     </tr>
                   </tbody>

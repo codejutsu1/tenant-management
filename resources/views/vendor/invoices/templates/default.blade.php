@@ -371,6 +371,8 @@
             {{ trans('invoices::invoice.pay_until') }}: {{ $invoice->getPayUntilDate() }}
         </p>
 
+        <div class="mb-3">{!! DNS2D::getBarcodeHTML('Authentic Lodge Payment Receipt', 'QRCODE') !!}</div>
+
         <script type="text/php">
             if (isset($pdf) && $PAGE_COUNT > 1) {
                 $text = "Page {PAGE_NUM} / {PAGE_COUNT}";
