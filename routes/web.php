@@ -14,6 +14,7 @@ use App\Http\Controllers\SuperAdmin\PaymentController as SuperAdminPayment;
 use App\Http\Controllers\Admin\PagesController as AdminPages;
 use App\Http\Controllers\Admin\PaymentController as AdminPayment;
 use App\Http\Controllers\Admin\SettingController as AdminSettings;
+use App\Http\Controllers\Admin\RoomController as AdminRoom;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\NewUserController;
 use App\Http\Controllers\User\PagesController as UserPages;
@@ -98,6 +99,16 @@ Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], f
         Route::get('settings', 'adminSettings')->name('admin.settings');
         Route::post('update-caretaker-email', 'updateCaretakerEmail')->name('update.caretaker.email');
         Route::post('update-caretaker-password', 'updateCaretakerPassword')->name('update.caretaker.password');
+    });
+
+    Route::controller(AdminRoom::class)->group(function() { 
+        Route::get('select-room', 'adminSelectRoom')->name('admin.select.room');
+        Route::get('view-occupants/{id}', 'adminViewOccupants')->name('admin.view.occupants');
+        Route::get('change-room/{id}', 'adminChangeRoom')->name('admin.change.room');
+        Route::get('change-tenant-room/{id}', 'adminRoomTenant')->name('admin.room.tenant');
+
+        Route::post('change-room-number/{id}', 'adminRoomNumber')->name('admin.room.number');
+        Route::post('change-tenant-number/{id}', 'adminTenantNumber')->name('admin.tenant.number');
     });
 
     Route::resource('users', UserController::class);

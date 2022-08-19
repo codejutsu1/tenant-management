@@ -74,8 +74,8 @@ const submit = () => {
                         <span class="text-gray-400 pt-4 pb-2 block font-semibold">Gender</span>
                         <select id="gender" class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" v-model="form.gender"  required>
                             <option value="" selected="selected" disabled>~ Select ~</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
                         </select>
                         <p v-if="errors.gender" class="text-sm text-red-500">{{ errors.gender }}</p>
                     </label>

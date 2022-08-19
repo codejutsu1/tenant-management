@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\User;
+use LaravelDaily\Invoices\Invoice;
+use LaravelDaily\Invoices\Classes\Party;
+use LaravelDaily\Invoices\Classes\InvoiceItem;
 
 class PaymentController extends Controller
 {
@@ -40,7 +43,74 @@ class PaymentController extends Controller
             'status' => 1,
         ]);
 
-        return redirect()->back()
+        $transaction = Transaction::with('user')->where('id', $id)->first();
+        
+        $customer = new Party([
+            'name' => $transaction->user->name,
+            'phone' => $transaction->user->phone,
+        ]);
+
+        $client = new Party([
+            'name' => 'Nwachukwu Kelechi',
+            'phone' => '234 4484883 3477',
+            'address' => 'Shell Oil and Gas'
+        ]);
+
+        $notes = [
+            'For more information',
+            'Contact the Admin',
+            'Thanks for your payment',
+        ];
+
+        $notes = implode("<br>", $notes);
+
+        $item = (new InvoiceItem())->title($transaction->title)->pricePerUnit($transaction->amount);
+
+        $invoice = Invoice::make()
+                            ->series('Lodge')
+                            ->sequence($transaction->id)
+                            ->status(__('invoices::invoice.paid'))
+                            ->seller($client)
+                            ->currencySymbol('N')
+                            ->buyer($customer)
+                            ->filename($transaction->title . '_' . $transaction->user->name . '_' . $transaction->id . $transaction->year)
+                            ->currencyThousandsSeparator(',')
+                            ->addItem($item)
+                            ->notes($notes)
+                            ->save('public');
+        
+        Transaction::where('id', $id)->update([
+            'url' => $invoice->url(),
+            'link' => $transaction->title . '_' . $transaction->user->name . '_' . $transaction->id . $transaction->year . '.pdf'
+        ]);
+
+        // Creating the legal information
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+        $section = $phpWord->addSection();
+
+        $document = 'WHEREBY IT IS AGREED AS FOLLOWS: -'
+        .' 1. The landlord shall let and hereby lets and the tenant'      
+        ;
+
+        $fontstyle = array('name' => 'verdana', 'size' => '12');
+
+        $section->addTitle('TENANCY AGREEMENT', 1);
+
+        $section->addText($document, $fontstyle);
+
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+
+        try {
+            $objWriter->save(storage_path('helloWorld2.docx'));
+        } catch (Exception $e) {
+            dd($e);
+        }
+
+
+        return response()->download(storage_path('helloWorld2.docx'));
+
+        return redirect()->route('show.payment.details')
                     ->with('message', 'You have confirmed this transaction');
     }
 

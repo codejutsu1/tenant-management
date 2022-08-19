@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
-import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
+import Dashboard from '@/Layouts/AdminDashboard.vue';
 import { reactive } from 'vue';
 import Notification from '@/Components/Notification.vue';
 
@@ -53,7 +53,7 @@ const form = reactive({
 
                     <div class="flex justify-end py-5">
                         <Link
-                          :href="route('view.occupants', form.room_no)"
+                          :href="route('admin.view.occupants', form.room_no)"
                           class="px-8 py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                         >
                           View Occupants

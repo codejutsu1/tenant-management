@@ -48,7 +48,7 @@ const props = defineProps({
                   >
                     <tr v-for="transaction in transactions.data" :key="transaction.id" class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3 text-sm">
-                        <Link :href="route('tenants.show', transaction.user.id)">
+                        <Link :href="route('users.show', transaction.user.id)">
                           {{ transaction.user.name }}
                         </Link>
                       </td>
@@ -106,62 +106,6 @@ const props = defineProps({
                             aria-label="Delete"
                           >
                             Decline
-                          </Link>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3 text-sm">
-                        Okoro John
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        4
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        &#8358; 180,000.00
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        Lodge Rent
-                      </td>
-                      <td class="px-4 py-3 text-sm font-semibold text-green-300">
-                        <div class="flex justify-between">
-                          Paid (Full)
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        <span
-                            class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
-                        >
-                          Pending
-                        </span>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        16th October, 2001
-                      </td>
-                      <td class="px-4 py-3">
-                        <div class="flex items-center space-x-4 text-sm">
-                          <Link
-                            class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Edit"
-                          >
-                            Confirm
-                          </Link>
-                          <Link
-                            class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-red-700 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Delete"
-                          >
-                            <svg
-                              class="w-5 h-5"
-                              aria-hidden="true"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
                           </Link>
                         </div>
                       </td>

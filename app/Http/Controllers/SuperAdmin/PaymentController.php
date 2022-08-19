@@ -78,13 +78,13 @@ class PaymentController extends Controller
 
         $section = $phpWord->addSection();
 
-        $document = '"This is the legal information of the lodge." '
-                    . 'This is for a new line, '
-                    . 'This is very interesting. ';
+        $document = 'WHEREBY IT IS AGREED AS FOLLOWS: -'
+        .' 1. The landlord shall let and hereby lets and the tenant'      
+        ;
 
         $fontstyle = array('name' => 'verdana', 'size' => '12');
 
-        $section->addTitle('Legal Information', 1);
+        $section->addTitle('TENANCY AGREEMENT', 1);
 
         $section->addText($document, $fontstyle);
 
