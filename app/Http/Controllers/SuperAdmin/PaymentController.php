@@ -28,9 +28,9 @@ class PaymentController extends Controller
 
     public function confirmPayment($id)
     {
-        Transaction::where('id', $id)->update([
-            'status' => 1,
-        ]);
+        // Transaction::where('id', $id)->update([
+        //     'status' => 1,
+        // ]);
 
         $transaction = Transaction::with('user')->where('id', $id)->first();
         
@@ -72,6 +72,32 @@ class PaymentController extends Controller
             'url' => $invoice->url(),
             'link' => $transaction->title . '_' . $transaction->user->name . '_' . $transaction->id . $transaction->year . '.pdf'
         ]);
+
+        // Creating the legal information
+        $phpWord = new \PhpOffice\PhpWord\PhpWord();
+
+        $section = $phpWord->addSection();
+
+        $document = '"This is the legal information of the lodge." '
+                    . 'This is for a new line, '
+                    . 'This is very interesting. ';
+
+        $fontstyle = array('name' => 'verdana', 'size' => '12');
+
+        $section->addTitle('Legal Information', 1);
+
+        $section->addText($document, $fontstyle);
+
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+
+        try {
+            $objWriter->save(storage_path('helloWorld.docx'));
+        } catch (Exception $e) {
+            dd($e);
+        }
+
+
+        return response()->download(storage_path('helloWorld.docx'));
 
         return redirect()->route('super.admin.payment')->with('message', 'Successfully Confirmed');
     }
