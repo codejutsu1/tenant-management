@@ -10,6 +10,7 @@ use LaravelDaily\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -78,15 +79,37 @@ class PaymentController extends Controller
 
         $section = $phpWord->addSection();
 
-        $document = 'WHEREBY IT IS AGREED AS FOLLOWS: -'
-        .' 1. The landlord shall let and hereby lets and the tenant'      
-        ;
-
-        $fontstyle = array('name' => 'verdana', 'size' => '12');
+        $phpWord->addTitleStyle(1, array('bold' => true, 'size' => 16, 'underline' => 'single'), array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER, 'spaceAfter' => 100));
 
         $section->addTitle('TENANCY AGREEMENT', 1);
 
-        $section->addText($document, $fontstyle);
+        $section->addTextBreak();
+
+        $fontStyle['size'] = 12;
+
+        $textrun = $section->addTextRun($fontStyle);
+
+        $textrun->addText('This Tenancy agreement is', array('bold' => true,'size'=> '12', 'allCaps' => true));
+        $textrun->addText(' made this ');
+        $textrun->addText(Carbon::now()->format('d'));
+        $textrun->addText(' day of ');
+        $textrun->addText(Carbon::now()->format('F'));
+        $textrun->addText(' Between ');
+        $textrun->addText('(Hereinafter referred to as "The Landlord") of the one part and ');
+        $textrun->addText($transaction->user->name);
+        $textrun->addText(', native of ');
+        $textrun->addText($transaction->user->lga . ', ' .$transaction->user->state);
+        $textrun->addText(' (Hereinafter referred to as "The Tenant") of the second part.');
+        $textrun->addText();
+
+        $section->addText('whereby it is agreed as follows:-', array('bold' => true, 'size'=> '12', 'allCaps' => true));
+        
+        $section->addListItem('The Landlord shall let and hereby lets and the Tenant shall take and hereby takes a monthly tenancy commencing from the first day'
+           .' of one month and so continues from month to month for a period of one year until otherwise'
+            .' determined as hereinafter provided at ALL THAT tenement comprising of one room self-content'
+            . ' and premises situate at Here, at the rate of rent of $3,000.00 per annum.', 
+            array('name' => 'Verdana', 'size' => 12), $predefinedMultilevelStyle
+        );
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 
