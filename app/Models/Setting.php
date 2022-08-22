@@ -13,6 +13,7 @@ class Setting extends Model
         'site_name',
         'site_email',
         'site_phone',
-        'site_rent'
+        'site_rent',
+        'room_numbers'
     ];
 }

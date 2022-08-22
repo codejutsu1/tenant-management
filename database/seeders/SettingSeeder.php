@@ -19,7 +19,8 @@ class SettingSeeder extends Seeder
             'site_name' => 'Lodge',
             'site_email' => 'accomodation@lodge.com',
             'site_phone' => '7888872783',
-            'site_rent' => '180000'
+            'site_rent' => '180000',
+            'room_numbers' => '30'
         ]);
     }
 }

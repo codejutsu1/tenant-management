@@ -84,37 +84,6 @@ const props = defineProps({
                         {{ user.date_left ?? 'Till Date' }}
                       </td>
                     </tr>
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3 text-sm">
-                        Okoro John
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        okorojohn@john.com
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        Male
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        10
-                      </td>
-                      <td class="px-4 py-3">
-                        <div class="flex items-center space-x-4 text-sm">
-                          <button
-                            type="button"
-                            class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5  rounded-lg text-red-200 bg-red-700 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Edit"
-                          >
-                            Deactivate
-                          </button>            
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        10th July, 2008
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        Till Date
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>

@@ -18,6 +18,22 @@ class SettingController extends Controller
         return Inertia('SuperAdmin/Settings', compact('settings'));
     }
 
+    public function updateSiteInfo(Request $request)
+    {
+        Setting::findOrFail(auth()->user()->id)->update(
+            $request->validate([
+                'site_name' => 'required|string',
+                'site_email' => 'required|email',
+                'site_phone' => 'required|numeric',
+                'site_rent' => 'required|numeric',
+                'room_numbers' => 'required|numeric'
+            ])
+        );
+
+        return redirect()->back()
+                ->with('message', 'Site Info successfully updated.');
+    }
+
     public function updateLandlordPassword(Request $request)
     {
         $request->validate([

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('site_email');
             $table->string('site_phone');
             $table->string('site_rent');
+            $table->string('room_numbers');
             $table->timestamps();
         });
     }

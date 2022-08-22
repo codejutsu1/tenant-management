@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth', 'landlord'], 'prefix' => 'landlord'], fun
     Route::controller(SuperAdminSettings::class)->group(function() { 
         Route::get('settings', 'superAdminSettings')->name('super.admin.settings');
         Route::post('update-landlord-password', 'updateLandlordPassword')->name('update.landlord.password');
+        Route::post('update-site-info', 'updateSiteInfo')->name('update.site.info');
 
         Route::get('activate-user/{id}', 'landlordActivateUser')->name('landlord.activate.user');
         Route::get('deactivate-user/{id}', 'landlordDeactivateUser')->name('landlord.deactivate.user');

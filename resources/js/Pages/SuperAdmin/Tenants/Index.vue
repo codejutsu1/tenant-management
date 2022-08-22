@@ -106,41 +106,6 @@ const destroy = (id) => {
                         {{ user.rent_due }}
                       </td>
                     </tr>
-                    <tr class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3 text-sm">
-                        Okoro John
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        Male
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        Gucci
-                      </td>
-                      <td class="px-4 py-3 text-sm font-semibold">
-                        <div class="flex justify-between">
-                          Paid (Full)
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        10
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        43873763738
-                      </td>
-                      <td class="px-4 py-3">
-                        <div class="flex items-center space-x-4 text-sm">
-                          <Link
-                            class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
-                            aria-label="Edit"
-                          >
-                            Renew
-                          </Link>
-                        </div>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        16th October, 2001
-                      </td>
-                    </tr>
                   </tbody>
                 </table>
               </div>

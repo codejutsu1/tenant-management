@@ -2,6 +2,12 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
 
+const props = defineProps({
+  total_no_of_room: Number,
+  number_of_rooms: Number
+})
+
+
 </script>
 
 <template>
@@ -40,7 +46,7 @@ import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    10/20
+                    {{ number_of_rooms }} / {{ total_no_of_room }}
                   </p>
                 </div>
               </div>

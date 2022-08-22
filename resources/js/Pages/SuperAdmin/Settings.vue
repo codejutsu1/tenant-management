@@ -2,6 +2,7 @@
 import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
 import { Inertia } from '@inertiajs/inertia';
+import { reactive } from 'vue';
 import Notification from '@/Components/Notification.vue';
 
 const props = defineProps({
@@ -9,11 +10,12 @@ const props = defineProps({
   settings: Object,
 });
 
-const form = useForm({
+const form = reactive({
    site_name: props.settings.site_name,
    site_email: props.settings.site_email,
    site_phone: props.settings.site_phone,
    site_rent: props.settings.site_rent,
+   room_numbers: props.settings.room_numbers
 });
 
 const password = useForm({
@@ -28,6 +30,9 @@ function updatePassword() {
   });
 }
 
+function updateSite() {
+  Inertia.post(route('update.site.info'), form);
+}
 
 </script>
 
@@ -47,7 +52,7 @@ function updatePassword() {
               Settings
             </h2>
             <div class="bg-gray-800 px-4 py-10 my-10">
-                <form action="#">
+                <form>
                     <label class="block">
                         <span class="text-gray-400 pt-4 pb-2 block font-semibold">Site Name</span>
                         <input
@@ -89,11 +94,22 @@ function updatePassword() {
                         <p v-if="errors.site_rent" class="text-sm text-red-500">{{ errors.site_rent }}</p>
                     </label>
 
+                     <label class="block">
+                        <span class="text-gray-400 pt-4 pb-2 block font-semibold">Number of Rooms</span>
+                        <input
+                            class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            type="text"
+                            v-model="form.room_numbers"
+                        />
+                        <p v-if="errors.room_numbers" class="text-sm text-red-500">{{ errors.room_numbers }}</p>
+                    </label>
+
                     <div class="flex justify-end py-5">
                         <input 
                           type="button" 
                           value="Update"
-                          @click="submit"
+                          onclick="return confirm('Confirm you want to make this changes?')"
+                          @click="updateSite"
                           class="px-8 py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                         >
                     </div>

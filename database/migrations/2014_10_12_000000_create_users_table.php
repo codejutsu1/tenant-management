@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('room_no')->nullable();
             $table->string('role_id');
             $table->string('lodge_no')->nullable();
+            $table->boolean('payer')->nullable();
             $table->string('type');
             $table->string('lga');
             $table->string('state');
