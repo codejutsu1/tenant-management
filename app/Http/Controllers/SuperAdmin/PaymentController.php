@@ -29,11 +29,23 @@ class PaymentController extends Controller
 
     public function confirmPayment($id)
     {
-        // Transaction::where('id', $id)->update([
-        //     'status' => 1,
-        // ]);
+        Transaction::where('id', $id)->update([
+            'status' => 1,
+        ]);
 
         $transaction = Transaction::with('user')->where('id', $id)->first();
+
+        if($transaction->title == 'Lodge Payment')
+        {
+            $payer = User::where('id', $transaction->user_id)->first();
+
+            $payer->payer = 1;
+            //Update payer not done.
+            
+            User::where('room_no', $payer->room_no)->update([
+                'paid' => 1
+            ]);
+        }
         
         $customer = new Party([
             'name' => $transaction->user->name,
@@ -144,7 +156,7 @@ class PaymentController extends Controller
         }
 
 
-        return response()->download(storage_path('helloWorld.docx'));
+        // return response()->download(storage_path('helloWorld.docx'));
 
         return redirect()->route('super.admin.payment')->with('message', 'Successfully Confirmed');
     }

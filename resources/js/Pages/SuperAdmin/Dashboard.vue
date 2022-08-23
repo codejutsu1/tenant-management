@@ -4,7 +4,11 @@ import Dashboard from '@/Layouts/SuperAdminDashboard.vue';
 
 const props = defineProps({
   total_no_of_room: Number,
-  number_of_rooms: Number
+  number_of_rooms: Number,
+  total_amount: Number,
+  number_of_paid_tenants: Number,
+  pending_transaction: Number,
+  total_no_of_tenants: Number
 })
 
 
@@ -74,7 +78,7 @@ const props = defineProps({
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    &#8358; 120,000.00 ($200)
+                    &#8358; {{ total_amount }}
                   </p>
                 </div>
               </div>
@@ -128,7 +132,7 @@ const props = defineProps({
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    6/20
+                    {{ number_of_paid_tenants }} / {{ number_of_rooms }}
                   </p>
                 </div>
               </div>
@@ -156,7 +160,7 @@ const props = defineProps({
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    7
+                    {{ pending_transaction }}
                   </p>
                 </div>
               </div>
@@ -179,12 +183,12 @@ const props = defineProps({
                   <p
                     class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400"
                   >
-                    Unpaid Users
+                    Total Tenants
                   </p>
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    20
+                    {{ total_no_of_tenants }}
                   </p>
                 </div>
               </div>
