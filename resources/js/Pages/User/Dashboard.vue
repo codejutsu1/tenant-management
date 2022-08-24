@@ -3,6 +3,11 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
 import UserDashboard from '@/Layouts/UserDashboard.vue';
 import Notification from '@/Components/Notification.vue';
 
+const props = defineProps({
+  user: Object,
+  amount: Number,
+});
+
 </script>
 
 <template>
@@ -45,7 +50,7 @@ import Notification from '@/Components/Notification.vue';
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    10
+                    {{ user.room_no }}
                   </p>
                 </div>
               </div>
@@ -73,7 +78,7 @@ import Notification from '@/Components/Notification.vue';
                   <p
                     class="text-lg font-semibold text-gray-700 dark:text-gray-200"
                   >
-                    &#8358; 120,000.00 ($200)
+                    &#8358; {{ amount }}
                   </p>
                 </div>
               </div>
@@ -124,11 +129,20 @@ import Notification from '@/Components/Notification.vue';
                   >
                     Status 
                   </p>
-                  <p
-                    class="text-lg font-semibold text-gray-700 dark:text-gray-200"
-                  >
-                    Paid
-                  </p>
+                  <div>
+                    <p
+                      v-if="user.paid"
+                      class="text-lg font-semibold text-green-700"
+                    >
+                      Paid
+                    </p>
+                    <p 
+                      v-else
+                      class="text-lg font-semibold text-red-700"
+                    >
+                        Not Paid
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

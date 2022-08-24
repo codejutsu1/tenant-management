@@ -87,26 +87,6 @@ class PaymentController extends Controller
         // Creating the legal information
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
 
-        // $section = $phpWord->addSection();
-
-        // $document = 'WHEREBY IT IS AGREED AS FOLLOWS: -'
-        // .' 1. The landlord shall let and hereby lets and the tenant'      
-        // ;
-
-        // $fontstyle = array('name' => 'verdana', 'size' => '12');
-
-        // $section->addTitle('TENANCY AGREEMENT', 1);
-
-        // $section->addText($document, $fontstyle);
-
-        // $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
-
-        $fontStyleName = 'myOwnStyle';
-        $phpWord->addFontStyle($fontStyleName, array('color' => 'FF0000'));
-
-        $paragraphStyleName = 'P-Style';
-        $phpWord->addParagraphStyle($paragraphStyleName, array('spaceAfter' => 95));
-
         $multilevelNumberingStyleName = 'multilevel';
         $phpWord->addNumberingStyle(
             $multilevelNumberingStyleName,
@@ -119,75 +99,51 @@ class PaymentController extends Controller
             )
         );
 
-        $predefinedMultilevelStyle = array('listType' => \PhpOffice\PhpWord\Style\ListItem::TYPE_NUMBER_NESTED);
+        $fontStyleName = 'P-Style';
+        $phpWord->addFontStyle($fontStyleName, array('name' => 'Verdana', 'size' => 12));
 
-        // New section
+        $fontStyle = 'P-Style';
+        $phpWord->addFontStyle($fontStyle, array('name' => 'Verdana', 'size' => 12));
+
         $section = $phpWord->addSection();
 
-        // Lists
-        $section->addText('Multilevel list.');
-        $section->addListItem('List Item I', 0, null, $multilevelNumberingStyleName);
-        $section->addListItem('List Item I.a', 1, null, $multilevelNumberingStyleName);
-        $section->addListItem('List Item I.b', 1, null, $multilevelNumberingStyleName);
-        $section->addListItem('List Item II', 0, null, $multilevelNumberingStyleName);
-        $section->addListItem('List Item II.a', 1, null, $multilevelNumberingStyleName);
-        $section->addListItem('List Item III', 0, null, $multilevelNumberingStyleName);
-        $section->addTextBreak(2);
+        $phpWord->addTitleStyle(1, array('bold' => true, 'size' => 16, 'underline' => 'single'), array('alignment' => \PhpOffice\PhpWord\SimpleType\Jc::CENTER, 'spaceAfter' => 100));
 
-        $section->addText('Basic simple bulleted list.');
-        $section->addListItem('List Item 1');
-        $section->addListItem('List Item 2');
-        $section->addListItem('List Item 3');
-        $section->addTextBreak(2);
+        $section->addTitle('TENANCY AGREEMENT', 1);
 
-        $section->addText('Continue from multilevel list above.');
-        $section->addListItem('List Item IV', 0, null, $multilevelNumberingStyleName);
-        $section->addListItem('List Item IV.a', 1, null, $multilevelNumberingStyleName);
-        $section->addTextBreak(2);
+        $section->addTextBreak();
 
-        $section->addText('Multilevel predefined list.');
-        $section->addListItem('List Item 1', 0, $fontStyleName, $predefinedMultilevelStyle, $paragraphStyleName);
-        $section->addListItem('List Item 2', 0, $fontStyleName, $predefinedMultilevelStyle, $paragraphStyleName);
-        $section->addListItem('List Item 3', 1, $fontStyleName, $predefinedMultilevelStyle, $paragraphStyleName);
-        $section->addListItem('List Item 4', 1, $fontStyleName, $predefinedMultilevelStyle, $paragraphStyleName);
-        $section->addListItem('List Item 5', 2, $fontStyleName, $predefinedMultilevelStyle, $paragraphStyleName);
-        $section->addListItem('List Item 6', 1, $fontStyleName, $predefinedMultilevelStyle, $paragraphStyleName);
-        $section->addListItem('List Item 7', 0, $fontStyleName, $predefinedMultilevelStyle, $paragraphStyleName);
-        $section->addTextBreak(2);
+        $textrun = $section->addTextRun($fontStyle);
 
-        $section->addText('List with inline formatting.');
-        $listItemRun = $section->addListItemRun();
-        $listItemRun->addText('List item 1');
-        $listItemRun->addText(' in bold', array('bold' => true));
-        $listItemRun = $section->addListItemRun(1, $predefinedMultilevelStyle, $paragraphStyleName);
-        $listItemRun->addText('List item 2');
-        $listItemRun->addText(' in italic', array('italic' => true));
-        $footnote = $listItemRun->addFootnote();
-        $footnote->addText('this is a footnote on a list item');
-        $listItemRun = $section->addListItemRun();
-        $listItemRun->addText('List item 3');
-        $listItemRun->addText(' underlined', array('underline' => 'dash'));
-        $section->addTextBreak(2);
+        $textrun->addText('This Tenancy agreement is', array('bold' => true,'size'=> '12', 'allCaps' => true));
+        $textrun->addText(' made this ');
+        $textrun->addText(Carbon::now()->format('d'));
+        $textrun->addText(' day of ');
+        $textrun->addText(Carbon::now()->format('F'));
+        $textrun->addText(' Between ');
+        $textrun->addText('(Hereinafter referred to as "The Landlord") of the one part and ');
+        $textrun->addText($transaction->user->name);
+        $textrun->addText(', native of ');
+        $textrun->addText($transaction->user->lga . ', ' .$transaction->user->state);
+        $textrun->addText(' (Hereinafter referred to as "The Tenant") of the second part.');
+        $textrun->addText();
 
-        // Numbered heading
-        $headingNumberingStyleName = 'headingNumbering';
-        $phpWord->addNumberingStyle(
-            $headingNumberingStyleName,
-            array('type'   => 'multilevel',
-                'levels' => array(
-                    array('pStyle' => 'Heading1', 'format' => 'decimal', 'text' => '%1'),
-                    array('pStyle' => 'Heading2', 'format' => 'decimal', 'text' => '%1.%2'),
-                    array('pStyle' => 'Heading3', 'format' => 'decimal', 'text' => '%1.%2.%3'),
-                ),
-            )
+        $section->addText('whereby it is agreed as follows:-', array('bold' => true, 'size'=> '12', 'allCaps' => true));
+
+        $section->addListItem('The Landlord shall let and hereby lets and the Tenant shall take and hereby takes a monthly tenancy commencing from the first day'
+           .' of one month and so continues from month to month for a period of one year until otherwise'
+            .' determined as hereinafter provided at ALL THAT tenement comprising of one room self-content'
+            . ' and premises situate at Here, at the rate of rent of $3,000.00 per annum.', 0 , $fontStyleName, $multilevelNumberingStyleName,
         );
-        $phpWord->addTitleStyle(1, array('size' => 16), array('numStyle' => $headingNumberingStyleName, 'numLevel' => 0));
-        $phpWord->addTitleStyle(2, array('size' => 14), array('numStyle' => $headingNumberingStyleName, 'numLevel' => 1));
-        $phpWord->addTitleStyle(3, array('size' => 12), array('numStyle' => $headingNumberingStyleName, 'numLevel' => 2));
 
-        $section->addTitle('Heading 1', 1);
-        $section->addTitle('Heading 2', 2);
-        $section->addTitle('Heading 3', 3);
+        $section->addListItem('The Tenant had paid the rent hereby reserved before the execution of this agreement, receipt whereof the'
+            . ' Landlord hereby acknowledges by endorsing this agreement.', 0 , $fontStyleName, $multilevelNumberingStyleName,
+        );  
+
+        $section->addListItem('The Guarantor in consideration of the landlord letting a tenement of the Tenant hereby'
+            . " agrees and covenants to bind himself or herself for the tenant's good conduct and observances"
+            . ' of all his covenants set out hereunder.' , 0 , $fontStyleName, $multilevelNumberingStyleName,
+        );
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 

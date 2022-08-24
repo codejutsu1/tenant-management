@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Setting;
 
 class PagesController extends Controller
 {
@@ -21,7 +22,11 @@ class PagesController extends Controller
     
     public function dashboardUser()
     {
-        return inertia('User/Dashboard');
+        $user = User::where('id', auth()->user()->id)->select('room_no', 'paid')->first();
+
+        $amount = Setting::where('id', 1)->value('site_rent');
+
+        return inertia('User/Dashboard', compact('user', 'amount'));
     }
 
     public function userPayment()
@@ -44,7 +49,7 @@ class PagesController extends Controller
     public function userHistory()
     {
         $transactions = Transaction::where('user_id', auth()->user()->id)
-                                    ->select(['id', 'title', 'amount', 'status'])
+                                    ->select(['id', 'title', 'amount', 'status', 'created_at'])
                                     ->paginate(10);
 
         return Inertia('User/TransactionHistory', compact('transactions'));
