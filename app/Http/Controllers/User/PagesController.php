@@ -66,7 +66,11 @@ class PagesController extends Controller
                     ->select(['name', 'email', 'type', 'lga', 'state', 'gender', 'occupation', 'room_no'])
                     ->first();
 
-        return Inertia('User/AccountDetails', compact('user'));
+        $caretakers = User::where('role_id', 2)
+                            ->select(['id', 'name', 'email', 'phone', 'gender'])
+                            ->get();            
+
+        return Inertia('User/AccountDetails', compact('user', 'caretakers'));
     }
 
     public function chooseRoom()

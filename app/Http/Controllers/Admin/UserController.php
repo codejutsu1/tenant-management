@@ -82,7 +82,14 @@ class UserController extends Controller
                         ->select(['id', 'name', 'email', 'type', 'lga', 'state', 'gender', 'occupation', 'room_no'])
                         ->first();
 
-        return Inertia('Admin/Users/Show', compact('user'));
+        $transactions = Transaction::where('user_id', $id)
+                                    ->select(['id', 'user_id','title', 'amount', 'paid', 'status', 'created_at'])
+                                    ->with(['user' => function($query){
+                                        $query->select(['id', 'name', 'room_no']);
+                                    }])            
+                                    ->get();  
+
+        return Inertia('Admin/Users/Show', compact('user', 'transactions'));
     }
 
     /**

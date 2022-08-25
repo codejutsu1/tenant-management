@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 use App\Http\Middleware\LandlordMiddleware;
 use App\Http\Middleware\CaretakerMiddleware;
 use App\Http\Middleware\TenantMiddleware;
+use App\Http\Middleware\CheckPayment;
 
 class Kernel extends HttpKernel
 {
@@ -73,5 +74,6 @@ class Kernel extends HttpKernel
         'landlord' => LandlordMiddleware::class,
         'caretaker' => CareTakerMiddleware::class,
         'tenant' => TenantMiddleware::class,
+        'paid' => CheckPayment::class,
     ];
 }

@@ -126,7 +126,7 @@ Route::group(['middleware' => ['auth', 'tenant'], 'prefix' => 'tenant'], functio
         Route::get('transaction-history', 'userHistory')->name('user.history');
         Route::get('legal', 'userLegal')->name('user.legal');
         Route::get('account-details', 'userDetails')->name('user.details');  
-        Route::get('choose-room', 'chooseRoom')->name('choose.room');
+        Route::get('choose-room', 'chooseRoom')->name('choose.room')->middleware('paid');
         Route::post('choose-a-room', 'chooseaRoom')->name('choose.a.room');   
     });
 
