@@ -85,13 +85,14 @@ class TenantController extends Controller
                         ->first();
 
         $transactions = Transaction::where('user_id', $id)
-                                    ->select(['id', 'user_id','title', 'amount', 'paid', 'status', 'created_at'])
-                                    ->with(['user' => function($query){
-                                        $query->select(['id', 'name', 'room_no']);
-                                    }])            
-                                    ->get();  
+                                    ->select(['id', 'title', 'amount', 'paid', 'status', 'created_at'])        
+                                    ->paginate(10);  
 
-        return Inertia('SuperAdmin/Tenants/Show', compact('user', 'transactions'));
+        $receipts = Transaction::where('user_id', $id)
+                                    ->select(['id', 'title', 'amount', 'year', 'link', 'created_at'])
+                                    ->paginate(10);
+
+        return Inertia('SuperAdmin/Tenants/Show', compact('user', 'transactions', 'receipts'));
     }
 
     /**

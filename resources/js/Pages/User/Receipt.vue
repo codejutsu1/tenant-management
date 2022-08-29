@@ -33,7 +33,7 @@ const props = defineProps({
                       <th class="px-4 py-3">Title</th>
                       <th class="px-4 py-3">Amount</th>
                       <th class="px-4 py-3">Year</th>
-                      <th class="px-4 py-3 text-center">Actions</th>
+                      <th class="px-4 py-3 text-center">Action</th>
                       <th class="px-4 py-3">Date</th>
                     </tr>
                   </thead>

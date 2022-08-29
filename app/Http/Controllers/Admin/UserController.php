@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -83,13 +84,14 @@ class UserController extends Controller
                         ->first();
 
         $transactions = Transaction::where('user_id', $id)
-                                    ->select(['id', 'user_id','title', 'amount', 'paid', 'status', 'created_at'])
-                                    ->with(['user' => function($query){
-                                        $query->select(['id', 'name', 'room_no']);
-                                    }])            
-                                    ->get();  
+                                    ->select(['id','title', 'amount', 'paid', 'status', 'created_at'])         
+                                    ->paginate(10);  
 
-        return Inertia('Admin/Users/Show', compact('user', 'transactions'));
+        $receipts = Transaction::where('user_id', $id)
+                                    ->select(['id', 'title', 'amount', 'year', 'link', 'created_at'])
+                                    ->paginate(10);                            
+
+        return Inertia('Admin/Users/Show', compact('user', 'transactions', 'receipts'));
     }
 
     /**

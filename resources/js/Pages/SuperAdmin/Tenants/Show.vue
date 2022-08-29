@@ -6,7 +6,8 @@ import { Inertia } from '@inertiajs/inertia';
 
 const props = defineProps({
     user: Object,
-    transactions: Object
+    transactions: Object,
+    receipts: Object,
 });
 
 const destroy = (id) => {
@@ -81,14 +82,12 @@ const destroy = (id) => {
             </ul>
             </div>
 
-            <div class="bg-gray-800 px-6 py-6 my-10 w-full md:w-full mx-auto rounded-md">
+            <div class="bg-gray-800 px-6 py-6 my-10 w-11/12 mx-auto rounded-md">
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
                       class="font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-300 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">Name</th>
-                      <th class="px-4 py-3">Room No</th>
                       <th class="px-4 py-3">Amount</th>
                       <th class="px-4 py-3">Description</th>
                       <th class="px-4 py-3">Status</th>
@@ -100,15 +99,7 @@ const destroy = (id) => {
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                    <tr v-for="transaction in transactions" :key="transaction.id" class="text-gray-700 dark:text-gray-400">
-                      <td class="px-4 py-3 text-sm">
-                        <Link :href="route('tenants.show', transaction.user.id)">
-                          {{ transaction.user.name }}
-                        </Link>
-                      </td>
-                      <td class="px-4 py-3 text-sm">
-                        {{ transaction.user.room_no }}
-                      </td>
+                    <tr v-for="transaction in transactions.data" :key="transaction.id" class="text-gray-700 dark:text-gray-400">
                       <td class="px-4 py-3 text-sm">
                         &#8358; {{ transaction.amount }}
                       </td>
@@ -167,6 +158,51 @@ const destroy = (id) => {
                   </tbody>
                 </table>
             </div>
+
+            <div class="bg-gray-800 px-6 py-6 my-10 w-11/12 mx-auto rounded-md">
+                <table class="w-full whitespace-no-wrap">
+                  <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                      <th class="px-4 py-3">Title</th>
+                      <th class="px-4 py-3">Amount</th>
+                      <th class="px-4 py-3">Year</th>
+                      <th class="px-4 py-3 text-center">Action</th>
+                      <th class="px-4 py-3">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+                  >
+                    <tr v-for="transaction in receipts.data" :key="transaction.id" class="text-gray-700 dark:text-gray-400">
+                      <td class="px-4 py-3 text-sm">
+                        {{ transaction.title }}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        &#8358; {{ transaction.amount }}
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ transaction.year }}
+                      </td>
+                      <td class="px-4 py-3 text-xs">
+                        <div class="flex justify-center items-center">
+                          <a
+                            target="_blank"
+                            class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
+                            :href="'/storage/' + transaction.link"
+                          >
+                            View
+                          </a>
+                        </div>
+                      </td>
+                      <td class="px-4 py-3 text-sm">
+                        {{ transaction.created_at }}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+            </div>   
         </main>
 
     </UserDashboard>
