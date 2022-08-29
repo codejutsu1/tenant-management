@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Legal;
 use LaravelDaily\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
@@ -29,22 +30,31 @@ class PaymentController extends Controller
 
     public function confirmPayment($id)
     {
-        Transaction::where('id', $id)->update([
-            'status' => 1,
-        ]);
+        // Transaction::where('id', $id)->update([
+        //     'status' => 1,
+        // ]);
 
         $transaction = Transaction::with('user')->where('id', $id)->first();
 
         if($transaction->title == 'Lodge Payment')
         {
-            $payer = User::where('id', $transaction->user_id)->first();
-
-            $payer->payer = 1;
-            //Update payer not done.
+            $payer = User::where('id', $transaction->user_id)->first();            
             
             User::where('room_no', $payer->room_no)->update([
                 'paid' => 1
             ]);
+
+            if(!$transaction->user->legal){
+                Legal::create([
+                    'user_id' => $transaction->user_id,
+                    'room_no' => $transaction->user->room_no ?? 1,
+                    'year' => '2022'
+                ]);
+            }
+
+            $payer->payer = 1;
+            $payer->legal = 1;
+            $payer->save();
         }
         
         $customer = new Party([
@@ -149,11 +159,20 @@ class PaymentController extends Controller
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
 
+        $legal = Legal::with('user')->where('user_id', $transaction->user->id)->first();
+
+        $destination_path = 'app\public\legal';
+        $legal_file = $legal->user->name . '_' . $legal->id . $legal->year . '_legal.docx';
+
         try {
-            $objWriter->save(storage_path('helloWorld.docx'));
+            $objWriter->save(storage_path($destination_path.'\\'.$legal_file));
         } catch (Exception $e) {
             dd($e);
         }
+
+        Legal::where('user_id', $transaction->user->id)->update([
+            'link' => $legal_file
+        ]);
 
 
         // return response()->download(storage_path('helloWorld.docx'));

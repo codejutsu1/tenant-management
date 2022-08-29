@@ -21,7 +21,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('room_no');
             $table->string('year');
-            $table->string('link');    
+            $table->string('link')->nullable();    
             $table->timestamps();
         });
     }
