@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\NewUserController;
 use App\Http\Controllers\User\PagesController as UserPages;
 use App\Http\Controllers\User\PaymentController as UserPayment;
 use App\Http\Controllers\User\SettingController as UserSettings;
+use App\Http\Controllers\User\LegalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,6 +159,10 @@ Route::group(['middleware' => ['auth', 'tenant'], 'prefix' => 'tenant'], functio
         Route::post('update-tenant', 'updateTenant')->name('update.tenant');
         Route::post('update-tenant-email', 'updateTenantEmail')->name('update.tenant.email');
         Route::post('update-tenant-password', 'updateTenantPassword')->name('update.tenant.password');
+    });
+
+    Route::controller(LegalController::class)->group(function() {
+        Route::get('legal-document', 'legalDocument')->name('legal.document');
     });
 });
 

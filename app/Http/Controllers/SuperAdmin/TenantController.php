@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Transaction;
+use App\Models\Legal;
 
 class TenantController extends Controller
 {
@@ -92,7 +93,11 @@ class TenantController extends Controller
                                     ->select(['id', 'title', 'amount', 'year', 'link', 'created_at'])
                                     ->paginate(10);
 
-        return Inertia('SuperAdmin/Tenants/Show', compact('user', 'transactions', 'receipts'));
+        $legals = Legal::where('user_id', $id)
+                        ->select(['id', 'room_no', 'year', 'link', 'created_at'])    
+                        ->get();                       
+
+        return Inertia('SuperAdmin/Tenants/Show', compact('user', 'transactions', 'receipts', 'legals'));
     }
 
     /**

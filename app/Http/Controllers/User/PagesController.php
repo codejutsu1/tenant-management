@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\Legal;
 
 class PagesController extends Controller
 {
@@ -43,7 +44,9 @@ class PagesController extends Controller
                                     }])
                                     ->paginate(10);
 
-        return Inertia('User/Receipt', compact('transactions'));
+        $legals = Legal::where('user_id', auth()->user()->id)->select(['id', 'room_no', 'year', 'link', 'created_at'])->get();
+
+        return Inertia('User/Receipt', compact('transactions', 'legals'));
     }
 
     public function userHistory()
@@ -53,11 +56,6 @@ class PagesController extends Controller
                                     ->paginate(10);
 
         return Inertia('User/TransactionHistory', compact('transactions'));
-    }
-
-    public function userLegal()
-    {
-        return Inertia('User/Legal');
     }
 
     public function userDetails()

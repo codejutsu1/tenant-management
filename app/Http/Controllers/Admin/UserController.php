@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Transaction;
+use App\Models\Legal;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -89,9 +90,13 @@ class UserController extends Controller
 
         $receipts = Transaction::where('user_id', $id)
                                     ->select(['id', 'title', 'amount', 'year', 'link', 'created_at'])
-                                    ->paginate(10);                            
+                                    ->paginate(10);
+                                    
+        $legals = Legal::where('user_id', $id)
+                        ->select(['id', 'room_no', 'year', 'link', 'created_at'])    
+                        ->get();  
 
-        return Inertia('Admin/Users/Show', compact('user', 'transactions', 'receipts'));
+        return Inertia('Admin/Users/Show', compact('user', 'transactions', 'receipts', 'legals'));
     }
 
     /**
