@@ -67,7 +67,7 @@ function submit(){
                     onclick="return confirm('Confirm you want to choose this room?')"
                     @click="submit" 
                     class="inline-block border border-black px-8 py-2 mt-5 rounded-md" 
-                    value="Pay">
+                    value="Choose Room">
                 </div>
               </div>
             </form>

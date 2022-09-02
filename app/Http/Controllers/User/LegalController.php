@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Legal;
+use Carbon\Carbon;
 
 class LegalController extends Controller
 {
@@ -89,8 +90,12 @@ class LegalController extends Controller
             Legal::create([
                 'user_id' => auth()->user()->id,
                 'room_no' => auth()->user()->room_no ?? 0,
-                'year' => auth()->user()->year,
+                'year' => auth()->user()->year ?? '2022',
                 'link' => $legal_file
+            ]);
+
+            User::where('id', auth()->user()->id)->update([
+                'legal' => 1,
             ]);
 
             return redirect()->back()->with('message', 'Successfully generated legal document');

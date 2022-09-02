@@ -187,7 +187,7 @@ const destroy = (id) => {
                         {{ transaction.year }}
                       </td>
                       <td class="px-4 py-3 text-xs">
-                        <div class="flex justify-center items-center">
+                         <div v-if="transaction.status" class="flex justify-center items-center">
                           <a
                             target="_blank"
                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -195,6 +195,9 @@ const destroy = (id) => {
                           >
                             View
                           </a>
+                        </div>
+                        <div class="flex justify-center items-center" v-else>
+                          NOT CONFIRMED
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">

@@ -57,7 +57,7 @@ const props = defineProps({
                         {{ transaction.year }}
                       </td>
                       <td class="px-4 py-3 text-xs">
-                        <div class="flex justify-center items-center">
+                        <div v-if="transaction.status" class="flex justify-center items-center">
                           <a
                             target="_blank"
                             class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -65,6 +65,9 @@ const props = defineProps({
                           >
                             View
                           </a>
+                        </div>
+                        <div class="flex justify-center items-center" v-else> 
+                          NOT CONFIRMED
                         </div>
                       </td>
                       <td class="px-4 py-3 text-sm">
@@ -91,13 +94,15 @@ const props = defineProps({
                     Legal Document
                 </h2>
 
-                <Link v-if="$page.props.auth.user.room_no" :href="route('legal.document')" class="px-8 cursor-pointer py-2 font-medium flex items-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                  Generate Legal Document
-                </Link>
+                <div v-if="!$page.props.auth.user.legal">
+                  <Link v-if="$page.props.auth.user.room_no" :href="route('legal.document')" class="px-8 cursor-pointer py-2 mb-3 font-medium flex items-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Generate Legal Document
+                  </Link>
 
-                <Link v-else :href="route('tenants.create')" class="px-8 cursor-pointer py-2 mb-3 font-medium flex items-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                  Choose a room to generate document
-                </Link>
+                  <Link v-else :href="route('choose.room')" class="px-8 cursor-pointer py-2 mb-3 font-medium flex items-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    Choose a room to generate document
+                  </Link>
+                </div>
               </div>
 
               <div>

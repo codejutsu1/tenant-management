@@ -90,7 +90,7 @@ class TenantController extends Controller
                                     ->paginate(10);  
 
         $receipts = Transaction::where('user_id', $id)
-                                    ->select(['id', 'title', 'amount', 'year', 'link', 'created_at'])
+                                    ->select(['id', 'title', 'amount', 'status', 'year', 'link', 'created_at'])
                                     ->paginate(10);
 
         $legals = Legal::where('user_id', $id)

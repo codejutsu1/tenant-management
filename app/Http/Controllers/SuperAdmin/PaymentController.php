@@ -30,9 +30,9 @@ class PaymentController extends Controller
 
     public function confirmPayment($id)
     {
-        // Transaction::where('id', $id)->update([
-        //     'status' => 1,
-        // ]);
+        Transaction::where('id', $id)->update([
+            'status' => 1,
+        ]);
 
         $transaction = Transaction::with('user')->where('id', $id)->first();
 
