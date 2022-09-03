@@ -139,8 +139,6 @@ Route::group(['middleware' => ['auth', 'tenant'], 'prefix' => 'tenant'], functio
         Route::get('payment/house-lodge-payment/online-banking', 'onlineBanking')->name('online.banking');
         Route::get('payment/house-lodge-payment/offline-banking', 'offlineBanking')->name('offline.banking');
         Route::get('payment/house-lodge-payment/crypto', 'crypto')->name('crypto');
-        Route::get('payment/house-lodge-payment/installmental', 'installmental')->name('installmental');
-        Route::post('payment/house-lodge-payment', 'demoInstallmentalPay')->name('demo.installmental.pay');
 
         Route::get('payment/other-payment/online-banking', 'otherOnlineBanking')->name('other.online.banking');
         Route::post('payment/other-payment/pay', 'demoOtherPayment')->name('demo.other.payment');

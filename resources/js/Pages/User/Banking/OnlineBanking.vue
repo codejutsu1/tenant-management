@@ -30,15 +30,6 @@ function submit() {
         <p class="text-center py-10 text-xl font-semibold text-gray-300">2. PAY VIA ONLINE</p>
       </div>
 
-      <div class="flex justify-end">
-        <Link 
-          class="px-8 cursor-pointer py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-          :href="route('installmental')"
-        >
-          Pay Installmentally?
-        </Link>
-      </div>
-
       <div class="flex justify-center items-center w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
         <form class="w-full">
           <div class="text-gray-300">
@@ -46,11 +37,11 @@ function submit() {
             <div class="space-y-5 mt-4">
               <div class="flex justify-between items-center">
                 <span class="font-semibold text-lg">Name: </span>
-                <span>Nwoko James</span>
+                <span>{{ $page.props.auth.user.name }}</span>
               </div>
               <div class="flex justify-between items-center">
                 <span class="font-semibold text-lg">Email: </span>
-                <span>nwokojames@james.com</span>
+                <span>{{ $page.props.auth.user.email }}</span>
               </div>
               <div class="flex justify-between items-center">
                 <span class="font-semibold text-lg">Payment for: </span>

@@ -34,11 +34,11 @@ function submit(){
                 <div class="space-y-5 mt-4">
                   <div class="flex justify-between items-center">
                     <span class="font-semibold text-lg">Name: </span>
-                    <span>Nwoko James</span>
+                    <span>{{ $page.props.auth.user.name }}</span>
                   </div>
                   <div class="flex justify-between items-center">
                     <span class="font-semibold text-lg">Email: </span>
-                    <span>nwokojames@james.com</span>
+                    <span>{{ $page.props.auth.user.email }}</span>
                   </div>
                   <form>
                     <label class="block mt-4">

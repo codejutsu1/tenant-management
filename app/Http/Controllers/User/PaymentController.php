@@ -84,11 +84,6 @@ class PaymentController extends Controller
         return Inertia('User/Banking/Crypto');
     }
 
-    public function installmental()
-    {
-        return Inertia('User/Banking/Installmental');
-    }
-
     public function demoPayment()
     {
         Transaction::create([
@@ -113,50 +108,5 @@ class PaymentController extends Controller
     public function otherOnlineBanking()
     {
         return Inertia('User/Other/OnlineBanking');
-    }
-
-    public function demoOtherPayment(Request $request)
-    {
-        Transaction::create([
-            'user_id' => auth()->user()->id,
-            'title' => $request->description,
-            'amount' => $request->amount,
-            'year' => '2022',
-            'status' => NULL,
-            'paid' => 1
-        ]);
-
-        return redirect()->route('other.online.banking')
-                    ->with('message', 'Successfully paid');
-    }
-
-    public function demoInstallmentalPay(Request $request)
-    {
-        Transaction::create([
-            'user_id' => auth()->user()->id,
-            'title' => 'Lodge Rent Installmentally',
-            'amount' => $request->amount,
-            'year' => '2022',
-            'period' => $request->length . ' ' . $request->period,
-            'status' => 0,
-            'paid' => 1
-        ]);
-
-        $current_time = Carbon::now();
-
-        if($request->period == 'Months')
-        {
-            $current_time->addMonths($request->length);
-        }else{
-            $current_time->addYears($request->length);
-        }
-
-        User::where('id', auth()->user()->id)->update([
-            'paid' => NULL,
-            'rent_due' => $current_time,
-        ]);
-
-        return redirect()->route('installmental')
-                    ->with('message', 'Successfully paid');
     }
 }
