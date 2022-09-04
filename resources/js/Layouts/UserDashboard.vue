@@ -221,45 +221,45 @@
           v-show="isSideMenuOpen"
         >
           <div class="py-4 text-gray-500 dark:text-gray-400">
-            <a
+            <Link
               class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200"
-              href="#"
+              :href="route('home')"
             >
-              Windmill
-            </a>
+              Lodge
+            </Link>
             <ul class="mt-6">
-              <li class="relative px-6 py-3">
-                <span
-                  class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+            <li class="relative px-6 py-3">
+              <span
+                class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg"
+                aria-hidden="true"
+              ></span>
+              <Link
+                class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
+                :href="route('dashboard.user')"
+              >
+                <svg
+                  class="w-5 h-5"
                   aria-hidden="true"
-                ></span>
-                <a
-                  class="inline-flex items-center w-full text-sm font-semibold text-gray-800 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 dark:text-gray-100"
-                  href="index.html"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <svg
-                    class="w-5 h-5"
-                    aria-hidden="true"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                    ></path>
-                  </svg>
-                  <span class="ml-4">Dashboard</span>
-                </a>
-              </li>
+                  <path
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  ></path>
+                </svg>
+                <span class="ml-4">Dashboard</span>
+              </Link>
+            </li>
             </ul>
             <ul>
               <li class="relative px-6 py-3">
-                <a
+                <Link
                   class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  href="forms.html"
+                  :href="route('user.payment')"
                 >
                   <svg
                     class="w-5 h-5"
@@ -275,13 +275,13 @@
                       d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                     ></path>
                   </svg>
-                  <span class="ml-4">Transaction History</span>
-                </a>
+                  <span class="ml-4">Payment</span>
+                </Link>
               </li>
               <li class="relative px-6 py-3">
-                <a
+                <Link
                   class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  href="cards.html"
+                  :href="route('user.receipt')"
                 >
                   <svg
                     class="w-5 h-5"
@@ -298,12 +298,12 @@
                     ></path>
                   </svg>
                   <span class="ml-4">Receipt</span>
-                </a>
+                </Link>
               </li>
               <li class="relative px-6 py-3">
-                <a
+                <Link
                   class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  href="modals.html"
+                  :href="route('user.history')"
                 >
                   <svg
                     class="w-5 h-5"
@@ -316,16 +316,40 @@
                     stroke="currentColor"
                   >
                     <path
-                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
                     ></path>
+                    <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                   </svg>
-                  <span class="ml-4">Payment</span>
-                </a>
+                  <span class="ml-4">Transaction History</span>
+                </Link>
               </li>
               <li class="relative px-6 py-3">
-                <a
+                <Link
                   class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
-                  href="tables.html"
+                  :href="route('choose.room')"
+                >
+                  <svg
+                    class="w-5 h-5"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
+                    ></path>
+                    <path d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                  </svg>
+                  <span class="ml-4">Choose a room</span>
+                </Link>
+              </li>
+              <li class="relative px-6 py-3">
+                <Link
+                  class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
+                  :href="route('user.details')"
                 >
                   <svg
                     class="w-5 h-5"
@@ -340,7 +364,7 @@
                     <path d="M4 6h16M4 10h16M4 14h16M4 18h16"></path>
                   </svg>
                   <span class="ml-4">Account Details</span>
-                </a>
+                </Link>
               </li>
               <li class="relative px-6 py-3">
                 <Link
@@ -362,13 +386,18 @@
                   <span class="ml-4">Settings</span>
                 </Link>
               </li>
+              <li class="relative px-6 py-3">
+                  <BreezeDropdownLink :href="route('logout')" method="post" as="button">
+                      Log Out
+                  </BreezeDropdownLink>
+              </li>
             </ul>
           </div>
         </aside>
       </Transition> 
 
       <div class="flex flex-col flex-1 w-full">
-        <header class="z-10 py-4 bg-white shadow-md dark:bg-gray-800">
+        <header class="z-30 py-4 bg-white shadow-md dark:bg-gray-800">
           <div
             class="container flex items-center justify-between h-full px-6 mx-auto text-purple-600 dark:text-purple-300"
           >

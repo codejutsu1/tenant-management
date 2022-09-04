@@ -30,7 +30,7 @@ function submit() {
         <p class="text-center py-10 text-xl font-semibold text-gray-300">2. PAY VIA ONLINE</p>
       </div>
 
-      <div class="flex justify-center items-center w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
+      <div class="flex justify-center items-center w-full md:w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
         <form class="w-full">
           <div class="text-gray-300">
             <h1 class="text-4xl text-center font-semibold">&#8358; 120,000.00</h1>

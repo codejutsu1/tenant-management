@@ -44,7 +44,7 @@ function submit(){
                 <p class="text-center py-10 text-xl font-semibold text-gray-300">2. PAY VIA ONLINE</p>
             </div>
 
-            <div class="flex justify-center items-center w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
+            <div class="flex justify-center items-center w-full md:w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
                 <form class="w-full">
                 <div class="space-y-5 mt-4 text-gray-300">
                     <div class="flex justify-between items-center">

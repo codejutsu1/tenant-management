@@ -10,7 +10,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
         <p class="text-center py-10 text-xl font-semibold text-gray-300">2. PAY VIA BANKING</p>
       </div>
 
-      <div class="w-1/2 bg-gray-800 rounded-md mx-auto mb-5">
+      <div class="w-full md:w-1/2 bg-gray-800 rounded-md mx-auto mb-5">
           <div class="text-gray-300 space-y-2 mt-4">
              <div class="p-8">
                <span class="mb-2">

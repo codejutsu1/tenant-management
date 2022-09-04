@@ -27,8 +27,8 @@ function submit(){
     <Dashboard>
       <Head title="Choose Room" />
 
-        <main class="h-full overflow-y-auto z-30">
-          <div class="flex justify-center items-center mt-20 w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
+        <main class="h-full overflow-y-auto z-30 px-4">
+          <div class="flex justify-center items-center mt-20 w-full md:w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
             <form class="w-full">
               <div class="text-gray-300">
                 <div class="space-y-5 mt-4">

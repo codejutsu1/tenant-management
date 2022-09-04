@@ -8,7 +8,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
     <Payment>
       <div>
         <p class="text-center py-10 text-xl font-semibold text-gray-300">1. CHOOSE A PAYMENT METHOD</p>
-        <div class="grid grid-cols-3 justify-center gap-7">
+        <div class="space-y-6 md:space-y-0 md:grid grid-cols-3 justify-center gap-7">
           <Link :href="route('online.banking')" class="flex justify-center items-center bg-gray-800 rounded-md py-8">
             <p class="font-semibold text-lg text-gray-400 tracking-wider">Online Banking</p>
           </Link>
