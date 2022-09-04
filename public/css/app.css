@@ -1306,6 +1306,9 @@ select {
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
+.bg-opacity-70 {
+  --tw-bg-opacity: 0.7;
+}
 .bg-general-hero {
   background-image: url('/images/bicycle.jpg');
 }
