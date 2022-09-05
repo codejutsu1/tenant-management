@@ -176,6 +176,7 @@ class PaymentController extends Controller
             'paid' => 0
         ]);
 
+        
         return redirect()->back()
                     ->with('message', 'Updated Payment Information');
     }
