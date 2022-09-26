@@ -8,6 +8,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Transaction;
 use App\Models\Legal;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CreatedUser;
+use App\Mail\AdminCreatedUser;
 
 class TenantController extends Controller
 {
@@ -52,11 +55,11 @@ class TenantController extends Controller
             'lga' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'occupation' => 'required|string|max:255',
-            'phone' => 'required|string|min:8|max:16',
+            'phone' => 'required',
             'dob' => 'required|date|date_format:Y-m-d'
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make('mypassword'),
@@ -69,6 +72,9 @@ class TenantController extends Controller
             'role_id' => '3',
             'dob' => $request->dob
         ]);
+
+        Mail::to($user->email)->send(new CreatedUser($user));
+        Mail::to(config('mail.from.address'))->send(new AdminCreatedUser($user));
 
         return redirect()->route('tenants.index')->with('message', 'Successfully registered a new tenant');
     }
