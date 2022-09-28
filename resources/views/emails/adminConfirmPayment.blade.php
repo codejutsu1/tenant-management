@@ -1,8 +1,8 @@
 @component('mail::message')
 # {{ config('app.name') }} | Confirm Transaction
-Hey {{ $name }},
+Hey Admin,
 
-<b>{{ $title }}</b> transaction of @money($amount) has been approved by the admin. 
+User <b>{{ $name }}</b> with <b>{{ $title }}</b> transaction of <b>@money($amount)</b> has been approved by the admin. 
 
 @component('mail::panel')
 For more details, <a href="{{ route('user.history') }}" target="_blank">visit here.</a>

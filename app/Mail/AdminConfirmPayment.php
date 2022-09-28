@@ -6,9 +6,9 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Transaction; 
+use App\Models\Transaction;
 
-class ConfirmPayment extends Mailable
+class AdminConfirmPayment extends Mailable
 {
     use Queueable, SerializesModels;
     private $transaction;
@@ -30,7 +30,7 @@ class ConfirmPayment extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.confirmPayment')
+        return $this->markdown('emails.adminConfirmPayment')
                     ->attachFromStorage('public/'. $this->transaction->link, $this->transaction->link, [
                         'mime' => 'application/pdf'
                     ])

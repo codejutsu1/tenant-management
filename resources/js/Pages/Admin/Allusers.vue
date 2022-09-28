@@ -17,7 +17,7 @@ const props = defineProps({
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Here are list of active users.
+              Here are list of all tenants.
             </h2>
 
             <div>
@@ -61,8 +61,17 @@ const props = defineProps({
                             type="button"
                             class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5  rounded-lg text-green-200 bg-green-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
+                            v-if="!user.status"
                           >
                             Activate
+                          </button>    
+                         <button
+                            type="button"
+                            class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5  rounded-lg text-red-200 bg-red-700 focus:outline-none focus:shadow-outline-gray"
+                            aria-label="Edit"
+                            v-else
+                          >
+                            Deactivate
                           </button>            
                         </div>
                       </td>
@@ -70,7 +79,7 @@ const props = defineProps({
                         {{ user.created_at }}
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        Till Date
+                        {{ user.date_left ?? 'Till Date' }}
                       </td>
                     </tr>
                   </tbody>

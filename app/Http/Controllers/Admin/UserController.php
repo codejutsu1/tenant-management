@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Transaction;
 use App\Models\Legal;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CreatedUser;
+use App\Mail\AdminCreatedUser;
 
 class UserController extends Controller
 {
@@ -19,6 +22,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::where('role_id', 3)
+                    ->where('status', 1)
                     ->select(['id', 'name', 'email', 'gender', 'room_no', 'phone', 'paid', 'rent_due'])
                     ->paginate(10);
 
@@ -51,7 +55,7 @@ class UserController extends Controller
             'lga' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'occupation' => 'required|string|max:255',
-            'phone' => 'required|string|min:8|max:16',
+            'phone' => 'required|string',
             'dob' => 'required|date|date_format:Y-m-d'
         ]);
 
@@ -68,6 +72,9 @@ class UserController extends Controller
             'role_id' => '3',
             'dob' => $request->dob
         ]);
+
+        Mail::to($user->email)->send(new CreatedUser($user));
+        Mail::to(config('mail.from.address'))->send(new AdminCreatedUser($user));
 
         return redirect()->route('users.index')->with('message', 'Successfully registered a new user');
     }

@@ -32,7 +32,7 @@ const destroy = (id) => {
               <h2
                 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
               >
-                Here is a list of all tenants. 
+                Here is a list of active tenants. 
               </h2>
 
               <Link :href="route('users.create')" class="px-8 cursor-pointer py-3 inline-block font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">

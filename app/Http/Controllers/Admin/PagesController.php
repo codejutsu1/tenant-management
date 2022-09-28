@@ -53,7 +53,7 @@ class PagesController extends Controller
     {
         $users = User::query()
                     ->where('role_id', 3)
-                    ->select(['id', 'name', 'email', 'gender', 'room_no', 'created_at'])
+                    ->select(['id', 'name', 'email', 'gender', 'status', 'room_no', 'created_at', 'date_left'])
                     ->paginate(10);
 
         return Inertia('Admin/Allusers', compact('users'));

@@ -84,6 +84,7 @@ const destroy = (id) => {
             </div>
 
             <div class="bg-gray-800 px-6 py-6 my-10 w-11/12 mx-auto rounded-md">
+              <h1 class="text-lg text-white text-center">Transactions</h1>
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
@@ -161,6 +162,7 @@ const destroy = (id) => {
             </div>
 
             <div class="bg-gray-800 px-6 py-6 my-10 w-11/12 mx-auto rounded-md">
+              <h1 class="text-lg text-white text-center">Receipts</h1>
                 <table class="w-full whitespace-no-wrap">
                   <thead>
                     <tr
@@ -209,6 +211,7 @@ const destroy = (id) => {
             </div>   
 
             <div class="bg-gray-800 px-6 py-6 my-10 w-11/12 mx-auto rounded-md">
+                <h1 class="text-lg text-white text-center">Legal</h1>
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                       <tr

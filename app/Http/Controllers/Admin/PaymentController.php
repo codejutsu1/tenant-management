@@ -9,6 +9,10 @@ use App\Models\User;
 use LaravelDaily\Invoices\Invoice;
 use LaravelDaily\Invoices\Classes\Party;
 use LaravelDaily\Invoices\Classes\InvoiceItem;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ConfirmPayment;
+use App\Mail\AdminConfirmPayment;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
@@ -83,6 +87,10 @@ class PaymentController extends Controller
             'url' => $invoice->url(),
             'link' => $transaction->title . '_' . $transaction->user->name . '_' . $transaction->id . $transaction->year . '.pdf'
         ]);
+
+        Mail::to($transaction->user->email)->send(new ConfirmPayment($transaction));
+        Mail::to(config('mail.from.address'))->send(new AdminConfirmPayment($transaction));
+
 
         // Creating the legal information
         $phpWord = new \PhpOffice\PhpWord\PhpWord();
