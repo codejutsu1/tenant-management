@@ -15,6 +15,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmPayment;
 use App\Mail\AdminConfirmPayment;
+use App\Mail\RenewRent;
+use App\Mail\AdminRenewRent;
 
 
 class PaymentController extends Controller
@@ -126,6 +128,11 @@ class PaymentController extends Controller
         User::where('id', $id)->update([
             'paid' => 0
         ]);
+
+        $date = User::where('id', $id)->first();
+
+        Mail::to($date->email)->send(new RenewRent($date));
+        Mail::to(config('mail.from.address'))->send(new AdminRenewRent($date));
 
         return redirect()->back()
                     ->with('message', 'Updated Payment Information');

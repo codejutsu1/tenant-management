@@ -8,19 +8,19 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
 
-class AdminCreatedUser extends Mailable implements ShouldQueue
+class RenewRent extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    private $user;
+    private $date;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $date)
     {
-        $this->user = $user;
+        $this->date = $date;
     }
 
     /**
@@ -30,9 +30,9 @@ class AdminCreatedUser extends Mailable implements ShouldQueue
      */
     public function build()
     {
-        return $this->markdown('emails.adminCreateUser')
+        return $this->markdown('emails.renewRent')
                     ->with([
-                        'name' => $this->user->name,
+                        'name' => $this->date->name,
                     ]);
     }
 }

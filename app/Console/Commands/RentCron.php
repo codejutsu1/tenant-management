@@ -6,6 +6,9 @@ use Illuminate\Console\Command;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RenewRent;
+use App\Mail\AdminRenewRent;
 
 class RentCron extends Command
 {
@@ -30,7 +33,7 @@ class RentCron extends Command
      */
     public function handle()
     {
-        $rent_dates = User::where('role_id', 3)->select('id','rent_due', 'paid')->get();
+        $rent_dates = User::where('role_id', 3)->select('id', 'name','email','rent_due', 'paid')->get();
 
         foreach($rent_dates as $date)
         {
@@ -38,6 +41,9 @@ class RentCron extends Command
                 $new = User::findOrFail($date->id)->update([
                     'paid' => 0
                 ]);
+
+                Mail::to($date->email)->send(new RenewRent($date));
+                Mail::to(config('mail.from.address'))->send(new AdminRenewRent($date));
             }
         }
     }

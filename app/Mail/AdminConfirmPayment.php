@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Transaction;
 
-class AdminConfirmPayment extends Mailable
+class AdminConfirmPayment extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
     private $transaction;

@@ -15,7 +15,21 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('rent:cron')->everyMinute();
+        $schedule->command('rent:cron')->everyMinute()->sendOutputTo(Storage_path('/logs/rent.log'));
+
+        $schedule->command('queue:restart')
+                ->everyFiveMinutes()
+                ->withoutOverlapping()
+                ->emailOutputOnFailure('codejutsu@protonmail.com')
+                ->runInBackground();
+        
+
+        $schedule->command('queue:work --max-time=60')
+                ->everyMinute()
+                ->withoutOverlapping()
+                ->emailOutputOnFailure('codejutsu@protonmail.com')
+                ->sendOutputTo(storage_path('/logs/queue-jobs.log'))
+                ->runInBackground();  
     }
 
     /**
