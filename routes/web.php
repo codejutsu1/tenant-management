@@ -118,7 +118,7 @@ Route::group(['middleware' => ['auth', 'caretaker'], 'prefix' => 'caretaker'], f
 
 // Tenant Dashboard
 
-Route::group(['middleware' => ['auth', 'tenant'], 'prefix' => 'tenant'], function(){ 
+Route::group(['middleware' => ['auth', 'tenant', 'verified'], 'prefix' => 'tenant'], function(){ 
     
     Route::controller(UserPages::class)->group(function() { 
         Route::get('dashboard', 'dashboardUser')->name('dashboard.user');

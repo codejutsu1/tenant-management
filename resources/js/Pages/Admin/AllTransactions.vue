@@ -96,6 +96,7 @@ const props = defineProps({
                             :href="route('admin.confirm.payment', transaction.id)"
                             class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
+                            v-if="!transaction.status"
                           >
                             Confirm
                           </Link>
@@ -104,6 +105,7 @@ const props = defineProps({
                             :href="route('admin.reject.payment', transaction.id)"
                             class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-red-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Delete"
+                            v-else
                           >
                             Decline
                           </Link>

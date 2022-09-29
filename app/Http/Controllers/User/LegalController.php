@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Legal;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\LegalDocument;
+use App\Mail\AdminLegalDocument;
 
 class LegalController extends Controller
 {
@@ -97,6 +100,11 @@ class LegalController extends Controller
             User::where('id', auth()->user()->id)->update([
                 'legal' => 1,
             ]);
+
+            $legal = Legal::with('user')->where('user_id', auth()->user()->id)->first();
+
+            Mail::to($legal->user->email)->send(new LegalDocument($legal));
+            Mail::to(config('mail.from.address'))->send(new AdminLegalDocument($legal));
 
             return redirect()->back()->with('message', 'Successfully generated legal document');
         }

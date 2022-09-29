@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             'lga' => 'required|string|max:255',
             'state' => 'required|string|max:255',
             'occupation' => 'required|string|max:255',
-            'phone' => 'required|string|min:8|max:16',
+            'phone' => 'required|string',
             'dob' => 'required|date|date_format:Y-m-d'
         ]);
 

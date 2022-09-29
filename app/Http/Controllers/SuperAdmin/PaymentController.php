@@ -17,7 +17,8 @@ use App\Mail\ConfirmPayment;
 use App\Mail\AdminConfirmPayment;
 use App\Mail\RenewRent;
 use App\Mail\AdminRenewRent;
-
+use App\Mail\RejectPayment;
+use App\Mail\AdminRejectPayment;
 
 class PaymentController extends Controller
 {
@@ -106,6 +107,11 @@ class PaymentController extends Controller
         Transaction::where('id', $id)->update([
             'status' => 0,
         ]);
+
+        $transaction = Transaction::with('user')->where('id', $id)->first();
+
+        Mail::to($transaction->user->email)->send(new RejectPayment($transaction));
+        Mail::to(config('mail.from.address'))->send(new AdminRejectPayment($transaction));
 
         return redirect()->back()
                     ->with('message', 'You have denied this transaction'); 

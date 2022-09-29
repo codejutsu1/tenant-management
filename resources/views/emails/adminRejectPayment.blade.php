@@ -1,0 +1,13 @@
+@component('mail::message')
+# {{ config('app.name') }} | Confirm Transaction
+Hey Admin,
+
+User <b>{{ $name }}</b> with <b>{{ $title }}</b> transaction of <b>@money($amount)</b> has been rejected by the admin. 
+
+@component('mail::panel')
+For more details, <a href="{{ route('user.history')}}" target="_blank">visit here.</a>
+@endcomponent
+
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent

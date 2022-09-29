@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ConfirmPayment;
 use App\Mail\AdminConfirmPayment;
 use Carbon\Carbon;
+use App\Mail\RenewRent;
+use App\Mail\AdminRenewRent;
+use App\Mail\RejectPayment;
+use App\Mail\AdminRejectPayment;
 
 class PaymentController extends Controller
 {
@@ -174,6 +178,11 @@ class PaymentController extends Controller
             'status' => 0,
         ]);
 
+        $transaction = Transaction::with('user')->where('id', $id)->first();
+
+        Mail::to($transaction->user->email)->send(new RejectPayment($transaction));
+        Mail::to(config('mail.from.address'))->send(new AdminRejectPayment($transaction));
+
         return redirect()->back()
                     ->with('message', 'You have denied this transaction'); 
     }
@@ -184,7 +193,11 @@ class PaymentController extends Controller
             'paid' => 0
         ]);
 
-        
+        $date = User::where('id', $id)->first();
+
+        Mail::to($date->email)->send(new RenewRent($date));
+        Mail::to(config('mail.from.address'))->send(new AdminRenewRent($date));
+
         return redirect()->back()
                     ->with('message', 'Updated Payment Information');
     }

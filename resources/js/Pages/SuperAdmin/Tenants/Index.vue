@@ -97,6 +97,7 @@ const destroy = (id) => {
                             class="flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray"
                             aria-label="Edit"
                             :href="route('renew.payment', user.id)"
+                            v-if="user.paid"
                           >
                             Renew
                           </Link>
