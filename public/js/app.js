@@ -30333,7 +30333,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_14, [transaction.paid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, " Paid (Full) ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_16, [transaction.status ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_17, " Approved ")) : transaction.status == _ctx.NULL ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_18, " Pending ")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_19, " Denied "))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(transaction.created_at), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [!transaction.status ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
+          key: 0,
           onclick: "return confirm('Are you sure you want to confirm this transaction')",
           href: _ctx.route('confirm.payment', transaction.id),
           "class": "flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray",
@@ -30347,7 +30348,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+        , ["href"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
+          key: 1,
           onclick: "return confirm('Are you sure you want to reject this transaction')",
           href: _ctx.route('reject.payment', transaction.id),
           "class": "flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-red-700 focus:outline-none focus:shadow-outline-gray",
@@ -30361,7 +30363,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])])])]);
+        , ["href"]))])])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" pagination "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Pagination"], {
@@ -32528,7 +32530,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.phone), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [user.paid ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Link"], {
+          key: 0,
           onclick: "return confirm('Are you sure you want to renew payment?')",
           "class": "flex items-center justify-between px-2 py-2 text-sm font-semibold leading-5 text-purple-600 rounded-lg dark:text-green-200 dark:bg-green-700 focus:outline-none focus:shadow-outline-gray",
           "aria-label": "Edit",
@@ -32542,7 +32545,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
         }, 1032
         /* PROPS, DYNAMIC_SLOTS */
-        , ["href"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.rent_due), 1
+        , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.rent_due), 1
         /* TEXT */
         )]);
       }), 128
@@ -35129,7 +35132,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "md:h-screen md:py-0 py-32 bg-hero bg-cover bg-no-repeat bg-center"
+  "class": "md:h-screen md:py-0 py-10 bg-hero bg-cover bg-no-repeat bg-center"
 };
 var _hoisted_2 = {
   "class": "w-5/6 mx-auto flex justify-between"
@@ -35138,7 +35141,7 @@ var _hoisted_3 = {
   "class": "flex items-center"
 };
 var _hoisted_4 = {
-  "class": "font-semibold text-xl tracking-wide"
+  "class": "tracking-wide text-yellow-400 font-bold text-2xl"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Lodge ");
@@ -35147,12 +35150,17 @@ var _hoisted_6 = {
   "class": "flex"
 };
 var _hoisted_7 = {
-  "class": "flex items-center"
+  "class": "md:flex items-center hidden"
 };
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Home ");
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" About Us ");
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "#about",
+  "class": "px-6 py-4"
+}, " About Us ", -1
+/* HOISTED */
+);
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Contact Us ");
 
@@ -35168,26 +35176,28 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
 
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-5/6 mx-auto pt-44 h-full"
+  "class": "md:w-5/6 mx-auto w-11/12 pt-20 md:pt-44 h-full"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-2/5 p-4"
+  "class": "md:w-2/5 w-full p-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-5xl font-semibold"
 }, " A place you can call home anytime. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-xl my-6 font-semibold"
+  "class": "text-xl my-6 text-center md:text-left font-semibold"
 }, " A suitable place for your stay. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
-  "class": "text-center font-semibold px-6 py-4 border-2 rounded-md w-full inline-block"
+  "class": "text-center font-semibold px-6 py-4 rounded-md w-full inline-block bg-black text-yellow-400 hover:shadow-xl"
 }, " Choose your room ")])], -1
 /* HOISTED */
 );
 
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" About Us  "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", {
+  id: "about"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "py-12"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-center text-4xl font-semibold"
 }, " About Us "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex justify-center"
+  "class": "flex justify-center text-yellow-500"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -35199,74 +35209,87 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "border-solid border-2 inline-block line border-black"
 })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex"
+  "class": "md:flex"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-2/5"
+  "class": "md:w-2/5 w-11/12 mx-auto"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/about.jpg",
   alt: "About us image"
 })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-1/2 pt-32 text-lg font-semibold text-gray-900"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Lorem ipsm dolor sit amet consectetur adipisicing elit. Accusamus saepe non commodi assumenda architecto, tempora sequi explicabo, aperiam dignissimos eius excepturi laboriosam voluptatem ex! Tempora provident exercitationem molestiae repudiandae ducimus? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem tempore, quae reprehenderit placeat rem omnis saepe eius excepturi nam, ipsam at veritatis amet doloribus laboriosam aut iusto facilis. Sequi, fuga. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus alias dicta mollitia voluptate iste veniam cumque nisi et consequatur quidem, a, illum, nihil recusandae culpa repudiandae magnam asperiores? Omnis, quaerat? ")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Why Us "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "md:w-1/2 w-11/12 mx-auto md:mx-0 pt-10 md:pt-32 text-lg font-semibold text-gray-900"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Lorem ipsm dolor sit amet consectetur adipisicing elit. Accusamus saepe non commodi assumenda architecto, tempora sequi explicabo, aperiam dignissimos eius excepturi laboriosam voluptatem ex! Tempora provident exercitationem molestiae repudiandae ducimus? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem tempore, quae reprehenderit placeat rem omnis saepe eius excepturi nam, ipsam at veritatis amet doloribus laboriosam aut iusto facilis. Sequi, fuga. Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus alias dicta mollitia voluptate iste veniam cumque nisi et consequatur quidem, a, illum, nihil recusandae culpa repudiandae magnam asperiores? Omnis, quaerat? ")])])])], -1
+/* HOISTED */
+);
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "py-12"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-center text-4xl font-semibold"
 }, "Why us?"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "pt-22 mx-auto w-5/6"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex pt-24 justify-between"
+  "class": "md:flex pt-24 justify-between"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-2/5"
+  "class": "md:w-2/5 w-11/12 mx-auto"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/girl.svg",
   alt: ""
 })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-3/5 px-10"
+  "class": "md:w-3/5 w-full md:px-10"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-center text-3xl font-semibold my-5"
 }, "Conducive Environment"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-lg font-semibold text-gray-900"
 }, " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora fuga quia error, ex hic inventore in delectus, at possimus culpa fugit neque necessitatibus, nemo eius quasi! Nulla numquam accusantium eos. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, neque porro eius asperiores atque magnam assumenda ducimus delectus dolorem blanditiis explicabo at debitis placeat velit mollitia? Quaerat facilis perferendis voluptatum. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
-  "class": "text-center text-lg font-semibold px-6 py-4 my-5 border-2 rounded-md w-full inline-block"
+  "class": "text-center text-lg font-semibold px-6 py-4 my-5 rounded-md w-full inline-block bg-black text-yellow-400 hover:shadow-xl"
 }, " Choose a room ")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex pt-24 justify-between"
+  "class": "md:flex pt-24 justify-between"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-3/5 pr-10"
+  "class": "md:hidden w-11/12 mx-auto"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "/images/window.svg",
+  alt: ""
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "md:w-3/5 w-full px-5 md:px-0 mx-auto md:pr-10"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-center text-3xl font-semibold my-5"
 }, "Safe Environment"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-lg font-semibold text-gray-900"
 }, " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora fuga quia error, ex hic inventore in delectus, at possimus culpa fugit neque necessitatibus, nemo eius quasi! Nulla numquam accusantium eos. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, neque porro eius asperiores atque magnam assumenda ducimus delectus dolorem blanditiis explicabo at debitis placeat velit mollitia? Quaerat facilis perferendis voluptatum. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
-  "class": "text-center text-lg font-semibold px-6 py-4 my-5 border-2 rounded-md w-full inline-block"
+  "class": "text-center text-lg font-semibold px-6 py-4 my-5 rounded-md w-full inline-block bg-black text-yellow-400 hover:shadow-xl"
 }, " Choose a room ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-2/5"
+  "class": "w-2/5 hidden md:block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/window.svg",
   alt: ""
 })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex pt-24 justify-between"
+  "class": "md:flex pt-24 justify-between"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-2/5"
+  "class": "md:w-2/5 w-11/12 mx-auto"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/boy.jpg",
   alt: ""
 })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-3/5 px-10"
+  "class": "md:w-3/5 w-full md:px-10"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-center text-3xl font-semibold my-5"
 }, "Comfortable Viewport"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-lg font-semibold text-gray-900"
 }, " Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tempora fuga quia error, ex hic inventore in delectus, at possimus culpa fugit neque necessitatibus, nemo eius quasi! Nulla numquam accusantium eos. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Optio, neque porro eius asperiores atque magnam assumenda ducimus delectus dolorem blanditiis explicabo at debitis placeat velit mollitia? Quaerat facilis perferendis voluptatum. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#",
-  "class": "text-center text-lg font-semibold px-6 py-4 my-5 border-2 rounded-md w-full inline-block"
-}, " Choose a room ")])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Our Services "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "py-12"
+  "class": "text-center text-lg font-semibold px-6 py-4 my-5 rounded-md w-full inline-block bg-black text-yellow-400 hover:shadow-xl"
+}, " Choose a room ")])])])])], -1
+/* HOISTED */
+);
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "py-12 w-11/12 mx-auto md:mx-0 md:w-full"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-center text-4xl font-semibold"
 }, " Our Services "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex justify-center"
+  "class": "flex justify-center text-yellow-500"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -35280,35 +35303,41 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "py-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "grid grid-cols-4 gap-5 w-5/6 mx-auto"
+  "class": "md:grid grid-cols-4 gap-5 space-y-16 md:space-y-0 w-5/6 mx-auto text-gray-200"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "border-2 py-10 px-4 rounded-md"
+  "class": "py-10 px-4 rounded-md shadow-2xl bg-zinc-800"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-center font-semibold text-2xl mb-5"
+  "class": "text-center font-semibold text-xl mb-5 text-yellow-400"
 }, "24/7 Power Supply"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "font-semibold text-gray-500"
+  "class": "font-semibold"
 }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit optio consequatur rerum deserunt, sequi voluptate ab s dicta quisquam sed nulla ipsum consectetur minima recusandae. Corporis ad laborum sed porro. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "border-2 py-10 px-4 rounded-md"
+  "class": "py-10 px-4 rounded-md shadow-xl bg-zinc-800"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-center font-semibold text-2xl mb-5"
+  "class": "text-center font-semibold text-2xl mb-5 text-yellow-400"
 }, "24/7 Water Supply"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "font-semibold text-gray-500"
+  "class": "font-semibold"
 }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit optio consequatur rerum deserunt, sequi voluptate ab s dicta quisquam sed nulla ipsum consectetur minima recusandae. Corporis ad laborum sed porro. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "border-2 py-10 px-4 rounded-md"
+  "class": "py-10 px-4 rounded-md shadow-xl bg-zinc-800"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-center font-semibold text-2xl mb-5"
+  "class": "text-center font-semibold text-2xl mb-5 text-yellow-400"
 }, "Good Security"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "font-semibold text-gray-500"
+  "class": "font-semibold"
 }, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit optio consequatur rerum deserunt, sequi voluptate ab s dicta quisquam sed nulla ipsum consectetur minima recusandae. Corporis ad laborum sed porro. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "border-2 py-10 px-4 rounded-md"
+  "class": "py-10 px-4 rounded-md shadow-xl bg-zinc-800"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-center font-semibold text-2xl mb-5"
+  "class": "text-center font-semibold text-2xl mb-5 text-yellow-400"
 }, "Constant Maintenance"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "font-semibold text-gray-500"
-}, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit optio consequatur rerum deserunt, sequi voluptate ab s dicta quisquam sed nulla ipsum consectetur minima recusandae. Corporis ad laborum sed porro. ")])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Testimonials "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "font-semibold"
+}, "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit optio consequatur rerum deserunt, sequi voluptate ab s dicta quisquam sed nulla ipsum consectetur minima recusandae. Corporis ad laborum sed porro. ")])])])])], -1
+/* HOISTED */
+);
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "w-11/12 mx-auto md:mx-0 md:w-full"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "text-center text-4xl font-semibold"
 }, " Testimonials "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex justify-center"
+  "class": "flex justify-center text-yellow-500"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "flex items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -35322,43 +35351,71 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 })])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "py-8 px-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "border-2 w-3/5 mx-auto py-5 px-2 rounded-md"
+  "class": "md:w-3/5 w-full mx-auto py-5 px-2 rounded-md shadow-xl bg-zinc-800"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "border-4 bg-gray-600 rounded-full mx-auto mb-5",
+  "class": "border-4 border-l-yellow-400 border-r-yellow-400 bg-gray-600 rounded-full mx-auto mb-5",
   style: {
     "width": "100px",
     "height": "100px"
   }
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "pb-12"
+  "class": "pb-12 text-gray-200"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "font-semibold text-lg text-center my-3"
-}, "Adam Williams"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex explicabo dolorem laborum nesciunt accusamus provident excepturi, molestias libero quibusdam labore hic quidem ratione laboriosam nostrum nisi error voluptatibus vero ut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, corporis itaque iste corrupti ")])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CTA "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "py-12"
+  "class": "font-semibold text-lg text-center my-3 text-yellow-400"
+}, "Adam Williams"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex explicabo dolorem laborum nesciunt accusamus provident excepturi, molestias libero quibusdam labore hic quidem ratione laboriosam nostrum nisi error voluptatibus vero ut? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae, corporis itaque iste corrupti ")])])])], -1
+/* HOISTED */
+);
+
+var _hoisted_20 = {
+  "class": "bg-general-hero bg-cover bg-no-repeat bg-center relative"
+};
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "bg-yellow-600 absolute inset-0 opacity-80 z-30"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_22 = {
+  "class": "py-12 relative z-40"
+};
+var _hoisted_23 = {
+  "class": "md:w-1/2 w-full mx-auto py-8 px-4"
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "font-bold text-4xl text-center text-black"
+}, "The best situable place for your stay.", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "font-bold my-5 text-center text-2xl text-black"
+}, "Hurry now and choose a room", -1
+/* HOISTED */
+);
+
+var _hoisted_26 = ["href"];
+
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", {
+  "class": "bg-zinc-800 text-gray-200"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-1/2 mx-auto py-8 px-4"
+  "class": "w-5/6 mx-auto py-12 md:flex space-y-5 md:space-y-0 justify-between border-b-2"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "md:w-1/3 w-full"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "font-semibold text-4xl text-center"
-}, "The best situable place for your stay."), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "font-semibold my-5 text-center text-2xl"
-}, "Hurry now and choose a room"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "#",
-  "class": "text-center text-lg font-semibold px-6 py-4 my-5 border-2 rounded-md w-1/2 block mx-auto"
-}, " Choose a room ")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("footer", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-5/6 mx-auto py-12 flex justify-between border-b-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-1/3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Lodge Name")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-1/3"
+  "class": "font-bold text-2xl text-yellow-400 text-center md:text-left"
+}, "Lodge Name")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "md:w-1/3 w-full"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
-  "class": "text-center"
+  "class": "text-center space-y-6"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Home"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "About Us"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Contact Us"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Terms and Condition"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Privacy Policy")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "w-1/3"
+  "class": "md:w-1/3 w-full"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", {
   "class": "text-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Facebook"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Whatsapp"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Twitter"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, "Instagram")])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "text-center font-semibold py-8"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Copyright © 2022 Lodge")])])], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Copyright © 2022 Lodge")])], -1
 /* HOISTED */
 );
 
@@ -35390,19 +35447,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
       }, 8
       /* PROPS */
-      , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
-        href: _ctx.route('about'),
-        "class": "px-6 py-4"
-      }, {
-        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_9];
-        }),
-        _: 1
-        /* STABLE */
-
-      }, 8
-      /* PROPS */
-      , ["href"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
+      , ["href"]), _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Link"], {
         href: _ctx.route('contact'),
         "class": "px-6 py-4"
       }, {
@@ -35454,7 +35499,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["href"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
       /* STABLE_FRAGMENT */
-      ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_15]), _hoisted_16];
+      ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), _hoisted_15]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("main", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" About Us  "), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Why Us "), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Our Services "), _hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Testimonials "), _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" CTA "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: _ctx.route('register'),
+        "class": "text-center text-lg font-semibold px-6 py-4 my-5 hover:shadow-xl rounded-md w-1/2 block mx-auto bg-black text-yellow-400"
+      }, " Choose a room ", 8
+      /* PROPS */
+      , _hoisted_26)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Footer "), _hoisted_27])];
     }),
     _: 1
     /* STABLE */
