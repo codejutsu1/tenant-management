@@ -1,11 +1,14 @@
 <script setup>
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import AppLayout from '@/Layouts/App.vue';
+import { ref } from 'vue';
 
 defineProps({
    canLogin: Boolean,
    canRegister: Boolean  
 });
+
+const navbarOpen = ref(false)
 
 </script>
 <template>
@@ -23,6 +26,14 @@ defineProps({
                     </div>
                
                     <nav class="flex">
+                         <div class="md:hidden flex justify-end items-center pt-2 z-[60] relative">
+                              <button type="button" @click="navbarOpen =! navbarOpen" class="p-1 -ml-1 text-yellow-400 rounded-md md:hidden focus:outline-none focus:shadow-outline-purple transition duration-150 ease-in-out">
+                                   <svg class="h-6 w-6" stroke="currentColor" fill="currentColor" viewBox="0 0 20 20">
+                                        <path :class="{'hidden': navbarOpen, 'inline-flex': !navbarOpen }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                        <path :class="{'hidden': ! navbarOpen, 'inline-flex': navbarOpen }" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                   </svg>
+                              </button>
+                         </div>    
                          <ul class="md:flex items-center hidden">
                               <Link :href="route('home')" class="px-6 py-4">
                                    Home
@@ -65,6 +76,45 @@ defineProps({
                          </a>
                     </div>
                </div>
+
+               <!-- Responsive -->
+               <div class="w-full h-full z-40 inset-0 fixed bg-black opacity-60" @click="navbarOpen = false" :class="{'hidden': !navbarOpen, 'block': navbarOpen}"></div>
+               <div :class="{'hidden': !navbarOpen, 'block': navbarOpen}">
+                <ul class="bg-white fixed top-16 z-50 w-full text-center space-y-10 py-10 rounded-md text-yellow-600">
+                    <li>
+                        <a href="/" class="font-semibold">
+                            HOME
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="font-semibold">
+                            ABOUT
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('contact') }}" class="font-semibold">
+                            CONTACT US
+                        </a>
+                    </li>
+                    <li>
+                         <div v-if="$page.props.canLogin" class="px-6 py-4 text-lg font-semibold sm:block">
+                              <Link v-if="$page.props.auth.user" :href="route('dashboard')">
+                                   Dashboard
+                              </Link>
+
+                              <template v-else>
+                                   <Link :href="route('login')">
+                                   Log in
+                                   </Link>
+                                   <span class="px-3">|</span>
+                                   <Link v-if="$page.props.canRegister" :href="route('register')" class="py-4">
+                                   Register
+                                   </Link>
+                              </template>
+                         </div>
+                    </li>
+                </ul>
+            </div>
           </header>
 
           <main>
