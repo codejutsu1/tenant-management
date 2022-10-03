@@ -83,11 +83,11 @@ Password: user@user
 
 * View transaction history, receipts and legal document of each tenants.
 
-* Update when a tenant's rent has expired.
+* Update the tenant when rent has expired.
 
-* View and edits occupants of a room.
+* View and edit occupants of a room.
 
-* Can edit the website settings.
+* Edit the website settings.
 
 ### Caretaker
 
@@ -112,8 +112,8 @@ Same functionalities with the `Landlord` <b>except</b>
 ## About the project
 
 * Make an online payment using [Paystack](https://paystack.com) for
-- Rent payment, which has a specific amount that can be edited by the admin.
-- Other payment with input field to key in amount of the tenant's choice. 
+    - Rent payment, which has a specific amount that can be edited by the admin.
+    - Other payment with input field to key in amount of the tenant's choice. 
 
 * Generate receipts after each payment using [laraveldaily invoice package](https://github.com/LaravelDaily/laravel-invoices).
 
@@ -122,3 +122,11 @@ Same functionalities with the `Landlord` <b>except</b>
 * Limiting tenant access to the `choose a room` page if already paid and has a room number, using `checkPayment middleware`.
 
 * Set a cron job to check if each tenant's rent has expired and update it to the database.
+
+* Wrote tests for the following 
+    - Each role's authentication.
+    - Each role's pages in the dashboard.  
+    - Landlord and Caretaker functionalites
+```bash
+$ php artisan test
+```
