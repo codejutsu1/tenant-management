@@ -125,7 +125,6 @@ Route::group(['middleware' => ['auth', 'tenant', 'verified'], 'prefix' => 'tenan
         Route::get('payment', 'userPayment')->name('user.payment');
         Route::get('receipt', 'userReceipt')->name('user.receipt');
         Route::get('transaction-history', 'userHistory')->name('user.history');
-        Route::get('legal', 'userLegal')->name('user.legal');
         Route::get('account-details', 'userDetails')->name('user.details');  
         Route::get('choose-room', 'chooseRoom')->name('choose.room')->middleware('paid');
         Route::post('choose-a-room', 'chooseaRoom')->name('choose.a.room');   

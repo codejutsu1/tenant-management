@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\Auth;
+namespace Tests\Feature\Auth\Tenant;
 
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -18,6 +18,7 @@ class EmailVerificationTest extends TestCase
     {
         $user = User::factory()->create([
             'email_verified_at' => null,
+            'role_id' => 3
         ]);
 
         $response = $this->actingAs($user)->get('/verify-email');
@@ -29,6 +30,7 @@ class EmailVerificationTest extends TestCase
     {
         $user = User::factory()->create([
             'email_verified_at' => null,
+            'role_id' => 3
         ]);
 
         Event::fake();
@@ -43,13 +45,14 @@ class EmailVerificationTest extends TestCase
 
         Event::assertDispatched(Verified::class);
         $this->assertTrue($user->fresh()->hasVerifiedEmail());
-        $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
+        $response->assertRedirect(RouteServiceProvider::TENANT.'?verified=1');
     }
 
     public function test_email_is_not_verified_with_invalid_hash()
     {
         $user = User::factory()->create([
             'email_verified_at' => null,
+            'role_id' => 3
         ]);
 
         $verificationUrl = URL::temporarySignedRoute(
