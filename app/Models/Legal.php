@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
@@ -10,6 +11,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class Legal extends Model
 {
     use HasFactory;
+    use BelongsToUser;
 
     protected $fillable = [
         'user_id',
@@ -17,11 +19,6 @@ class Legal extends Model
         'year',
         'link'
     ];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
     protected function createdAt(): Attribute
     {
