@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('site_phone');
             $table->string('site_rent');
             $table->string('room_numbers');
+            $table->string('account_name');
+            $table->string('account_number');
+            $table->string('bank_name');
             $table->timestamps();
         });
     }

@@ -53,6 +53,7 @@ class UserSeeder extends Seeder
             'email' => 'user@user.com',
             'password' => bcrypt('user@user'),
             'gender' => 'male',
+            'email_verified_at' => Carbon::now(),
             'year' => NULL,
             'role_id' => '3',
             'type' => 'Tenant',

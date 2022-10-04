@@ -62,6 +62,12 @@ const submit = () => {
                     Log in
                 </BreezeButton>
             </div>
+
+            <div class="flex justify-end mt-4 items-center">
+                 <Link :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                    Not registered?
+                </Link>
+            </div>
         </form>
     </BreezeGuestLayout>
 </template>

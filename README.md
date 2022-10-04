@@ -123,10 +123,13 @@ Same functionalities with the `Landlord` <b>except</b>
 
 * Set a cron job to check if each tenant's rent has expired and update it to the database.
 
+* Able to send out email (using mailables).
+
 * Wrote tests for the following 
     - Each role's authentication.
     - Each role's pages in the dashboard.  
     - Landlord and Caretaker functionalites
 ```bash
+# To test the application
 $ php artisan test
 ```

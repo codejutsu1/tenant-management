@@ -5,6 +5,10 @@ import { Inertia } from '@inertiajs/inertia';
 import { reactive } from 'vue';
 import Notification from '@/Components/Notification.vue';
 
+const props = defineProps({
+  setting: Number,
+})
+
 const form = reactive({
     email: 'joshua@nwatu.com',
     amount: '12000000',
@@ -33,7 +37,7 @@ function submit() {
       <div class="flex justify-center items-center w-full md:w-1/2 bg-gray-800 rounded-md p-8 mx-auto mb-5">
         <form class="w-full">
           <div class="text-gray-300">
-            <h1 class="text-4xl text-center font-semibold">&#8358; 120,000.00</h1>
+            <h1 class="text-4xl text-center font-semibold">&#8358; {{ setting }}</h1>
             <div class="space-y-5 mt-4">
               <div class="flex justify-between items-center">
                 <span class="font-semibold text-lg">Name: </span>

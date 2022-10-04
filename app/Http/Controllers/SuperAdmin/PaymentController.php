@@ -44,15 +44,19 @@ class PaymentController extends Controller
         $transaction = Transaction::with('user')->where('id', $id)->first();
 
         if($transaction->title == 'Lodge Payment')
-        {
-            $payer = User::where('id', $transaction->user_id)->first();            
-            
-            User::where('room_no', $payer->room_no)->update([
+        {       
+            if($transaction->user->room_no != NULL){
+                User::where('room_no', $transaction->user->room_no)->update([
+                    'paid' => 1,
+                    'status' => 1
+                ]);
+            }
+
+            User::where('id', $transaction->user->id)->update([
+                'payer' => 1,
+                'status' => 1,
                 'paid' => 1
             ]);
-
-            $payer->payer = 1;
-            $payer->save();
         }
         
         $customer = new Party([

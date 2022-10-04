@@ -46,7 +46,7 @@ const navbarOpen = ref(false)
                               </Link>
                          </ul>
                          <div v-if="canLogin" class="hidden px-6 py-4 sm:block">
-                              <Link v-if="$page.props.auth.user" :href="route('dashboard')">
+                              <Link v-if="$page.props.auth.user" :href="route('dashboard.user')">
                                    Dashboard
                               </Link>
 
@@ -98,7 +98,7 @@ const navbarOpen = ref(false)
                     </li>
                     <li>
                          <div v-if="$page.props.canLogin" class="px-6 py-4 text-lg font-semibold sm:block">
-                              <Link v-if="$page.props.auth.user" :href="route('dashboard')">
+                              <Link v-if="$page.props.auth.user" :href="route('dashboard.user')">
                                    Dashboard
                               </Link>
 

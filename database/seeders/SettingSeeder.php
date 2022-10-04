@@ -20,7 +20,10 @@ class SettingSeeder extends Seeder
             'site_email' => 'accomodation@lodge.com',
             'site_phone' => '7888872783',
             'site_rent' => '180000',
-            'room_numbers' => '30'
+            'room_numbers' => '30',
+            'account_name' => 'Julius Ceaser',
+            'account_number' => '233435434',
+            'bank_name' => 'Roman Empire National Bank (RENB)'
         ]);
     }
 }

@@ -14,6 +14,9 @@ class Setting extends Model
         'site_email',
         'site_phone',
         'site_rent',
-        'room_numbers'
+        'room_numbers',
+        'account_name',
+        'account_number',
+        'bank_name'
     ];
 }

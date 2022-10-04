@@ -2,6 +2,10 @@
 import Payment from '@/Components/Pay.vue';
 import { Head, Link } from '@inertiajs/inertia-vue3';
 
+const props = defineProps({
+  setting: Object,
+})
+
 </script>
 
 <template>
@@ -17,7 +21,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                  Account Name:
                </span>
                <span class="block border border-gray-400 py-2 text-xl px-2">
-                 Nwokoro James Okafor
+                 {{ setting.account_name }}
                </span>
              </div>
              <div class="p-8">
@@ -25,7 +29,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                  Account Number:
                </span>
                <span class="block border border-gray-400 py-2 text-xl px-2">
-                 2134558383
+                 {{ setting.account_number }}
                </span>
                <span class="block mt-2 text-sm"> 
                  Click on the above box to copy.
@@ -36,7 +40,7 @@ import { Head, Link } from '@inertiajs/inertia-vue3';
                  Bank Name:
                </span>
                <span class="block border border-gray-400 py-2 text-xl px-2">
-                 First Bank of Nigeria
+                 {{ setting.bank_name }}
                </span>
              </div>
           </div>

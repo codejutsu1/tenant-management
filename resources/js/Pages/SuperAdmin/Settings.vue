@@ -15,7 +15,10 @@ const form = reactive({
    site_email: props.settings.site_email,
    site_phone: props.settings.site_phone,
    site_rent: props.settings.site_rent,
-   room_numbers: props.settings.room_numbers
+   room_numbers: props.settings.room_numbers,
+   account_name: props.settings.account_name,
+   account_number: props.settings.account_number,
+   bank_name: props.settings.bank_name
 });
 
 const password = useForm({
@@ -102,6 +105,36 @@ function updateSite() {
                             v-model="form.room_numbers"
                         />
                         <p v-if="errors.room_numbers" class="text-sm text-red-500">{{ errors.room_numbers }}</p>
+                    </label>
+
+                    <label class="block">
+                        <span class="text-gray-400 pt-4 pb-2 block font-semibold">Account Name</span>
+                        <input
+                            class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            type="text"
+                            v-model="form.account_name"
+                        />
+                        <p v-if="errors.account_name" class="text-sm text-red-500">{{ errors.account_name }}</p>
+                    </label>
+
+                    <label class="block">
+                        <span class="text-gray-400 pt-4 pb-2 block font-semibold">Account Number</span>
+                        <input
+                            class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            type="text"
+                            v-model="form.account_number"
+                        />
+                        <p v-if="errors.account_name" class="text-sm text-red-500">{{ errors.account_number }}</p>
+                    </label>
+
+                    <label class="block">
+                        <span class="text-gray-400 pt-4 pb-2 block font-semibold">Bank Name</span>
+                        <input
+                            class="block w-full mt-1 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            type="text"
+                            v-model="form.bank_name"
+                        />
+                        <p v-if="errors.bank_name" class="text-sm text-red-500">{{ errors.bank_name }}</p>
                     </label>
 
                     <div class="flex justify-end py-5">

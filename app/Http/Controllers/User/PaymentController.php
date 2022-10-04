@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Iamolayemi\Paystack\Facades\Paystack;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Setting;
 use Carbon\Carbon;
 
 class PaymentController extends Controller
@@ -71,12 +72,16 @@ class PaymentController extends Controller
 
     public function onlineBanking()
     {
-        return Inertia('User/Banking/OnlineBanking');
+        $setting = Setting::where('id', 1)->value('site_rent');
+
+        return Inertia('User/Banking/OnlineBanking', compact('setting'));
     }
 
     public function offlineBanking()
     {
-        return Inertia('User/Banking/OfflineBanking');
+        $setting = Setting::where('id', 1)->select(['account_name', 'account_number', 'bank_name'])->first();
+
+        return Inertia('User/Banking/OfflineBanking', compact('setting'));
     }
 
     public function crypto()
