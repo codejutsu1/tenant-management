@@ -111,6 +111,8 @@ Same functionalities with the `Landlord` <b>except</b>
 
 ## About the project
 
+* Responsive in all devices.
+
 * Make an online payment using [Paystack](https://paystack.com) for
     - Rent payment, which has a specific amount that can be edited by the admin.
     - Other payment with input field to key in amount of the tenant's choice. 
@@ -129,6 +131,7 @@ Same functionalities with the `Landlord` <b>except</b>
     - Each role's authentication.
     - Each role's pages in the dashboard.  
     - Landlord and Caretaker functionalites
+    
 ```bash
 # To test the application
 $ php artisan test
