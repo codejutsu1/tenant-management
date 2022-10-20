@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Setting;
 use Carbon\Carbon;
+use Inertia\Inertia;
 
 class PaymentController extends Controller
 {
@@ -35,11 +36,12 @@ class PaymentController extends Controller
             ->initialize($paymentDetails)->response();
 
         if (!$response['status']) {
-            // notify that something went wrong
+            return back()->with('message', 'Something went wrong');
         }
+        
+        $authorization_url = $response['data']['authorization_url'];
 
-        // redirect to authorization url
-        return redirect($response['data']['authorization_url']);
+        return Inertia::location($authorization_url);
     }
 
 

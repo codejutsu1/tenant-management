@@ -19644,19 +19644,28 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    message: String
+    message: String,
+    authorization_url: String
   },
   setup: function setup(__props, _ref) {
+    var _this = this;
+
     var expose = _ref.expose;
     expose();
+    var props = __props;
     var showNotification = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       showNotification.value = true;
       setTimeout(function () {
         return showNotification.value = false;
       }, 3000);
+
+      if (props.authorization_url) {
+        _this.$router.push('/' + props.authorization_url);
+      }
     });
     var __returned__ = {
+      props: props,
       showNotification: showNotification,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted
@@ -22391,23 +22400,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    setting: Number
+    setting: String
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var props = __props;
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
-      email: 'joshua@nwatu.com',
+      email: 'codejutsu@protonmail.com',
       amount: '12000000',
       currency: 'NGN',
       channels: ['card']
     });
 
     function submit() {
-      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post(route('demo.pay'));
+      _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia.post(route('pay'), form);
     }
 
     var __returned__ = {
@@ -22420,7 +22430,10 @@ __webpack_require__.r(__webpack_exports__);
       useForm: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.useForm,
       Inertia: _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_2__.Inertia,
       reactive: vue__WEBPACK_IMPORTED_MODULE_3__.reactive,
-      Notification: _Components_Notification_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+      computed: vue__WEBPACK_IMPORTED_MODULE_3__.computed,
+      onMounted: vue__WEBPACK_IMPORTED_MODULE_3__.onMounted,
+      Notification: _Components_Notification_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+      usePage: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.usePage
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -33472,13 +33485,14 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_ctx.$page.props.flash.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Notification"], {
-    message: _ctx.$page.props.flash.message
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_ctx.$page.props.flash.message || _ctx.$page.props.flash.authorization_url ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Notification"], {
+    message: _ctx.$page.props.flash.message,
+    authorization_url: _ctx.$page.props.flash.authorization_url
   }, null, 8
   /* PROPS */
-  , ["message"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Payment"], null, {
+  , ["message", "authorization_url"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Head"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Payment"], null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_6, "₦ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.setting), 1
+      return [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_6, "₦ " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(parseInt($props.setting)), 1
       /* TEXT */
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$page.props.auth.user.name), 1
       /* TEXT */

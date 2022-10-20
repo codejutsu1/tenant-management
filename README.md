@@ -12,15 +12,15 @@ The things you need before installing the project
 
 * [Xampp](https://apachefriends.org/download.html)
 
-## Installation
+### Installation
 
-* Run `composer install` on your cmd or terminal to install composer and make sure you have php installed in your system.
+* Run `composer install` on your cmd or terminal (to install composer) and make sure you have php installed in your system.
 
 * Navigate on the cmd, the folder path you want to store this project in and type the following code
 
 ```bash
 #  clone this repository
-$ git clone https://github.com/codejutsu1/tenant-management
+$ git clone https://github.com/codejutsu1/tenant-management.git
 ```
 
 * Open the project and create a file, `.env` on the root folder.
