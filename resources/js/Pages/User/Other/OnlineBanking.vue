@@ -11,11 +11,14 @@ const props = defineProps({
 
 const form = reactive({
   description: '',
-  amount: ''
+  email: 'codejutsu@protonmail.com',
+  amount: "",
+  currency: 'NGN',
+  channels: ['card']
 });
 
 function submit(){
-  Inertia.post(route('demo.other.payment', form));
+  Inertia.post(route('pay', form));
 }
 
 </script>

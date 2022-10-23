@@ -26,9 +26,10 @@ class PaymentController extends Controller
         // prepare payment details from form request
         $paymentDetails = [
             'email' => request('email'),
-            'amount' => request('amount'),
+            'amount' => request('amount') . "00",
             'reference' => $reference,
-            'callback_url' =>  route('callback')
+            'callback_url' =>  route('callback'),
+            'description' => request('description')
         ];
 
         // initialize new payment and get the response from the api call.
@@ -48,17 +49,38 @@ class PaymentController extends Controller
     public function callback()
     {
         // get reference  from request
+        dd(request());
         $reference = request('reference') ?? request('trxref');
+
+        $title = request('description');
 
         // verify payment details
         $payment = Paystack::transaction()->verify($reference)->response('data');
 
         // check payment status
         if ($payment['status'] == 'success') {
-            // payment is successful
-            // code your business logic here
+            Transaction::create([
+                'user_id' => auth()->user()->id,
+                'title' => 'Lodge Payment',
+                'amount' => '120000',
+                'reference' => $reference,
+                'year' => '2022',
+                'status' => NULL,
+                'paid' => 1
+            ]);
+
+            $current_time = Carbon::now();
+
+            User::where('id', auth()->user()->id)->update([
+                'paid' => 1,
+                'rent_due' => $current_time->addMonths(12)
+            ]);
+
+            dd($title);
+
+            return back();
         } else {
-            // payment is not successful
+            return redirect()->back()->with('message', $payment['status']);
         }
     }
 

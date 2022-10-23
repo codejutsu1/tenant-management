@@ -12,7 +12,7 @@ const props = defineProps({
 
 const form = reactive({
     email: 'codejutsu@protonmail.com',
-    amount: '12000000',
+    amount: '120000',
     currency: 'NGN',
     channels: ['card']
 })
